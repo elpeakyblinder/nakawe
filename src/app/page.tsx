@@ -126,7 +126,6 @@ export default function Home() {
                   <p>MAYO 2024</p>
                 </div>
               </div>
-
               <div className="cardEventTipoEventoo">
                 <Image src={'/arrow.svg'} alt="Icono de tipo de evento" width={40} height={40}/>
                 <p className="textoBlancoOpaco">Taller</p>
@@ -173,33 +172,36 @@ export default function Home() {
       </div>
 
 
-
+{/* SECCION DE COLECCIONESSS */}
       <div className="colecciones"> {/*Seccion de colecciones*/}
         <h2>Colecciones</h2>
         <div className="barraDecorativaColecciones"></div>
         <p>Cada pieza cuenta una historia, cada colección preserva una tradición</p>
 
         <div className="presentacionColecciones"> {/*Seccion principal de colecciones, imagen y descripcion */}
+          <div className="coleccionesZonaTop">
+            <div className="presentacionColeccionesImagen">
+              <div>
+                <h3>Textiles ancestrales</h3>
+                <p>Huipiles, rebozos y textiles bordados a mano por maestras artesanas de Chiapas</p>
 
-          <div className="presentacionColeccionesImagen">
+                <p>24 Piezas únicas</p>
+                <button>Explora</button>
+              </div>
+            </div>
+
             <div>
-              <h3>Textiles ancestrales</h3>
-              <p>Huipiles, rebozos y textiles bordados a mano por maestras artesanas de Chiapas</p>
-
-              <p>24 Piezas únicas</p>
-              <button>Explora</button>
+              <h2>Tradición que vive</h2>
+              <p>Cada hilo cuenta una historia ancestral. Nuestras colecciones preservan técnicas milenarias mientras crean oportunidades económicas para las comunidades artesanas.</p>
+              <ul>
+                <li typeof="disc">Técnicas ancestrales preservadas</li>
+                <li typeof="disc">Comercio justo y sostenible</li>
+                <li typeof="disc">Piezas únicas y auténticas</li>
+              </ul>
             </div>
           </div>
 
-          <div>
-            <h2>Tradición que vive</h2>
-            <p>Cada hilo cuenta una historia ancestral. Nuestras colecciones preservan técnicas milenarias mientras crean oportunidades económicas para las comunidades artesanas.</p>
-            <ul>
-              <li typeof="disc">Técnicas ancestrales preservadas</li>
-              <li typeof="disc">Comercio justo y sostenible</li>
-              <li typeof="disc">Piezas únicas y auténticas</li>
-            </ul>
-          </div>
+
 
           <div className="coleccionesCards">
 

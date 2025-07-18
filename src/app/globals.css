@@ -199,3 +199,21 @@ button{
   border: none;
   padding: 10px 0
 }
+
+/* SECCION DE COLECCIONES */
+.colecciones{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.presentacionColeccionesImagen{
+  background-image: url('/nakawe/public/showRoomNitaSanchez.jpeg');
+  width: 50%;
+  height: 400px;
+}
+.coleccionesZonaTop{
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-left: 5%;
+}
