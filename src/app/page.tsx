@@ -1,4 +1,42 @@
+'use client';
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
+interface CounterProps {
+  target: number;
+  label: string;
+}
+const Counter: React.FC<CounterProps> = ({ target, label }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const duration = 3000; // duración total en ms
+    const stepTime = 50; // tiempo entre cada incremento
+    const increment = Math.ceil(target / (duration / stepTime));
+
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        start = target;
+        clearInterval(timer);
+      }
+      setCount(start);
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, [target]);
+
+  return (
+    <div>
+      <h2>{count}+</h2>
+      <p>{label}</p>
+    </div>
+  );
+};
+
+
 
 export default function Home() {
   return (
@@ -32,44 +70,103 @@ export default function Home() {
 
       {/* SECCION DE CONTADORES */}
       
-      <div>
-        <div>
-          <h2>15+</h2>
-          <p>Comunidades</p>
-        </div>
-
-        <div>
-          <h2>200+</h2>
-          <p>Artesanos</p>
-        </div>
-
-        <div>
-          <h2>50+</h2>
-          <p>Talleres</p>
-        </div>
-
-        <div>
-          <h2>7+</h2>
-          <p>Años</p>
-        </div>
-      </div>
+    <div className="contadoresContainer">
+      <Counter target={15} label="Comunidades" />
+      <Counter target={200} label="Artesanos" />
+      <Counter target={50} label="Talleres" />
+      <Counter target={7} label="Años" />
+    </div>
 
     {/* SECCION DE EVENTOS   */}
 
       <div className="eventos">
         <h2>Próximos Eventos</h2>
 
-        <div></div> {/*BARRA DEJADO DE PROXIMOS EVENTOS*/}
+        <div className="eventosBar"></div> {/*BARRA DEBAJADO DE PROXIMOS EVENTOS*/}
 
         <p>Del 23 al 25 de Mayo</p> {/*¿¿¿Será mejor eliminarlo??? */}
         <p>San Cristóbal de las Casas</p>
         
-        <div>
+        <div className="cardsEvents">
           <Image className="imageArrowLeft" src={'/arrow.svg'} width={50} height={50} alt="Arrow left"/>
 
           <div className="cardEvent cardEvent1">
+            <div className="cardEventTop">
+              <div className="cardEventFecha">
+                <p className="cardEventDia">23</p>
 
+                <div className="cardEventFechaSecundaria">
+                  <p>Viernes</p>
+                  <p>MAYO 2024</p>
+                </div>
+              </div>
+
+              <div className="cardEventTipoEventoo">
+                <Image src={'/arrow.svg'} alt="Icono de tipo de evento" width={40} height={40}/>
+                <p className="textoBlancoOpaco">Taller</p>
+              </div>
+
+            </div>
+
+            <Image  src={'/artesanoSustituto.png'} alt="Imagen del evento" width={200} height={200}/>
+
+            <h4>Cena de recaudación</h4>
+            <p className="textoBlancoSemiOpaco">Encuentro gastronómico con música y subastas</p>
+            <button>Asistir</button>
           </div>
+
+
+          <div className="cardEvent cardEvent1">
+            <div className="cardEventTop">
+              <div className="cardEventFecha">
+                <p className="cardEventDia">23</p>
+
+                <div className="cardEventFechaSecundaria">
+                  <p>Viernes</p>
+                  <p>MAYO 2024</p>
+                </div>
+              </div>
+
+              <div className="cardEventTipoEventoo">
+                <Image src={'/arrow.svg'} alt="Icono de tipo de evento" width={40} height={40}/>
+                <p className="textoBlancoOpaco">Taller</p>
+              </div>
+
+            </div>
+
+            <Image  src={'/artesanoSustituto.png'} alt="Imagen del evento" width={200} height={200}/>
+
+            <h4>Cena de recaudación</h4>
+            <p className="textoBlancoSemiOpaco">Encuentro gastronómico con música y subastas</p>
+            <button>Asistir</button>
+          </div>
+
+
+          <div className="cardEvent cardEvent1">
+            <div className="cardEventTop">
+              <div className="cardEventFecha">
+                <p className="cardEventDia">23</p>
+
+                <div className="cardEventFechaSecundaria">
+                  <p>Viernes</p>
+                  <p>MAYO 2024</p>
+                </div>
+              </div>
+
+              <div className="cardEventTipoEventoo">
+                <Image src={'/arrow.svg'} alt="Icono de tipo de evento" width={40} height={40}/>
+                <p className="textoBlancoOpaco">Taller</p>
+              </div>
+
+            </div>
+
+            <Image  src={'/artesanoSustituto.png'} alt="Imagen del evento" width={200} height={200}/>
+
+            <h4>Cena de recaudación</h4>
+            <p className="textoBlancoSemiOpaco">Encuentro gastronómico con música y subastas</p>
+            <button>Asistir</button>
+          </div>
+
 
           <Image className="imageArrowRight" src={'/arrow.svg'} width={50} height={50} alt="Arrow right"/>
         </div>
@@ -159,3 +256,4 @@ export default function Home() {
     </div>
   );
 }
+

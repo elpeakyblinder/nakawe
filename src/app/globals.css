@@ -6,6 +6,16 @@
 .textoRosa{
   color: #EC4899;
 }
+.textoBlancoOpaco{
+  color: rgba(255, 255, 255, 0.5);
+}
+.textoBlancoSemiOpaco{
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 200;
+}
+button{
+  cursor: pointer;
+}
 
 
 /*  SECCION DEL NAVBAR */
@@ -96,13 +106,96 @@
 }
 
 
+/* SECCION DE LOS CONTADORES */
+.contadoresContainer{
+  display: flex;
+  justify-content: space-evenly;
+  width: 70%;
+  padding: 3% 0;
+}
+.contadoresContainer div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contadoresContainer div h2{
+  font-size: 42px;
+}
 
 /* SECCION DE EVENTOS */
 .eventos{
   background-color: #060606;
   color: rgba(255, 255, 255, 1);
+  width: 95%;
+  padding: 3% 2.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+.eventosBar{
+  width: 15%;
+  border-radius: 15px;
+  background: linear-gradient(to right, #F254A2, #FF007E, #F254A2);
+  height: 5px;
+}
+.eventos h2{
+  font-size: 42px;
 }
 
 .imageArrowLeft{
   rotate: 180deg;
+}
+.cardsEvents{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.cardsEvents .cardEvent{
+  border-radius: 5px;
+  box-shadow: -2px -2px 5px 1px rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  background-color: #111827;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+}
+.cardsEvents .cardEvent h4{
+  font-size: 24px;
+}
+.cardsEvents .cardEvent img{
+  width: 100%;
+}
+.cardEventTop{
+  display: flex;
+  justify-content: space-between;
+}
+.cardEventFechaSecundaria{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.cardEventFecha{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.cardEventTipoEventoo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cardEventDia{
+  font-size: 38px;
+  color: #D9ED92;
+}
+.cardsEvents button{
+  background-color: #D7007F;
+  color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  border: none;
+  padding: 10px 0
 }
