@@ -360,35 +360,35 @@ export default function Home() {
 
       <div>
         <p>Enlaces</p>
-        <a href=""></a>
-        <a href=""></a>
-        <a href=""></a>
-        <a href=""></a>
+        <a href="">Inicio</a>
+        <a href="">Talleres</a>
+        <a href="">Únete</a>
+        <a href="">Programas</a>
       </div>
 
       <div>
         <p>Apoyo</p>
-        <a href=""></a>
-        <a href=""></a>
-        <a href=""></a>
-        <a href=""></a>
+        <a href="">Donar</a>
+        <a href="">Servicio social</a>
+        <a href="">Contacto</a>
+        <a href="">FAQ</a>
       </div>
 
       <div>
         <p>Contacto</p>
-        <a href=""></a>
-        <a href=""></a>
-        <a href=""></a>
+        <a href="">@nakawe.ab</a>
+        <a href="">bordandonakawe@gmail.com</a>
+        <a href="">+52 4461223336</a>
         <div className="redesSociales">
-          <p>Facebook(imagen)</p>
-          <p>Facebook(imagen)</p>
-          <p>Facebook(imagen)</p>
-          <p>Facebook(imagen)</p>
+          <a href=""><Image src="/facebook.svg" alt="Logo Facebook" width={30} height={30}/></a>
+          <a href=""><Image src="/instagram.svg" alt="Logo Instagram" width={30} height={30}/></a>
+          <a href=""><Image src="/pinterest.svg" alt="Logo Pinterest" width={30} height={30}/></a>
+          <a href=""><Image src="/whatsapp.svg" alt="Logo Whatsapp" width={30} height={30}/></a>
         </div>
       </div>
     </footer>
 
-    <p>2025 Fundación NakaWÉ. Todos los derechos reservados</p>
+    <p className="derechosReservados">2025 Fundación NakaWÉ. Todos los derechos reservados</p>
     </div>
     
   );
