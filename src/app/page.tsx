@@ -336,6 +336,59 @@ export default function Home() {
       </div>
 
 
+      {/* SECCION DE IMPACTO */}
+      <div className="impacto">
+        <h2>IMPACTO</h2>
+        <p>Conoce cómo transformamos vidas y preservamos tradiciones año tras año</p>
+        <div className="impactoAños">
+          <div className="añosCirculo">Otros años</div>
+          <div className="impactoAñosSeparador"></div>
+          <div className="añosCirculo">2022</div>
+          <div className="impactoAñosSeparador"></div>
+          <div className="añosCirculo">2023</div>
+          <div className="impactoAñosSeparador"></div>
+          <div className="añosCirculo">2024</div>
+          <div className="impactoAñosSeparador"></div>
+          <div className="añosCirculo">2025</div>
+        </div>
+      </div>
+
+
+    {/* SECCION DEL FOOTER */}
+    <footer>
+      <Image src="/logoNakawe.png" alt="Logo Nakawe" width={170} height={50}/>
+
+      <div>
+        <p>Enlaces</p>
+        <a href=""></a>
+        <a href=""></a>
+        <a href=""></a>
+        <a href=""></a>
+      </div>
+
+      <div>
+        <p>Apoyo</p>
+        <a href=""></a>
+        <a href=""></a>
+        <a href=""></a>
+        <a href=""></a>
+      </div>
+
+      <div>
+        <p>Contacto</p>
+        <a href=""></a>
+        <a href=""></a>
+        <a href=""></a>
+        <div className="redesSociales">
+          <p>Facebook(imagen)</p>
+          <p>Facebook(imagen)</p>
+          <p>Facebook(imagen)</p>
+          <p>Facebook(imagen)</p>
+        </div>
+      </div>
+    </footer>
+
+    <p>2025 Fundación NakaWÉ. Todos los derechos reservados</p>
     </div>
     
   );

@@ -466,3 +466,38 @@ button{
   align-items: center;
   gap: 10px;
 }
+
+/* SECCION DE IMPACTO */
+.impacto{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5% 0;
+  gap: 25px;
+  width: 100%;
+}
+.impacto h2{
+  font-size: 42px;
+}
+.impactoAños{
+  display: flex;
+  width: 90%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.añosCirculo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min(10vw, 80px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%; 
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+}
+
+.impactoAñosSeparador{
+  height: 2px;
+  width: 4%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
