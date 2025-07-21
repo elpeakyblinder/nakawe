@@ -70,12 +70,12 @@ export default function Home() {
 
       {/* SECCION DE CONTADORES */}
       
-    <div className="contadoresContainer">
-      <Counter target={15} label="Comunidades" />
-      <Counter target={200} label="Artesanos" />
-      <Counter target={50} label="Talleres" />
-      <Counter target={7} label="Años" />
-    </div>
+      <div className="contadoresContainer">
+        <Counter target={15} label="Comunidades" />
+        <Counter target={200} label="Artesanos" />
+        <Counter target={50} label="Talleres" />
+        <Counter target={7} label="Años" />
+      </div>
 
     {/* SECCION DE EVENTOS   */}
 
@@ -181,16 +181,24 @@ export default function Home() {
         <div className="presentacionColecciones"> {/*Seccion principal de colecciones, imagen y descripcion */}
           <div className="coleccionesZonaTop">
             <div className="presentacionColeccionesImagen">
-              <div>
-                <h3>Textiles ancestrales</h3>
-                <p>Huipiles, rebozos y textiles bordados a mano por maestras artesanas de Chiapas</p>
+              <div className="mainPresentacionColecciones">
+                <div className="mainPresentacionColeccionesTitulo">
+                  <h3>Nita Sánchez</h3>
+                  <div>
+                    <p><strong>SHOWROOM</strong></p>
+                    <Image src={'/pattern.png'} alt="Tipo de coleccion" width={30} height={30}/>
+                  </div>
+                </div>
+                <p>MUCTAHUITZ, MUNICIPIO LARRAIZAR, CHIAPAS.</p>
 
-                <p>24 Piezas únicas</p>
-                <button>Explora</button>
+                <div className="presentacionColeccionesFinal">
+                  <p className="textoRosa"><strong>24 Piezas únicas</strong></p>
+                  <button><strong>Explora</strong></button>
+                </div>
               </div>
             </div>
 
-            <div>
+            <div className="coleccionesInfo">
               <h2>Tradición que vive</h2>
               <p>Cada hilo cuenta una historia ancestral. Nuestras colecciones preservan técnicas milenarias mientras crean oportunidades económicas para las comunidades artesanas.</p>
               <ul>
@@ -198,64 +206,138 @@ export default function Home() {
                 <li typeof="disc">Comercio justo y sostenible</li>
                 <li typeof="disc">Piezas únicas y auténticas</li>
               </ul>
+              <button>EXPLORAR MAS COLECCIONES</button>
             </div>
           </div>
 
 
 
           <div className="coleccionesCards">
-
-            <div>
+            <div className="coleccionCard">
               <Image src={'/pattern.png'} height={100} width={150} alt="Pattern image"/>
-              <h5>Textiles</h5>
-              <p>Huipiles, rebozos y bordados</p>
-              <div>
-                <span>24 Productos</span>
-                <button><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={50} height={50} /></button>
+              <div className="coleccionCardBody">
+                <h5>Textiles</h5>
+                <p>Huipiles, rebozos y bordados</p>
+                <div className="coleccionCardButtom">
+                  <span className="textoRosa">24 Productos</span>
+                  <button><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={25} height={25} /></button>
+                </div>
               </div>
             </div>
 
-            <div>
+
+            <div className="coleccionCard">
               <Image src={'/pattern.png'} height={100} width={150} alt="Pattern image"/>
-              <h5>Barro</h5>
-              <p>Ollas, jarros y vajillas</p>
-              <div>
-                <span>24 Productos</span>
-                <button><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={50} height={50} /></button>
+              <div className="coleccionCardBody">
+                <h5>Barro</h5>
+                <p>Ollas, jarros y vajillas</p>
+                <div className="coleccionCardButtom">
+                  <span className="textoRosa">24 Productos</span>
+                  <button><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={25} height={25} /></button>
+                </div>
               </div>
             </div>
 
-            <div>
+
+            <div className="coleccionCard">
               <Image src={'/pattern.png'} height={100} width={150} alt="Pattern image"/>
-              <h5>Textiles</h5>
-              <p>Blusas, manteles y decoración</p>
-              <div>
-                <span>24 Productos</span>
-                <button><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={50} height={50} /></button>
+              <div className="coleccionCardBody">
+                <h5>Bordados</h5>
+                <p>Blusas, manteles y decoración</p>
+                <div className="coleccionCardButtom">
+                  <span className="textoRosa">24 Productos</span>
+                  <button><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={25} height={25} /></button>
+                </div>
               </div>
             </div>
 
-            <div>
+
+            <div className="coleccionCard">
               <Image src={'/pattern.png'} height={100} width={150} alt="Pattern image"/>
-              <h5>Textiles</h5>
-              <p>Collares, aretes y pulseras</p>
-              <div>
-                <span>24 Productos</span>
-                <button><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={50} height={50} /></button>
+              <div className="coleccionCardBody">
+                <h5>Decoración y joyería</h5>
+                <p>Collares, aretes y pulseras</p>
+                <div className="coleccionCardButtom">
+                  <span className="textoRosa">24 Productos</span>
+                  <button><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={25} height={25} /></button>
+                </div>
               </div>
             </div>
-
 
           </div>
 
         </div>
+      </div>
 
 
+      <div className="invitacionDeColaboracion">
+        <h4>Cada Compra es un Acto de Resistencia Cultural</h4>
+        <p>Al adquirir nuestras piezas, no solo llevas arte a tu hogar, sino que contribuyes directamente al sustento de las familias artesanas y a la preservación de tradiciones milenarias.</p>
+
+        <div>
+          <button className="invitacionDeColaboracionButton1">Explorar todas las colecciones<Image src={'/arrow-without-circle.svg'} alt="flecha" width={20} height={20}/></button>
+          <button className="invitacionDeColaboracionButton2">Conocer a las Artesanas<Image src={'/arrow-without-circle.svg'} alt="flecha" width={20} height={20}/></button>
+        </div>
+        <p></p>
       </div>
 
 
 
+      {/* SECCION DE REVISTA NAKAWE */}
+      
+
+      <div className="revistaNakawe">
+        <h2>Revista NakaWé</h2>
+        <h4 className="textoRosa">Historias e investigaciones sobre los proyectos</h4>
+
+        <div className="revistaNakaweCards">
+
+          <button><Image className="imageArrowLeft" src={'/arrow-without-circle.svg'} alt="arrow icon" width={25} height={25} /></button>
+
+          <div className="revistaNakaweCard">
+            <Image className="revistaNakaweCardImage" src={'/pattern.png'} height={140} width={150} alt="Pattern image"/>
+            <div className="revistaNakaweCardBody">
+              <h5>Bordado de palma por: </h5>
+              <p>Exploramos cómo las tradiciones textiles conectan generaciones y preservan la memoria cultural.</p>
+              <button><strong>Leer mas</strong><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={20} height={20} /></button>
+            </div>
+          </div>
+
+          <div className="revistaNakaweCard">
+            <Image className="revistaNakaweCardImage" src={'/pattern.png'} height={140} width={150} alt="Pattern image"/>
+            <div className="revistaNakaweCardBody">
+              <h5>Palomas de barro por: Desconocido</h5>
+              <p>Exploramos cómo las tradiciones textiles conectan generaciones y preservan la memoria cultural.</p>
+              <button><strong>Leer mas</strong><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={20} height={20} /></button>
+            </div>
+          </div>
+
+          <div className="revistaNakaweCard">
+            <Image className="revistaNakaweCardImage" src={'/pattern.png'} height={140} width={150} alt="Pattern image"/>
+            <div className="revistaNakaweCardBody">
+              <h5>Cine: Origen de la cultura tal</h5>
+              <p>Exploramos cómo las tradiciones textiles conectan generaciones y preservan la memoria cultural.</p>
+              <button><strong>Leer mas</strong><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={20} height={20} /></button>
+            </div>
+          </div>
+
+          <button><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={25} height={25} /></button>
+        </div>
+      </div>
+
+      {/* SECCION DE NUESTRO OBJETIVO */}
+      <div className="nuestroObjetivo">
+        <div className="nuestroObjetivoTitulo">
+          <h2>Nuestro objetivo</h2>
+          <div className="nuestroObjetivoBar"></div>
+        </div>
+        <p>Crear encuentros para reunir beneficios ambientales y sociales, tejiendo consciencia a través de historias compartidas y tradiciones preservadas.</p>
+        <button>Conocer más sobre nosotros<Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={20} height={20} /></button>
+      </div>
+
+
     </div>
+    
   );
 }
 
