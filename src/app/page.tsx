@@ -64,8 +64,18 @@ export default function Home() {
           </div>
         </div>
   
-        <Image src="/artesanoSustituto.png" alt="Logo Nakawe" width={700} height={450}/>
+        <Image className="imagenHeader" src="/montañasPrincipal.png" alt="Montañas" width={400} height={450}/>
       </section>
+
+      <div className="conocenos">
+        <Image src="/montañasPrincipal.png" alt="Logo Nakawe" width={400} height={250}/>
+
+        <div className="conocenosBody">
+          <h3>¿Quienes somos?</h3>
+          <p>Buscamos agregar valor y consciencia a la cadena productiva industrial diseño, textil, agrícola y de la moda para un mundo sostenible.</p>
+          <button><strong>CONOCE NUESTRA HISTORIA</strong> <Image src={'/arrow-without-circle.svg'} alt="Tipo de coleccion" width={20} height={20}/></button>
+        </div>
+      </div>
 
 
       {/* SECCION DE CONTADORES */}
@@ -88,7 +98,7 @@ export default function Home() {
         <p>San Cristóbal de las Casas</p>
         
         <div className="cardsEvents">
-          <Image className="imageArrowLeft" src={'/arrow.svg'} width={50} height={50} alt="Arrow left"/>
+          <Image className="imageArrowLeft" src={'/flechaBlancaConCirculo.svg'} width={50} height={50} alt="Arrow left"/>
 
           <div className="cardEvent cardEvent1">
             <div className="cardEventTop">
@@ -167,7 +177,7 @@ export default function Home() {
           </div>
 
 
-          <Image className="imageArrowRight" src={'/arrow.svg'} width={50} height={50} alt="Arrow right"/>
+          <Image className="imageArrowRight" src={'/flechaBlancaConCirculo.svg'} width={50} height={50} alt="Arrow right"/>
         </div>
       </div>
 
@@ -274,10 +284,16 @@ export default function Home() {
         <h4>Cada Compra es un Acto de Resistencia Cultural</h4>
         <p>Al adquirir nuestras piezas, no solo llevas arte a tu hogar, sino que contribuyes directamente al sustento de las familias artesanas y a la preservación de tradiciones milenarias.</p>
 
-        <div>
-          <button className="invitacionDeColaboracionButton1">Explorar todas las colecciones<Image src={'/arrow-without-circle.svg'} alt="flecha" width={20} height={20}/></button>
-          <button className="invitacionDeColaboracionButton2">Conocer a las Artesanas<Image src={'/arrow-without-circle.svg'} alt="flecha" width={20} height={20}/></button>
+        <div className="colaboracionArtesanas">
+          <Image src={'/arrow.svg'} alt="flecha" width={50} height={50} />
+          <Image className="colaboracionArtesanasImagen" src={'/artesanaprofile.png'} alt="Artesana imagen" width={180} height={180} />
+          <Image className="colaboracionArtesanasImagen" src={'/artesanaprofile.png'} alt="Artesana imagen" width={180} height={180} />
+          <Image className="colaboracionArtesanasImagen" src={'/artesanaprofile.png'} alt="Artesana imagen" width={180} height={180} />
+          <Image src={'/arrow.svg'} alt="flecha" width={50} height={50} />
         </div>
+
+        <button className="invitacionDeColaboracionButton2">Conocer a las Maestras Artesanas<Image src={'/arrow-without-circle.svg'} alt="flecha" width={20} height={20}/></button>
+
         <p></p>
       </div>
 
@@ -332,7 +348,7 @@ export default function Home() {
           <div className="nuestroObjetivoBar"></div>
         </div>
         <p>Crear encuentros para reunir beneficios ambientales y sociales, tejiendo consciencia a través de historias compartidas y tradiciones preservadas.</p>
-        <button>Conocer más sobre nosotros<Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={20} height={20} /></button>
+        <button>Conocer más sobre nosotros<Image src={'/flechaBlanca.svg'} alt="arrow icon" width={15} height={15} /></button>
       </div>
 
 
@@ -350,6 +366,30 @@ export default function Home() {
           <div className="añosCirculo">2024</div>
           <div className="impactoAñosSeparador"></div>
           <div className="añosCirculo">2025</div>
+        </div>
+
+
+        <div className="informacionGeneralAñoImpacto">
+          <div className="informacionAñoImpacto">
+            <div className="añosCirculo">200</div>
+            <p><strong>Artesanas</strong></p>
+            <span>Más de 200 artesanas han impulsado sus creaciones</span>  
+          </div>
+          <div className="informacionAñoImpacto">
+            <div className="añosCirculo">500</div>
+            <p><strong>Comunidades</strong></p>
+            <span>Más de 200 artesanas han impulsado sus creaciones</span>  
+          </div>
+          <div className="informacionAñoImpacto">
+            <div className="añosCirculo">500k</div>
+            <p><strong>Recaudaciones</strong></p>
+            <span>Más de 200 artesanas han impulsado sus creaciones</span>  
+          </div>
+          <div className="informacionAñoImpacto">
+            <div className="añosCirculo">50</div>
+            <p><strong>Talleres</strong></p>
+            <span>Más de 200 artesanas han impulsado sus creaciones</span>  
+          </div>
         </div>
       </div>
 

@@ -104,6 +104,40 @@ button{
   background-color: #F5BD1F;
   color: rgba(0, 0, 0, 1);
 }
+.imagenHeader{
+  width: 50%;
+}
+
+/* SECCION DE QUIENES SOMOS */
+.conocenos{
+  width: 90%;
+  padding: 0% 5% 5% 5%;
+  background-color: #060606;
+  color: rgba(255, 255, 255, 1);
+  display: flex;
+  text-align: center;
+  justify-content: space-evenly;
+}
+.conocenosBody{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.conocenosBody h3{
+  font-size: 38px;
+}
+.conocenosBody button{
+  display: flex;
+  gap: 5%;
+  align-items: center;
+  padding: 10px 0;
+  justify-content: center;
+  border: none;
+  border-radius: 5px;
+  width: 50%;
+}
 
 
 /* SECCION DE LOS CONTADORES */
@@ -328,12 +362,20 @@ button{
   flex-direction: column;
   align-items: center;
   padding: 3% 5%;
-  height: 25vh;
   background-color: rgba(0, 0, 0, 1);
   color: rgba(255, 255, 255, 1);
   width: 90%;
   gap: 20px;
   justify-content: space-between;
+}
+.colaboracionArtesanas{
+  display: flex;
+  align-items: center;
+  width: 90%;
+  justify-content: space-evenly;
+}
+.colaboracionArtesanasImagen{
+  border-radius: 50%;
 }
 .invitacionDeColaboracion h4{
   font-size: 38px;
@@ -344,12 +386,6 @@ button{
   width: 50%;
   font-size: 18px;
   text-align: center;
-}
-.invitacionDeColaboracion div{
-  display: flex;
-  width: 50%;
-  align-items: center;
-  justify-content: space-evenly;
 }
 .invitacionDeColaboracionButton1, .invitacionDeColaboracionButton2{
   padding: 10px 20px;
@@ -500,6 +536,22 @@ button{
   height: 2px;
   width: 4%;
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+.informacionGeneralAñoImpacto{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 90%;
+}
+.informacionAñoImpacto{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 /* SECCION DEL FOOTER */
