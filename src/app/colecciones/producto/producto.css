@@ -1,0 +1,167 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.productosSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.presentacionProducto{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    padding: 5% 0;
+}
+.presentacionProductoInfo{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.presentacionColecciones{
+    margin: 3% 0;
+}
+.presentacionColeccionesImagen{
+  background-image: url('/showRoomNitaSanchez.jpeg');
+  width: 40%;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background-size: cover;
+}
+.coleccionesZonaTop{
+  display: flex;
+  justify-content: space-between;
+}
+.mainPresentacionColecciones{
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding: 10px 0;
+  filter: opacity(0.9);
+}
+.mainPresentacionColeccionesTitulo{
+  display: flex;
+  justify-content: space-between;
+}
+.mainPresentacionColeccionesTitulo h3{
+  font-size: 24px;
+}
+.mainPresentacionColeccionesTitulo div{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.presentacionColeccionesFinal{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  align-items: center;
+}
+.presentacionColeccionesFinal button{
+  padding: 10px 25px;
+  background-color: #F5BD1F;
+  border: none;
+  color: rgba(0, 0, 0, 1);
+}
+.coleccionesInfo{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.coleccionesInfo button{
+  background-color: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  padding: 15px 0;
+}
+
+
+
+/* Cuerpo del producto */
+.cuerpoProducto{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 40px;
+}
+.mercadoDeAlcance, .conceptoDiseño, .historiaDelDiseño{
+    display: flex;
+    justify-content: space-evenly;
+}
+.mercadoDeAlcance div, .conceptoDiseño div, .historiaDelDiseño div{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+/* DESCUBRE LAS PRENDAS */
+.descubrePrendas{
+    background-color: #060606;
+    color: rgba(255, 255, 255, 1);
+    padding: 5% 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 5% 0;
+}
+.barraPrendas{
+  width: 25%;
+  border-radius: 15px;
+  background: linear-gradient(to right, #F254A2, #FF007E, #F254A2);
+  height: 5px;
+}
+
+/* CARTAS DE PRENDAS */
+.prendas{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    padding: 0 0 5% 0;
+}
+.prendasCard{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    background-color: #F4F4F4;
+    box-shadow: 5px 6px 21px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    align-items: center;
+}
+.infoCuerpoPrendasCard{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.prendasCard .imagenPrenda{
+  width: 100%;
+  border-radius: 15px;
+}
+.cuerpoPrendasCard{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    align-items: flex-start;
+}
+.prendasCardButtom{
+    display: flex;
+    justify-content: space-between;
+}
