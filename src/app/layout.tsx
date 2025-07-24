@@ -20,7 +20,7 @@ export default function RootLayout({
 
           <div className="linksDiv">
             <Link className='links' href={'/'}>Cine</Link>
-            <Link className='links' href={'/'}>Colecciones</Link>
+            <Link className='links' href={'/colecciones'}>Colecciones</Link>
             <Link className='links' href={'/'}>Objetivos</Link>
             <Link className='links' href={'/'}>Articulos</Link>
             <Link className='links' href={'/'}>Talleres</Link>

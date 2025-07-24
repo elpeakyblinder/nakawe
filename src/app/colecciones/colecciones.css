@@ -1,0 +1,62 @@
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 40vh;
+    background-color: #060606;
+    color: rgba(255, 255, 255, 1);
+}
+header h1{
+  font-size: 48px;
+}
+header p{
+  font-size: 30px;
+  font-weight: 200;
+}
+.barraHeaderColecciones{
+  width: 15%;
+  border-radius: 15px;
+  background: linear-gradient(to right, #9FAD6A, #D9ED92, #D7007F, #9FAD6A, #D9ED92);
+  height: 5px;
+}
+.cardsColecciones {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.presentacionColeccionesMain{
+    margin-top: 10%;
+  background-image: url('/showRoomNitaSanchez.jpeg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 450px; /* si quieres altura fija */
+}
+
+.invitacionDeColaboracion{
+  margin: 5% 0;
+}
+
+
+
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+  .cardsColecciones {
+    column-count: 2;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cardsColecciones {
+    column-count: 1;
+  }
+}

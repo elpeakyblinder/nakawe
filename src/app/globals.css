@@ -303,6 +303,16 @@ button{
   align-items: flex-start;
   justify-content: space-evenly;
 }
+.coleccionesInfoLista{
+  font-size: 24px;
+  list-style-type: none;
+  list-style: none;
+}
+.coleccionesInfoLista li::before{
+  content: "•";
+  color: red;
+  margin-right: 8px;
+}
 .coleccionesInfo button{
   background-color: rgba(0, 0, 0, 1);
   color: rgba(255, 255, 255, 1);
@@ -587,4 +597,17 @@ footer div a{
   width: 100%;
   text-align: center;
   border: none;
+}
+
+.textoMediano{
+  font-size: 24px;
+}
+.textoGrande{
+  font-size: 34px;
+}
+.titulo{
+  font-size: 42px;
+}
+.espaciadoDeTexto{
+  line-height: 1.5;
 }

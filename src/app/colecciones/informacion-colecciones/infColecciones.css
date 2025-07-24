@@ -20,6 +20,9 @@
     align-items: center;
     justify-content: space-evenly;
 }
+.presentacionProductoInfo{
+  line-height: 1.2;
+}
 .presentacionColecciones{
     margin: 3% 0;
 }
@@ -99,6 +102,14 @@
     display: flex;
     justify-content: space-evenly;
 }
+.mercadoDeAlcance p, .conceptoDiseño p, .historiaDelDiseño p{
+    text-align: center;
+    line-height: 1.2;
+}
+.mercadoDeAlcance, .conceptoDiseño, .historiaDelDiseño{
+    display: flex;
+    justify-content: space-evenly;
+}
 .mercadoDeAlcance div, .conceptoDiseño div, .historiaDelDiseño div{
     width: 50%;
     display: flex;
@@ -143,12 +154,14 @@
     box-shadow: 5px 6px 21px 1px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     align-items: center;
+    padding-bottom: 30px;
 }
 .infoCuerpoPrendasCard{
   display: flex;
   gap: 5px;
   align-items: center;
 }
+
 .prendasCard .imagenPrenda{
   width: 100%;
   border-radius: 15px;
@@ -161,7 +174,27 @@
     margin-top: 20px;
     align-items: flex-start;
 }
+.cuerpoPrendasCard p{
+  color: rgba(0, 0, 0, 0.7);
+}
+.cuerpoPrendasCard span{
+  color: rgba(0, 0, 0, 1);
+}
 .prendasCardButtom{
+  width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+.prendasCardButtom p{
+  font-size: 26px;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 500;
+}
+.prendasCardButtom button{
+  width: 30%;
+  background-color: #F5BD1F;
+  border: none;
+  border-radius: 5px;
+  padding: 9px 0;
 }

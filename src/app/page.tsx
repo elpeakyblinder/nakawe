@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { League_Spartan } from 'next/font/google'
+const leagueSpartan = League_Spartan({ subsets: ['latin'] })
+
 
 interface CounterProps {
   target: number;
@@ -40,7 +43,7 @@ const Counter: React.FC<CounterProps> = ({ target, label }) => {
 
 export default function Home() {
   return (
-    <div className="inicioPrincipal">
+    <div className="inicioPrincipal {leagueSpartan.className}">
       {/* SECCION DEL HEADER */}
       <section className="header">
         <div className="headerParte1">
@@ -53,7 +56,7 @@ export default function Home() {
             <h1>CONSCIENCIAS</h1>
           </div>
   
-          <p>Conectamos tradiciones ancestrales con innovación sostenible para crear un futuro regenerativo</p>
+          <p className="espaciadoDeTexto">Conectamos tradiciones ancestrales con innovación sostenible para crear un futuro regenerativo</p>
   
           <p className="textoRosa"><strong>NakaWé - Madre de la Tierra</strong></p>
   
@@ -72,8 +75,8 @@ export default function Home() {
 
         <div className="conocenosBody">
           <h3>¿Quienes somos?</h3>
-          <p>Buscamos agregar valor y consciencia a la cadena productiva industrial diseño, textil, agrícola y de la moda para un mundo sostenible.</p>
-          <button><strong>CONOCE NUESTRA HISTORIA</strong> <Image src={'/arrow-without-circle.svg'} alt="Tipo de coleccion" width={20} height={20}/></button>
+          <p className="espaciadoDeTexto">Buscamos agregar valor y consciencia a la cadena productiva industrial diseño, textil, agrícola y de la moda para un mundo sostenible.</p>
+          <button><strong>CONOCE NUESTRA HISTORIA</strong> <Image src={'/flechaNegra.svg'} alt="Tipo de coleccion" width={20} height={20}/></button>
         </div>
       </div>
 
@@ -112,7 +115,7 @@ export default function Home() {
               </div>
 
               <div className="cardEventTipoEventoo">
-                <Image src={'/arrow.svg'} alt="Icono de tipo de evento" width={40} height={40}/>
+                <Image src={'/flechaBlanca.svg'} alt="Icono de tipo de evento" width={20} height={20}/>
                 <p className="textoBlancoOpaco">Taller</p>
               </div>
 
@@ -137,7 +140,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="cardEventTipoEventoo">
-                <Image src={'/arrow.svg'} alt="Icono de tipo de evento" width={40} height={40}/>
+                <Image src={'/flechaBlanca.svg'} alt="Icono de tipo de evento" width={20} height={20}/>
                 <p className="textoBlancoOpaco">Taller</p>
               </div>
 
@@ -163,7 +166,7 @@ export default function Home() {
               </div>
 
               <div className="cardEventTipoEventoo">
-                <Image src={'/arrow.svg'} alt="Icono de tipo de evento" width={40} height={40}/>
+                <Image src={'/flechaBlanca.svg'} alt="Icono de tipo de evento" width={20} height={20}/>
                 <p className="textoBlancoOpaco">Taller</p>
               </div>
 
@@ -186,7 +189,7 @@ export default function Home() {
       <div className="colecciones"> {/*Seccion de colecciones*/}
         <h2>Colecciones</h2>
         <div className="barraDecorativaColecciones"></div>
-        <p>Cada pieza cuenta una historia, cada colección preserva una tradición</p>
+        <p className="textoMediano">Cada pieza cuenta una historia, cada colección preserva una tradición</p>
 
         <div className="presentacionColecciones"> {/*Seccion principal de colecciones, imagen y descripcion */}
           <div className="coleccionesZonaTop">
@@ -210,8 +213,8 @@ export default function Home() {
 
             <div className="coleccionesInfo">
               <h2>Tradición que vive</h2>
-              <p>Cada hilo cuenta una historia ancestral. Nuestras colecciones preservan técnicas milenarias mientras crean oportunidades económicas para las comunidades artesanas.</p>
-              <ul>
+              <p className="textoMediano espaciadoDeTexto">Cada hilo cuenta una historia ancestral. Nuestras colecciones preservan técnicas milenarias mientras crean oportunidades económicas para las comunidades artesanas.</p>
+              <ul className="coleccionesInfoLista">
                 <li typeof="disc">Técnicas ancestrales preservadas</li>
                 <li typeof="disc">Comercio justo y sostenible</li>
                 <li typeof="disc">Piezas únicas y auténticas</li>
@@ -230,7 +233,7 @@ export default function Home() {
                 <p>Huipiles, rebozos y bordados</p>
                 <div className="coleccionCardButtom">
                   <span className="textoRosa">24 Productos</span>
-                  <button><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={25} height={25} /></button>
+                  <button><Image src={'/flechaNegra.svg'} alt="arrow icon" width={25} height={25} /></button>
                 </div>
               </div>
             </div>
@@ -243,7 +246,7 @@ export default function Home() {
                 <p>Ollas, jarros y vajillas</p>
                 <div className="coleccionCardButtom">
                   <span className="textoRosa">24 Productos</span>
-                  <button><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={25} height={25} /></button>
+                  <button><Image src={'/flechaNegra.svg'} alt="arrow icon" width={25} height={25} /></button>
                 </div>
               </div>
             </div>
@@ -256,7 +259,7 @@ export default function Home() {
                 <p>Blusas, manteles y decoración</p>
                 <div className="coleccionCardButtom">
                   <span className="textoRosa">24 Productos</span>
-                  <button><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={25} height={25} /></button>
+                  <button><Image src={'/flechaNegra.svg'} alt="arrow icon" width={25} height={25} /></button>
                 </div>
               </div>
             </div>
@@ -269,7 +272,7 @@ export default function Home() {
                 <p>Collares, aretes y pulseras</p>
                 <div className="coleccionCardButtom">
                   <span className="textoRosa">24 Productos</span>
-                  <button><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={25} height={25} /></button>
+                  <button><Image src={'/flechaNegra.svg'} alt="arrow icon" width={25} height={25} /></button>
                 </div>
               </div>
             </div>
@@ -282,17 +285,17 @@ export default function Home() {
 
       <div className="invitacionDeColaboracion">
         <h4>Cada Compra es un Acto de Resistencia Cultural</h4>
-        <p>Al adquirir nuestras piezas, no solo llevas arte a tu hogar, sino que contribuyes directamente al sustento de las familias artesanas y a la preservación de tradiciones milenarias.</p>
+        <p className="textoMediano">Al adquirir nuestras piezas, no solo llevas arte a tu hogar, sino que contribuyes directamente al sustento de las familias artesanas y a la preservación de tradiciones milenarias.</p>
 
         <div className="colaboracionArtesanas">
-          <Image src={'/arrow.svg'} alt="flecha" width={50} height={50} />
+          <Image src={'/flechaBlancaConCirculo.svg'} alt="flecha" width={50} height={50} />
           <Image className="colaboracionArtesanasImagen" src={'/artesanaprofile.png'} alt="Artesana imagen" width={180} height={180} />
           <Image className="colaboracionArtesanasImagen" src={'/artesanaprofile.png'} alt="Artesana imagen" width={180} height={180} />
           <Image className="colaboracionArtesanasImagen" src={'/artesanaprofile.png'} alt="Artesana imagen" width={180} height={180} />
-          <Image src={'/arrow.svg'} alt="flecha" width={50} height={50} />
+          <Image src={'/flechaBlancaConCirculo.svg'} alt="flecha" width={50} height={50} />
         </div>
 
-        <button className="invitacionDeColaboracionButton2">Conocer a las Maestras Artesanas<Image src={'/arrow-without-circle.svg'} alt="flecha" width={20} height={20}/></button>
+        <button className="invitacionDeColaboracionButton2">Conocer a las Maestras Artesanas<Image src={'/flechaBlanca.svg'} alt="flecha" width={20} height={20}/></button>
 
         <p></p>
       </div>
@@ -308,14 +311,14 @@ export default function Home() {
 
         <div className="revistaNakaweCards">
 
-          <button><Image className="imageArrowLeft" src={'/arrow-without-circle.svg'} alt="arrow icon" width={25} height={25} /></button>
+          <button><Image className="imageArrowLeft" src={'/flechaNegraConCirculo.svg'} alt="arrow icon" width={40} height={40} /></button>
 
           <div className="revistaNakaweCard">
             <Image className="revistaNakaweCardImage" src={'/pattern.png'} height={140} width={150} alt="Pattern image"/>
             <div className="revistaNakaweCardBody">
               <h5>Bordado de palma por: </h5>
               <p>Exploramos cómo las tradiciones textiles conectan generaciones y preservan la memoria cultural.</p>
-              <button><strong>Leer mas</strong><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={20} height={20} /></button>
+              <button><strong>Leer mas</strong><Image src={'/flechaNegra.svg'} alt="arrow icon" width={20} height={20} /></button>
             </div>
           </div>
 
@@ -324,7 +327,7 @@ export default function Home() {
             <div className="revistaNakaweCardBody">
               <h5>Palomas de barro por: Desconocido</h5>
               <p>Exploramos cómo las tradiciones textiles conectan generaciones y preservan la memoria cultural.</p>
-              <button><strong>Leer mas</strong><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={20} height={20} /></button>
+              <button><strong>Leer mas</strong><Image src={'/flechaNegra.svg'} alt="arrow icon" width={20} height={20} /></button>
             </div>
           </div>
 
@@ -333,11 +336,11 @@ export default function Home() {
             <div className="revistaNakaweCardBody">
               <h5>Cine: Origen de la cultura tal</h5>
               <p>Exploramos cómo las tradiciones textiles conectan generaciones y preservan la memoria cultural.</p>
-              <button><strong>Leer mas</strong><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={20} height={20} /></button>
+              <button><strong>Leer mas</strong><Image src={'/flechaNegra.svg'} alt="arrow icon" width={20} height={20} /></button>
             </div>
           </div>
 
-          <button><Image src={'/arrow-without-circle.svg'} alt="arrow icon" width={25} height={25} /></button>
+          <button><Image src={'/flechaNegraConCirculo.svg'} alt="arrow icon" width={40} height={40} /></button>
         </div>
       </div>
 
