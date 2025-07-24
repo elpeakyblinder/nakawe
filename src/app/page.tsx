@@ -36,8 +36,6 @@ const Counter: React.FC<CounterProps> = ({ target, label }) => {
   );
 };
 
-
-
 export default function Home() {
   return (
     <div className="inicioPrincipal">

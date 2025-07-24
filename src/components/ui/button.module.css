@@ -17,12 +17,13 @@
     pointer-events: none;
 }
 
-/* --- Variantes de Estilo --- */
+/* --- Variantes del Boton --- */
 
 .primary {
     background-color: #EC4899;
     color: white;
- }                                   /*!!!!!!!!!!!!!!!!SE VA A CAMBIAR ESTE COLOR PROBABLEMENTE, DESPUES SE NOMBRARÁ CON EL COLOR DEFINITIVO!!!!!!!!!!!!! */
+}                                 
+                      /*!!!!!!!!!!!!!!!!SE VA A CAMBIAR ESTE COLOR PROBABLEMENTE, DESPUES SE NOMBRARÁ CON EL COLOR DEFINITIVO!!!!!!!!!!!!! */
 .primary:hover {
     background-color: #db2777;
 }
