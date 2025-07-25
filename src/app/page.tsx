@@ -431,7 +431,7 @@ export default function Home() {
       </div>
     </footer>
 
-    <p className="derechosReservados">2025 Fundación NakaWÉ. Todos los derechos reservados</p>
+    <p className="derechosReservados">2025 Fundación NakaWé. Todos los derechos reservados</p>
     </div>
     
   );

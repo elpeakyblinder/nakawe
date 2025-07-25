@@ -22,12 +22,12 @@ export default function RootLayout({
             <Link className='links' href={'/'}>Cine</Link>
             <Link className='links' href={'/colecciones'}>Colecciones</Link>
             <Link className='links' href={'/'}>Objetivos</Link>
-            <Link className='links' href={'/'}>Articulos</Link>
+            <Link className='links' href={'/sobre-nosotros'}>Sobre nostros</Link>
             <Link className='links' href={'/'}>Talleres</Link>
           </div>
 
           <div className="rightNavBar">
-            <Image src='language.svg' alt="Icono de lenguaje" width={25} height={25}/>
+            <Image src='/language.svg' alt="Icono de lenguaje" width={25} height={25}/>
             <button>Iniciar sesión</button>
           </div>
         </nav>
