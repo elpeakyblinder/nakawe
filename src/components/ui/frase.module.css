@@ -1,0 +1,19 @@
+.frases {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    min-height: 10vh;
+    font-size: 1.2rem;
+    font-weight: 300;
+    padding: 16px;
+    background-color: #111827;
+    border: solid 1px rgba(75, 85, 99, 0.425);
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.075);
+    gap: 8px;
+    border-radius: 5px;
+}
+
+.autor{
+    font-weight: 100;
+}
