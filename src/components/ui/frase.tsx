@@ -1,4 +1,5 @@
-import styles from './frase.module.css';
+// Dentro de Frase.tsx (CORRECTO)
+import styles from './Frase.module.css';
 
 interface FraseProps {
     texto: string;
@@ -9,10 +10,10 @@ export default function Frase({ texto, autor }: FraseProps) {
     return (
         <div className={styles.frases}>
             <div>
-                <span>"{texto}"</span>
+                <span>&quot;{texto}&quot;</span>
             </div>
             <div>
-                <span className={styles.autor}>- {autor}</span>
+                <span>- {autor}</span>
             </div>
         </div>
     );
