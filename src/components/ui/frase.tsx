@@ -1,5 +1,4 @@
-// Dentro de Frase.tsx (CORRECTO)
-import styles from './Frase.module.css';
+import styles from './frase.module.css';
 
 interface FraseProps {
     texto: string;
