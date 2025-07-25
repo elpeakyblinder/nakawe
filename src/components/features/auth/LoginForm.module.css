@@ -1,0 +1,114 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    background-color: #000000;
+}
+
+/* SECCION DERECHA */
+
+.rightSide{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    color: #ffffff;
+    gap: 30px;
+}
+
+.header span{
+    font-size: 4rem;
+}
+
+.subheader{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.2rem;
+}
+
+.image{
+    border-radius: 50%;
+}
+
+.frases{
+    display: flex;
+    width: 80%;
+    justify-content: start;
+}
+
+/* SECCION IZQUIERDA */
+
+.leftSide {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    color: #000000;
+    gap: 16px;
+}
+
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60vh;
+    gap: 24px;
+}
+
+.input{
+    padding: 15px;
+    border-radius: 3px;
+    border: solid 1px;
+}
+
+.forgot, .forgot div{
+    display: flex;
+    justify-content: end;
+}
+
+.headerForm {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+}
+.headerForm h1{
+    font-size: 3.5rem;
+}
+
+.headerForm span{
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.form Button{
+    width: 100%;
+}
+
+.nameFields {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.nameFields div, .campoForm {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
