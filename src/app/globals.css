@@ -21,6 +21,10 @@ button{
   cursor: pointer;
 }
 
+a{
+  text-decoration: none;
+}
+
 
 /*  SECCION DEL NAVBAR */
 
