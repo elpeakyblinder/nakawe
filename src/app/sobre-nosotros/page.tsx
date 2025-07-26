@@ -6,16 +6,16 @@ const leagueSpartan = League_Spartan({ subsets: ['latin'] })
 
 export default function SobreNosotros(){
     return(
-        <body>
+        <body className="{leagueSpartan.className}">
             <section className="sobreNosotros">
                 <div className="sobreNosotrosInicio">
                     <div className="sobreNosotrosPortada">
-                        <h2>SOBRE NOSOTROS</h2>
-                        <Image className="imagenPrenda" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={300} height={450}/>
-                        <h2>FUNDACIÓN NAKAWÉ B.C</h2>
+                        <h2 className="sobreNosotrosPortadaTitulo1">SOBRE NOSOTROS</h2>
+                        <Image className="imagenPrenda" src={'/sobreNosotrosEjemplo.png'} alt="Tipo de coleccion" width={600} height={300}/>
+                        <h2 className="sobreNosotrosPortadaTitulo2">FUNDACIÓN NAKAWÉ B.C</h2>
                     </div>
                     <h3>Buscamos agregar valor y consciencia a la cadena productiva industrial diseño, textil, agrícola y de la moda para un mundo sostenible.</h3>
-                    <p>Fundación Nakawé Bordando comunidades A.C. surge del replanteamiento de la satisfacción de las necesidades de vestido en un mundo de consumo.Buscamos contribuir a una sociedad sostenible, equilibrada y justa al resignificar el verdadero valor de una prenda creada con técnicas ancestrales ligadas a los quehaceres del territorio: desde la agricultura a la expresión artística proponemos ver cada una de estas piezas como una obra de arte, y de esta forma generar consumo consciente.</p>
+                    <p>Fundación Nakawé Bordando comunidades A.C. surge del replanteamiento de la satisfacción de las necesidades de vestido en un mundo de consumo. <br />Buscamos contribuir a una sociedad sostenible, equilibrada y justa al resignificar el verdadero valor de una prenda creada con técnicas ancestrales ligadas a los quehaceres del territorio: desde la agricultura a la expresión artística proponemos ver cada una de estas piezas como una obra de arte, y de esta forma generar consumo consciente.</p>
 
                 </div>
 
@@ -24,27 +24,27 @@ export default function SobreNosotros(){
                         <h3>Desarrollo humano para la sostenibilidad</h3>
                         <p>Desarrollo humano y sostenible dirigido a disminuir el impacto ecológico y violencia derivadas de hábitos sociales y de consumo.</p>
                     </div>
-                    <Image className="imagenPrenda" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={300} height={450}/>
+                    <Image className="imagenPrenda" src={'/artesanoSustituto.png'} alt="Tipo de coleccion" width={400} height={250}/>
                 </div>
 
 
                 <div className="sobreNosotrosDetrasEscenas">
-                    <div>
+                    <div className="sobreNosotrosDetrasEscenasPresentacion">
                         <div>
                             <h3>Behind Our Scenes</h3>
-                            <p>Nos proponemos mostrar la identidad de l(x)s artistas artesanos y manos ligadas a la riqueza biológica de su territorio, a su forma de entender la vida.Llegar a la mente y consciencia de l(x)s consumidores de textiles, y artesanía para el consumo del mercado de diseño; sobre el verdadero valor detrás de una prenda, desde el origen de cada material que conforman a estas piezas, hasta las manos que lo trabajan.</p>
+                            <p>Nos proponemos mostrar la identidad de l(x)s artistas artesanos y manos ligadas a la riqueza biológica de su territorio, a su forma de entender la vida <br /> <br />.Llegar a la mente y consciencia de l(x)s consumidores de textiles, y artesanía para el consumo del mercado de diseño; sobre el verdadero valor detrás de una prenda, desde el origen de cada material que conforman a estas piezas, hasta las manos que lo trabajan.</p>
                         </div>
                         <Image className="imagenPrenda" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={300} height={450}/>
                     </div>
 
-                    <Image className="imagenPrenda" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={300} height={450}/>
+                    <Image className="sobreNosotrosDetrasEscenasImagen" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={700} height={450}/>
 
-                    <div>
+                    <div className="sobreNosotrosDetrasEscenasOfrecemos">
                         <div>
                             <h4>¿Qué ofrecemos a l(x)s comunidades y a l(x)s integrantes de nuestra comunidad Nakawé.bc?</h4>
                             <p>Plataformas digitales y ambulantes de modelos educativos y productivos, plataformas creativas y comerciales, herramientas de marketing producción de material audiovisual en función de procesos de investigación ~acción participativa..</p>
                         </div>
-                        <Image className="imagenPrenda" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={300} height={450}/>
+                        <Image className="imagenPrenda" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={300} height={350}/>
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@ export default function SobreNosotros(){
                     <div>
                         <Image className="imagenPrenda" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={300} height={450}/>
                         <div>
-                            <h3>Valores</h3>
+                            <h4>Valores</h4>
                             <p>Autonomía</p>
                             <p>identidad</p>
                             <p>Proactividad</p>
@@ -69,15 +69,15 @@ export default function SobreNosotros(){
 
 
                 <div className="sobreNosotrosApoyar">
-                    <h3>Apoyar</h3>
-                    <div></div>
+                    <h3>APOYAR</h3>
+                    <div className="sobreNosotrosApoyarBar"></div>
 
                     <h4>Fundación Nakawé Bordando Comunidades A.C</h4>
                     
-                    <Image className="imagenPrenda" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={300} height={450}/>
+                    <Image className="imagenPrenda" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={200} height={200}/>
 
                     <p>Non-Profit Regenerative community</p>
-                    <button>Donar</button>
+                    <button><strong>DONAR</strong></button>
                 </div>
 
                     {/* SECCION DEL FOOTER */}
