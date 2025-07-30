@@ -22,15 +22,13 @@
     font-size: 6vh;
 }
 
-.image{
-    border-radius: 50%;
-}
-
 .subheader{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
+    font-size: 1.2rem;
 }
 
 .frases{
@@ -101,3 +99,18 @@
     width: 100%;
 }
 
+@media (max-width: 767px) {
+    .container {
+        background-color: #ffffff;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .rightSide {
+        width: 100%;
+    }
+
+    .leftSide {
+        display: none;
+    }
+}
