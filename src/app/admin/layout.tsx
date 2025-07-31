@@ -8,6 +8,7 @@ import UserForm from './UserForm'
 
 import "./admin.css";
 import type { ReactNode } from 'react'
+import AdminFunctions from './adminFunctions'
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   const [showForm, setShowForm] = useState(false)
@@ -28,7 +29,8 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           <hr />
 
           <div>
-            <Link className='' href={'/'}>Usuarios</Link>
+            <Link className='' href={'/admin'}>Usuarios</Link>
+            <Link className='' href={'/admin/artisans'}>Artesanos</Link>
             <Link className='' href={'/'}>Colecciones</Link>
             <Link className='' href={'/'}>Productos</Link>
             <Link className='' href={'/'}>Cine</Link>
@@ -39,22 +41,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         {/* ESTA SECCION AUN NO SE SABE SI VA A SER GENERATIVA */}
 
         <div className='panelAdmin'>
-          <h2>PANEL DE ADMINISTRACION</h2>
-
-          <hr />
-
-          <h3>Gestion de usuarios</h3>
-          <p>Administra la información de los usuarios registrados.</p>
-
-          <div className='panelAdminButtonsOptions'>
-            <input type="text" placeholder='Busca un usuario'/>
-            <button><Image src={'/iconos/filter.svg'} alt='filter icon' width={20} height={20} />Filtros</button>
-            <button><Image src={'/iconos/export.svg'} alt='export icon' width={20} height={20} />Exportar</button>
-            <button onClick={handleNew}>
-              <Image src={'/iconos/add.svg'} alt='add icon' width={20} height={20} />
-              Nuevo usuario
-            </button>
-          </div>
+          {/* 2. Usamos el componente AdminFunctions con props específicas para "Usuarios" */}
 
           {showForm && (
             <div className="modalOverlay">
