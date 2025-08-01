@@ -25,6 +25,14 @@ a{
   text-decoration: none;
 }
 
+:root{
+  --color-primario-ui: #EC4899;
+  --color-primario-ui-hover: #D7007F;
+  --color-secundario-ui: #D9ED92;
+  --color-secundario-ui-hover: #B8D66A;
+  --color-terciario-ui: #FF3131;
+  --color-terciario-ui-hover: #D70000;
+}
 
 /*  SECCION DEL NAVBAR */
 
