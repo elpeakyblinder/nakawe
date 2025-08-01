@@ -1,12 +1,12 @@
 'use client'
 
 import Image from 'next/image'
-import AdminTable from '../adminTable' // Asegúrate que la ruta sea correcta
-// Necesitarás crear este formulario para que funcione la creación/edición
-import ProductForm from './ProductForm' 
+import { useState } from 'react' // 1. Importamos useState
+import AdminTable from '../adminTable'
+import ProductForm from './ProductForm'
+import AdminFunctions from '../adminFunctions' // 2. Importamos AdminFunctions
 import '../admin.css'
 
-// 1. El tipo de dato para productos ya está definido correctamente.
 type Product = {
   id: string
   code: string
@@ -19,11 +19,14 @@ type Product = {
 }
 
 export default function ProductsPage() {
-  // 2. Se actualizan las columnas para que coincidan con los datos del producto.
-  const columns = ['Código', 'Nombre', 'Precio', 'Acciones']
-  
+  // 3. Creamos el estado y la función para manejar el trigger
+  const [newTrigger, setNewTrigger] = useState(0)
+  const handleNew = () => {
+    setNewTrigger(c => c + 1)
+  }
 
-  // 3. Se actualiza la función para renderizar la fila con los datos del producto.
+  const columns = ['Código', 'Nombre', 'Precio', 'Acciones']
+
   const renderProductRow = (
     product: Product,
     onEdit: (item: Product) => void,
@@ -32,7 +35,6 @@ export default function ProductsPage() {
     <tr key={product.id}>
       <td>{product.code}</td>
       <td>{product.name}</td>
-      {/* Formateamos el precio para que se muestre como moneda */}
       <td>{new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(product.price)}</td>
       <td className="actionButtonsAdmin">
         <button className="editarBtn" onClick={() => onEdit(product)}>
@@ -47,8 +49,6 @@ export default function ProductsPage() {
     </tr>
   )
 
-  // 4. Se define una función para renderizar el formulario de productos.
-  // Esta función usará el componente ProductForm.
   const renderProductForm = ({ mode, initialData, onSuccess }: {
     mode: 'create' | 'edit',
     initialData?: Product,
@@ -61,14 +61,25 @@ export default function ProductsPage() {
     />
   )
 
-  // 5. Se renderiza AdminTable con las props correctas para productos.
   return (
-    <AdminTable<Product>
-      columns={columns}
-      fetchUrl="/api/data/products" // La URL para obtener los productos
-      renderRow={renderProductRow} // La función para renderizar filas de productos
-      formTitle="Producto" // El título para el modal
-      renderForm={renderProductForm} // La función para renderizar el formulario de productos
-    />
+    // 4. Envolvemos todo en un Fragment y añadimos AdminFunctions
+    <>
+      <AdminFunctions
+        mainTitle="PANEL DE ADMINISTRACIÓN"
+        title="Gestión de Productos"
+        description="Administra los productos, materiales y precios de la tienda."
+        searchPlaceholder="Busca un producto"
+        buttonText="Nuevo producto"
+        onNew={handleNew}
+      />
+      <AdminTable<Product>
+        columns={columns}
+        fetchUrl="/api/data/products"
+        renderRow={renderProductRow}
+        formTitle="Producto"
+        renderForm={renderProductForm}
+        newTrigger={newTrigger} // 5. Pasamos el trigger a la tabla
+      />
+    </>
   )
 }

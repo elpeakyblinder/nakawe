@@ -1,11 +1,12 @@
 'use client'
 
 import Image from 'next/image'
-import AdminTable from '../adminTable' // Ajusta la ruta si es necesario
-import ArtisanForm from './ArtisansForm' // Importamos el nuevo formulario
+import { useState } from 'react' // 1. Importamos useState
+import AdminTable from '../adminTable'
+import ArtisanForm from './ArtisansForm'
+import AdminFunctions from '../adminFunctions' // 2. Importamos AdminFunctions
 import '../admin.css'
 
-// 1. Definimos el tipo de dato para el artesano.
 type Artisan = {
   id: string
   user_id: string
@@ -16,10 +17,14 @@ type Artisan = {
 }
 
 export default function ArtisansPage() {
-  // 2. Definimos las columnas para la tabla de artesanos.
+  // 3. Creamos el estado y la función para manejar el trigger
+  const [newTrigger, setNewTrigger] = useState(0)
+  const handleNew = () => {
+    setNewTrigger(c => c + 1)
+  }
+
   const columns = ['Foto', 'Nombre', 'Biografía', 'Acciones']
 
-  // 3. Función para renderizar cada fila de la tabla de artesanos.
   const renderArtisanRow = (
     artisan: Artisan,
     onEdit: (item: Artisan) => void,
@@ -41,7 +46,6 @@ export default function ArtisansPage() {
         />
       </td>
       <td>{artisan.display_name}</td>
-      {/* Acortamos la biografía para que no ocupe mucho espacio en la tabla */}
       <td>{artisan.bio.substring(0, 50)}{artisan.bio.length > 50 ? '...' : ''}</td>
       <td className="actionButtonsAdmin">
         <button className="editarBtn" onClick={() => onEdit(artisan)}>
@@ -56,7 +60,6 @@ export default function ArtisansPage() {
     </tr>
   )
 
-  // 4. Función que renderiza el formulario de artesanos dentro del modal.
   const renderArtisanForm = ({ mode, initialData, onSuccess }: {
     mode: 'create' | 'edit',
     initialData?: Artisan,
@@ -69,14 +72,25 @@ export default function ArtisansPage() {
     />
   )
 
-  // 5. Renderizamos el componente AdminTable con la configuración para artesanos.
   return (
-    <AdminTable<Artisan>
-      columns={columns}
-      fetchUrl="/api/data/artisans" // CORREGIDO: La URL ahora incluye /data/ para coincidir con la ruta del API.
-      renderRow={renderArtisanRow}
-      formTitle="Artesano"
-      renderForm={renderArtisanForm}
-    />
+    // 4. Envolvemos todo en un Fragment y añadimos AdminFunctions
+    <>
+      <AdminFunctions
+        mainTitle="PANEL DE ADMINISTRACIÓN"
+        title="Gestión de Artesanos"
+        description="Administra los perfiles de los artesanos en la plataforma."
+        searchPlaceholder="Busca un artesano"
+        buttonText="Nuevo artesano"
+        onNew={handleNew}
+      />
+      <AdminTable<Artisan>
+        columns={columns}
+        fetchUrl="/api/data/artisans"
+        renderRow={renderArtisanRow}
+        formTitle="Artesano"
+        renderForm={renderArtisanForm}
+        newTrigger={newTrigger} // 5. Pasamos el trigger a la tabla
+      />
+    </>
   )
 }

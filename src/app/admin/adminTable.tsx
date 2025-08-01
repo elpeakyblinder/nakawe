@@ -15,6 +15,7 @@ type Props<T> = {
     onSuccess: () => void
     onClose: () => void
   }) => JSX.Element
+  newTrigger?: number
 }
 
 export default function AdminTable<T extends { id: string }>({
@@ -23,6 +24,7 @@ export default function AdminTable<T extends { id: string }>({
   renderRow,
   formTitle,
   renderForm,
+  newTrigger,
 }: Props<T>) {
   const [items, setItems] = useState<T[]>([])
   const [selectedItem, setSelectedItem] = useState<T | null>(null)
@@ -30,17 +32,43 @@ export default function AdminTable<T extends { id: string }>({
   const [formMode, setFormMode] = useState<'create' | 'edit'>('create')
 
   const fetchItems = async () => {
-    const res = await fetch(fetchUrl)
-    const data = await res.json()
-    setItems(data)
+    try {
+      const res = await fetch(fetchUrl)
+      const data = await res.json()
+      
+      // **LA CORRECCIÓN ESTÁ AQUÍ**
+      // Se comprueba si la respuesta de la API es un array.
+      // Si lo es, se utiliza; si no, se establece un array vacío para evitar el error.
+      if (Array.isArray(data)) {
+        setItems(data)
+      } else {
+        console.error("La respuesta de la API no es un array:", data);
+        setItems([])
+      }
+    } catch (error) {
+      console.error("Error al obtener los datos:", error);
+      setItems([]) // En caso de un error de red, también se asegura un array vacío.
+    }
   }
 
   useEffect(() => {
     fetchItems()
   }, [])
 
+  const handleNew = () => {
+    setSelectedItem(null)
+    setFormMode('create')
+    setShowForm(true)
+  }
+
+  useEffect(() => {
+    if (newTrigger && newTrigger > 0) {
+      handleNew()
+    }
+  }, [newTrigger])
+
   const handleDelete = async (id: string) => {
-    const confirmed = confirm('¿Estás seguro que quieres eliminar este elemento?')
+    const confirmed = window.confirm('¿Estás seguro que quieres eliminar este elemento?')
     if (!confirmed) return
 
     const res = await fetch(`${fetchUrl}/${id}`, {
@@ -60,12 +88,6 @@ export default function AdminTable<T extends { id: string }>({
     setShowForm(true)
   }
 
-  const handleNew = () => {
-    setSelectedItem(null)
-    setFormMode('create')
-    setShowForm(true)
-  }
-
   const closeForm = () => {
     setShowForm(false)
     setSelectedItem(null)
@@ -73,7 +95,6 @@ export default function AdminTable<T extends { id: string }>({
 
   return (
     <div className="tablaContainer">
-
       <table className="tablaPerfiles">
         <thead>
           <tr>

@@ -31,10 +31,11 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           <div>
             <Link className='' href={'/admin'}>Usuarios</Link>
             <Link className='' href={'/admin/artisans'}>Artesanos</Link>
-            <Link className='' href={'/'}>Colecciones</Link>
-            <Link className='' href={'/'}>Productos</Link>
-            <Link className='' href={'/'}>Cine</Link>
-            <Link className='' href={'/'}>Revista</Link>
+            <Link className='' href={'/admin/categories'}>Categorias</Link>
+            <Link className='' href={'/admin/collections'}>Colecciones</Link>
+            <Link className='' href={'/admin/products'}>Productos</Link>
+            <Link className='' href={'/admin/roles'}>Roles</Link>
+            <Link className='' href={'/admin/user-roles'}>Roles de usuario</Link>
           </div>
         </nav>
 

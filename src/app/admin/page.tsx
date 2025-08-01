@@ -1,12 +1,12 @@
 'use client'
 
 import Image from 'next/image'
-import AdminTable from './adminTable' // Asegúrate que la ruta sea correcta
-import UserForm from './UserForm' // Asegúrate que la ruta sea correcta
-import './admin.css'
+import { useState } from 'react' // 1. Importamos useState
+import AdminTable from './adminTable'
+import UserForm from './UserForm'
 import AdminFunctions from './adminFunctions'
+import './admin.css'
 
-// 1. Define el tipo de dato para esta tabla específica.
 type Profile = {
   id: string
   first_name: string
@@ -15,10 +15,16 @@ type Profile = {
 }
 
 export default function AdminPage() {
-  // 2. Define las columnas que se mostrarán en el encabezado de la tabla.
+  // 2. Creamos el estado que servirá como "trigger"
+  const [newTrigger, setNewTrigger] = useState(0)
+
+  // 3. Definimos la función handleNew que se pasará a AdminFunctions
+  const handleNew = () => {
+    setNewTrigger(c => c + 1)
+  }
+
   const columns = ['Avatar', 'Nombre', 'Apellido', 'Acciones']
-  // 3. Define una función para renderizar cada fila de la tabla.
-  // Esta función recibe el item y los manejadores de eventos (onEdit, onDelete) desde AdminTable.
+
   const renderProfileRow = (
     profile: Profile,
     onEdit: (item: Profile) => void,
@@ -33,7 +39,6 @@ export default function AdminPage() {
           height={40}
           className="avatarImg"
           onError={(e) => {
-            // Opcional: Maneja errores si la imagen no carga, mostrando un avatar por defecto.
             const target = e.target as HTMLImageElement
             target.onerror = null;
             target.src = `https://placehold.co/40x40/EBF4FF/333333?text=${profile.first_name.charAt(0)}`;
@@ -55,24 +60,18 @@ export default function AdminPage() {
     </tr>
   )
 
-  // 4. Define una función para renderizar el formulario de creación/edición.
-  // Esta función recibe las props necesarias (mode, initialData, etc.) desde AdminTable.
-  const renderProfileForm = ({ mode, initialData, onSuccess, onClose }: {
+  const renderProfileForm = ({ mode, initialData, onSuccess }: {
     mode: 'create' | 'edit',
     initialData?: Profile,
     onSuccess: () => void,
-    onClose: () => void
   }) => (
     <UserForm
       mode={mode}
       initialData={initialData}
       onSuccess={onSuccess}
-      // El prop `onClose` es provisto por AdminTable, pero UserForm no lo necesita
-      // directamente, ya que el modal en AdminTable tiene su propio botón de cierre.
     />
   )
 
-  // 5. Renderiza el componente AdminTable con las props específicas para los perfiles.
   return (
     <>
       <AdminFunctions
@@ -81,7 +80,7 @@ export default function AdminPage() {
         description="Administra la información de los usuarios registrados."
         searchPlaceholder="Busca un usuario"
         buttonText="Nuevo usuario"
-        onNew={handleNew} // Le pasamos la función para abrir el modal
+        onNew={handleNew} // 4. Pasamos la función al botón
       />
       <AdminTable<Profile>
         columns={columns}
@@ -89,7 +88,8 @@ export default function AdminPage() {
         renderRow={renderProfileRow}
         formTitle="Usuario"
         renderForm={renderProfileForm}
-        />
+        newTrigger={newTrigger} // 5. Pasamos el trigger a la tabla
+      />
     </>
   )
 }

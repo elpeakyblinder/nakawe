@@ -3,14 +3,21 @@
 import { useState, useEffect } from 'react'
 import '../admin.css'
 
-// 1. Definimos el tipo de dato para un artesano.
+// Se define un tipo para los datos de un usuario, que se usarán en el dropdown.
+type UserProfile = {
+  id: string
+  first_name: string
+  last_name: string
+}
+
+// El tipo de dato para un artesano no cambia.
 type Artisan = {
   id: string
   user_id: string
   display_name: string
   bio: string
   profile_photo_url: string
-  social_links: string // Se tratará como texto, puede contener múltiples links.
+  social_links: string
 }
 
 type Props = {
@@ -20,14 +27,19 @@ type Props = {
 }
 
 export default function ArtisanForm({ mode, initialData, onSuccess }: Props) {
-  // 2. Creamos un estado para cada campo del formulario.
+  // Estados para los campos del formulario.
   const [userId, setUserId] = useState('')
   const [displayName, setDisplayName] = useState('')
   const [bio, setBio] = useState('')
   const [profilePhotoUrl, setProfilePhotoUrl] = useState('')
   const [socialLinks, setSocialLinks] = useState('')
 
-  // 3. Rellenamos el formulario con datos iniciales en modo de edición.
+  // 1. Nuevos estados para cargar la lista de usuarios en el dropdown.
+  const [users, setUsers] = useState<UserProfile[]>([])
+  const [isLoadingUsers, setIsLoadingUsers] = useState(true)
+
+
+  // Efecto para rellenar el formulario en modo de edición.
   useEffect(() => {
     if (mode === 'edit' && initialData) {
       setUserId(initialData.user_id)
@@ -38,7 +50,28 @@ export default function ArtisanForm({ mode, initialData, onSuccess }: Props) {
     }
   }, [initialData, mode])
 
-  // 4. Manejador para el envío del formulario.
+  // 2. Nuevo efecto para obtener la lista de usuarios para el dropdown.
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        // Se asume que este endpoint devuelve la lista de todos los usuarios.
+        const res = await fetch('/api/data/users');
+        if (res.ok) {
+          const data = await res.json();
+          setUsers(data);
+        } else {
+          console.error('Error al cargar los usuarios');
+        }
+      } catch (error) {
+        console.error('Error de red al cargar usuarios:', error);
+      } finally {
+        setIsLoadingUsers(false);
+      }
+    };
+
+    fetchUsers();
+  }, []); // Se ejecuta solo una vez al montar el componente.
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -50,8 +83,9 @@ export default function ArtisanForm({ mode, initialData, onSuccess }: Props) {
       social_links: socialLinks,
     }
 
+    // El endpoint para artesanos debe incluir /data/
     const endpoint =
-      mode === 'edit' ? `/api/artisans/${initialData?.id}` : '/api/artisans'
+      mode === 'edit' ? `/api/data/artisans/${initialData?.id}` : '/api/data/artisans'
     const method = mode === 'edit' ? 'PUT' : 'POST'
 
     try {
@@ -72,12 +106,21 @@ export default function ArtisanForm({ mode, initialData, onSuccess }: Props) {
     }
   }
 
-  // 5. Renderizamos el formulario JSX.
   return (
     <form onSubmit={handleSubmit} className="userForm artisanForm">
+      {/* 3. El input de texto se reemplaza por un menú desplegable (select). */}
       <label>
-        ID de Usuario (User ID):
-        <input value={userId} onChange={(e) => setUserId(e.target.value)} required />
+        Usuario:
+        <select value={userId} onChange={(e) => setUserId(e.target.value)} required disabled={isLoadingUsers}>
+          <option value="" disabled>
+            {isLoadingUsers ? 'Cargando usuarios...' : 'Selecciona un usuario'}
+          </option>
+          {users.map(user => (
+            <option key={user.id} value={user.id}>
+              {user.first_name} {user.last_name}
+            </option>
+          ))}
+        </select>
       </label>
       <label>
         Nombre a mostrar:

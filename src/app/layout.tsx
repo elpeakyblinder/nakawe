@@ -35,7 +35,7 @@ export default function RootLayout({
 
             <div className="rightNavBar">
               <Image src='/language.svg' alt="Icono de lenguaje" width={25} height={25} />
-              <button>Iniciar sesión</button>
+              <button><Link className="iniciarSesionLink" href={'/login'}>Iniciar sesión</Link></button>
             </div>
           </nav>
         )}

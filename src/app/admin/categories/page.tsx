@@ -1,11 +1,12 @@
 'use client'
 
 import Image from 'next/image'
-import AdminTable from '../adminTable' // Ajusta la ruta si es necesario
-import CategoriesForm from './CategoriesForm' // Importamos el nuevo formulario
+import { useState } from 'react' // 1. Importamos useState
+import AdminTable from '../adminTable'
+import CategoriesForm from './CategoriesForm'
+import AdminFunctions from '../adminFunctions' // 2. Importamos AdminFunctions
 import '../admin.css'
 
-// 1. Definimos el tipo de dato para la categoría.
 type Category = {
   id: string
   name: string
@@ -13,10 +14,14 @@ type Category = {
 }
 
 export default function CategoriesPage() {
-  // 2. Definimos las columnas para la tabla de categorías.
+  // 3. Creamos el estado y la función para manejar el trigger
+  const [newTrigger, setNewTrigger] = useState(0)
+  const handleNew = () => {
+    setNewTrigger(c => c + 1)
+  }
+
   const columns = ['Nombre', 'Descripción', 'Acciones']
 
-  // 3. Función para renderizar cada fila de la tabla de categorías.
   const renderCategoryRow = (
     category: Category,
     onEdit: (item: Category) => void,
@@ -38,7 +43,6 @@ export default function CategoriesPage() {
     </tr>
   )
 
-  // 4. Función que renderiza el formulario de categorías dentro del modal.
   const renderCategoryForm = ({ mode, initialData, onSuccess }: {
     mode: 'create' | 'edit',
     initialData?: Category,
@@ -51,14 +55,25 @@ export default function CategoriesPage() {
     />
   )
 
-  // 5. Renderizamos el componente AdminTable con la configuración para categorías.
   return (
-    <AdminTable<Category>
-      columns={columns}
-      fetchUrl="/api/data/categories" // Endpoint de la API para categorías
-      renderRow={renderCategoryRow}
-      formTitle="Categoría"
-      renderForm={renderCategoryForm}
-    />
+    // 4. Envolvemos todo en un Fragment y añadimos AdminFunctions
+    <>
+      <AdminFunctions
+        mainTitle="PANEL DE ADMINISTRACIÓN"
+        title="Gestión de Categorías"
+        description="Administra las categorías de los productos."
+        searchPlaceholder="Busca una categoría"
+        buttonText="Nueva categoría"
+        onNew={handleNew}
+      />
+      <AdminTable<Category>
+        columns={columns}
+        fetchUrl="/api/data/categories"
+        renderRow={renderCategoryRow}
+        formTitle="Categoría"
+        renderForm={renderCategoryForm}
+        newTrigger={newTrigger} // 5. Pasamos el trigger a la tabla
+      />
+    </>
   )
 }
