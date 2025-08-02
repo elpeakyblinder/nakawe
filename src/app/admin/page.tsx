@@ -25,26 +25,33 @@ export default function AdminPage() {
 
   const columns = ['Avatar', 'Nombre', 'Apellido', 'Acciones']
 
+  function getValidAvatarUrl(profile: Profile): string {
+    if (
+      profile.avatar_url &&
+      typeof profile.avatar_url === 'string' &&
+      (profile.avatar_url.startsWith('/') || profile.avatar_url.startsWith('http'))
+    ) {
+      return profile.avatar_url
+    }
+
+    return `https://placehold.co/40x40/EBF4FF/333333?text=${profile.first_name.charAt(0)}`
+  }
+
   const renderProfileRow = (
     profile: Profile,
     onEdit: (item: Profile) => void,
     onDelete: (id: string) => void
   ) => (
     <tr key={profile.id}>
-      <td>
-        <img
-          src={profile.avatar_url}
-          alt="Avatar"
-          width={40}
-          height={40}
-          className="avatarImg"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement
-            target.onerror = null;
-            target.src = `https://placehold.co/40x40/EBF4FF/333333?text=${profile.first_name.charAt(0)}`;
-          }}
-        />
-      </td>
+    <td>
+      <Image
+        src={getValidAvatarUrl(profile)}
+        alt="Avatar"
+        width={40}
+        height={40}
+        className="avatarImg"
+      />
+    </td>
       <td>{profile.first_name}</td>
       <td>{profile.last_name}</td>
       <td className="actionButtonsAdmin">
