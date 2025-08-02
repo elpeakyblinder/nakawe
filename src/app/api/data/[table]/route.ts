@@ -5,10 +5,10 @@ const allowedTables = ['artisans', 'categories', 'collections', 'products', 'rol
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { table: string } }
+  context: { params: Promise<{ table: string }> }
 ) {
-  const { table } = params
-
+  const params = await context.params;
+  const { table } = params;
   if (!allowedTables.includes(table)) {
     return NextResponse.json({ error: 'Tabla no permitida' }, { status: 400 })
   }
