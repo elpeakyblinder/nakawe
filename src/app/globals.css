@@ -627,3 +627,7 @@ footer div a{
 .espaciadoDeTexto{
   line-height: 1.5;
 }
+.iniciarSesionLink{
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
+}

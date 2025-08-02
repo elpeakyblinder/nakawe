@@ -12,6 +12,8 @@
     width: 90%;
     justify-content: space-between;
     padding: 5% 0;
+    flex-wrap: wrap; /* Añadido para mejorar la responsividad en pantallas pequeñas */
+    gap: 20px; /* Espacio entre elementos */
 }
 .presentacionProductoInfo{
     width: 50%;
@@ -19,6 +21,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    min-width: 300px; /* Ancho mínimo para evitar que se comprima demasiado */
+    flex-grow: 1; /* Permite que el elemento crezca */
 }
 .presentacionProductoInfo{
   line-height: 1.2;
@@ -35,6 +39,8 @@
   justify-content: flex-end;
   align-items: center;
   background-size: cover;
+  min-width: 300px; /* Ancho mínimo */
+  flex-grow: 1; /* Permite que el elemento crezca */
 }
 .coleccionesZonaTop{
   display: flex;
@@ -101,14 +107,12 @@
 .mercadoDeAlcance, .conceptoDiseño, .historiaDelDiseño{
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap; /* Añadido para responsividad */
+    gap: 20px;
 }
 .mercadoDeAlcance p, .conceptoDiseño p, .historiaDelDiseño p{
     text-align: center;
     line-height: 1.2;
-}
-.mercadoDeAlcance, .conceptoDiseño, .historiaDelDiseño{
-    display: flex;
-    justify-content: space-evenly;
 }
 .mercadoDeAlcance div, .conceptoDiseño div, .historiaDelDiseño div{
     width: 50%;
@@ -116,6 +120,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    min-width: 300px;
+    flex-grow: 1;
 }
 
 
@@ -139,23 +145,27 @@
   height: 5px;
 }
 
+/* --- CAMBIOS PRINCIPALES AQUÍ --- */
 /* CARTAS DE PRENDAS */
 .prendas{
-    display: flex;
+    display: grid; /* 1. Se cambia de flex a grid */
+    grid-template-columns: repeat(3, 1fr); /* 2. Se define una cuadrícula de 3 columnas iguales */
+    gap: 30px; /* 3. Se añade un espacio uniforme entre las tarjetas */
     width: 90%;
-    justify-content: space-between;
     padding: 0 0 5% 0;
 }
 .prendasCard{
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 100%; /* 4. Se cambia el ancho a 100% para que la tarjeta ocupe el espacio de la columna del grid */
     background-color: #F4F4F4;
     box-shadow: 5px 6px 21px 1px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     align-items: center;
     padding-bottom: 30px;
 }
+/* --- FIN DE CAMBIOS PRINCIPALES --- */
+
 .infoCuerpoPrendasCard{
   display: flex;
   gap: 5px;
@@ -182,9 +192,9 @@
 }
 .prendasCardButtom{
   width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .prendasCardButtom p{
   font-size: 26px;
@@ -197,4 +207,30 @@
   border: none;
   border-radius: 5px;
   padding: 9px 0;
+}
+.prendasCardButtom button a{
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1);
+}
+
+/* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
+@media (max-width: 1024px) {
+  .prendas {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .prendas {
+    grid-template-columns: 1fr; /* 1 columna en móviles */
+  }
+
+  .presentacionProducto, .mercadoDeAlcance, .conceptoDiseño, .historiaDelDiseño {
+    flex-direction: column; /* Apila los elementos en pantallas pequeñas */
+    align-items: center;
+  }
+
+  .presentacionProductoInfo, .presentacionColeccionesImagen, .mercadoDeAlcance div, .conceptoDiseño div, .historiaDelDiseño div {
+    width: 90%; /* Ocupa más ancho en pantallas pequeñas */
+  }
 }
