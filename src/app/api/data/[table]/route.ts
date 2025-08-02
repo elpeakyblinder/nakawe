@@ -55,8 +55,9 @@ export async function GET(
 // Se añade la función POST para manejar la creación de nuevos registros.
 export async function POST(
   req: NextRequest,
-  { params }: { params: { table: string } }
+  context: { params: Promise<{ table: string }> }
 ) {
+  const params = await context.params;
   const { table } = params;
 
   if (!allowedTables.includes(table)) {
