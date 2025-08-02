@@ -60,8 +60,12 @@ export default function RegisterForm() {
                 setError('');
                 router.push('/profile');
             }
-        } catch (err: any) {
-            setError(err.message);
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError('Ocurrió un error inesperado');
+            }
         } finally {
             setIsLoading(false);
         }

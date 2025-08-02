@@ -1,5 +1,4 @@
 "use client"
-import { ArrowRight, Heart, Eye, EyeOff, Check } from "lucide-react"
 import type React from "react"
 import Image from 'next/image';
 import { useState } from "react"
@@ -47,8 +46,12 @@ export default function LoginForm() {
             // ¡Login exitoso! Redirigir
             router.push('/');
 
-        } catch (err: any) {
-            setError(err.message);
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError('Ocurrió un error inesperado');
+            }
         } finally {
             setIsLoading(false);
         }
