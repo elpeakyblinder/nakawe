@@ -1,26 +1,633 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+*{
+  margin: 0;
+  padding: 0;
+  animation: 0.5s;
+}
+.textoRosa{
+  color: #EC4899;
+}
+.textoBlancoOpaco{
+  color: rgba(255, 255, 255, 0.5);
+}
+.textoBlancoSemiOpaco{
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 200;
+}
+button{
+  cursor: pointer;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+a{
+  text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root{
+  --color-principal-ui: #EC4899;
+  --color-principal-ui-hover: #D7007F;
+  --color-secundario-ui: #D9ED92;
+  --color-secundario-ui-hover: #B8D66A;
+  --color-terciario-ui: #FF3131;
+  --color-terciario-ui-hover: #D70000;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/*  SECCION DEL NAVBAR */
+
+.navBar{
+  background-color: rgba(0, 0, 0, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 97%;
+  padding: 0.5% 1.5%;
+}
+.linksDiv{
+  display: flex;
+  gap: 30px;
+}
+.links{
+  font-size: 20px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 200;
+}
+.rightNavBar{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.rightNavBar button{
+  border-radius: 10px;
+  padding: 10px 15px;
+  border: none;
+  background-color: #EC4899;
+  color: rgba(255, 255, 255, 1);
+}
+
+
+/* SECCION DEL HEADER */
+
+.inicioPrincipal{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+
+}
+.header{
+  background-color: #060606;
+  color: rgba(255, 255, 255, 1);
+  display: flex;
+  width: 80%;
+  padding: 3% 10%;
+  justify-content: space-between;
+  align-items: center;
+}
+.headerParte1{
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+}
+.headerMiniTitulo{
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(0, 0, 0, 1);
+  border: 1px solid rgba(255, 255, 255, 1);
+  width: max-content;
+  padding: 8px;
+  border-radius: 5px;
+}
+.headerTitulo h1{
+  font-size: 48px;
+}
+.headerButtons{
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+.headerButtons button{
+  padding: 10px 2vw;
+  border-radius: 5px;
+  border: none;
+}
+.headerButtons .headerButton2{
+  background-color: #EC4899;
+  color: rgba(255, 255, 255, 1);
+}
+.headerButtons .headerButton3{
+  background-color: #F5BD1F;
+  color: rgba(0, 0, 0, 1);
+}
+.imagenHeader{
+  width: 50%;
+}
+
+/* SECCION DE QUIENES SOMOS */
+.conocenos{
+  width: 90%;
+  padding: 0% 5% 5% 5%;
+  background-color: #060606;
+  color: rgba(255, 255, 255, 1);
+  display: flex;
+  text-align: center;
+  justify-content: space-evenly;
+}
+.conocenosBody{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.conocenosBody h3{
+  font-size: 38px;
+}
+.conocenosBody button{
+  display: flex;
+  gap: 5%;
+  align-items: center;
+  padding: 10px 0;
+  justify-content: center;
+  border: none;
+  border-radius: 5px;
+  width: 50%;
+}
+
+
+/* SECCION DE LOS CONTADORES */
+.contadoresContainer{
+  display: flex;
+  justify-content: space-evenly;
+  width: 70%;
+  padding: 3% 0;
+}
+.contadoresContainer div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contadoresContainer div h2{
+  font-size: 42px;
+}
+
+/* SECCION DE EVENTOS */
+.eventos{
+  background-color: #060606;
+  color: rgba(255, 255, 255, 1);
+  width: 95%;
+  padding: 3% 2.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+.eventosBar{
+  width: 15%;
+  border-radius: 15px;
+  background: linear-gradient(to right, #F254A2, #FF007E, #F254A2);
+  height: 5px;
+}
+.eventos h2{
+  font-size: 42px;
+}
+
+.imageArrowLeft{
+  rotate: 180deg;
+}
+.cardsEvents{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.cardsEvents .cardEvent{
+  border-radius: 5px;
+  box-shadow: -2px -2px 5px 1px rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  background-color: #111827;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+}
+.cardsEvents .cardEvent h4{
+  font-size: 24px;
+}
+.cardsEvents .cardEvent img{
+  width: 100%;
+}
+.cardEventTop{
+  display: flex;
+  justify-content: space-between;
+}
+.cardEventFechaSecundaria{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.cardEventFecha{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.cardEventTipoEventoo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cardEventDia{
+  font-size: 38px;
+  color: #D9ED92;
+}
+.cardsEvents button, .nuestroObjetivo button{
+  background-color: #D7007F;
+  color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  border: none;
+  padding: 10px 0
+}
+
+/* SECCION DE COLECCIONES */
+.colecciones{
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  align-items: center;
+  padding: 5% 0 3% 0;
+  gap: 15px;
+}
+.colecciones h2{
+  font-size: 42px;
+}
+.presentacionColecciones{
+    margin: 3% 0;
+}
+.presentacionColeccionesImagen{
+  background-image: url('/showRoomNitaSanchez.jpeg');
+  width: 45%;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background-size: cover;
+}
+.coleccionesZonaTop{
+  display: flex;
+  justify-content: space-between;
+}
+.mainPresentacionColecciones{
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding: 10px 0;
+  filter: opacity(0.9);
+}
+.mainPresentacionColeccionesTitulo{
+  display: flex;
+  justify-content: space-between;
+}
+.mainPresentacionColeccionesTitulo h3{
+  font-size: 24px;
+}
+.mainPresentacionColeccionesTitulo div{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.presentacionColeccionesFinal{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  align-items: center;
+}
+.presentacionColeccionesFinal button{
+  padding: 10px 25px;
+  background-color: #F5BD1F;
+  border: none;
+  color: rgba(0, 0, 0, 1);
+}
+.coleccionesInfo{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.coleccionesInfoLista{
+  font-size: 24px;
+  list-style-type: none;
+  list-style: none;
+}
+.coleccionesInfoLista li::before{
+  content: "•";
+  color: red;
+  margin-right: 8px;
+}
+.coleccionesInfo button{
+  background-color: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  padding: 15px 0;
+}
+.coleccionesCards{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+.coleccionCard{
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 15px;
+}
+
+.coleccionCardBody{
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  gap: 10px;
+}
+.coleccionCardBody h5{
+  font-size: 20px;
+  font-weight: 300;
+}
+.coleccionCardBody div{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.coleccionCardBody div button, .revistaNakaweCards button{
+  background: none;
+  border: none;
+}
+.coleccionCard img{
+  width: 100%;
+}
+.coleccionCardButtom{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* SECCION DE INVITACION A COLABORAR */
+
+.invitacionDeColaboracion{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3% 5%;
+  background-color: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
+  width: 90%;
+  gap: 20px;
+  justify-content: space-between;
+}
+.colaboracionArtesanas{
+  display: flex;
+  align-items: center;
+  width: 90%;
+  justify-content: space-evenly;
+}
+.colaboracionArtesanasImagen{
+  border-radius: 50%;
+}
+.invitacionDeColaboracion h4{
+  font-size: 38px;
+  font-weight: 200;
+}
+.invitacionDeColaboracion p{
+  color: rgba(255, 255, 255, 0.7);
+  width: 50%;
+  font-size: 18px;
+  text-align: center;
+}
+.invitacionDeColaboracionButton1, .invitacionDeColaboracionButton2{
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
+  border-radius: 5px;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.invitacionDeColaboracionButton2{
+  background-color: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(255, 255, 255, 1);
+}
+
+
+/* SECCION DE REVISTA NAKAWE */
+.revistaNakawe{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5% 0;
+  gap: 25px;
+}
+.revistaNakawe h2{
+  font-size: 42px;
+}
+.revistaNakawe h4{
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.revistaNakaweCards{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.revistaNakaweCard{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 20%;
+  gap: 2vh;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.3);
+}
+.revistaNakaweCardBody{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-left: 5%;
+  gap: 2vh;
+  margin-top: 10px;
+}
+.revistaNakaweCardBody p{
+  color: rgba(0, 0, 0, 0.7);
+}
+.revistaNakaweCard h5{
+  font-size: 24px;
+  font-weight: 400;
+}
+.revistaNakaweCard button{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 2vh;
+}
+.revistaNakaweCardImage{
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+}
+
+
+
+/* Seccion de nuestro objetivo */
+.nuestroObjetivo{
+  display: flex;
+  flex-direction: column;
+  background-color: #060606;
+  width: 100%;
+  align-items: center;
+  padding: 5% 0;
+  gap: 5vh;
+  justify-content: space-evenly;
+  color: rgba(255, 255, 255, 1);
+}
+.nuestroObjetivoTitulo{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.nuestroObjetivoBar{
+  width: 75%;
+  border-radius: 15px;
+  background: linear-gradient(to right, #F254A2, #FF007E, #F254A2);
+  height: 5px;
+}
+.nuestroObjetivo h2{
+  font-size: 42px;
+}
+.nuestroObjetivo p{
+  font-size: 20px;
+  text-align: center;
+  width: 70%;
+}
+.nuestroObjetivo button{
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* SECCION DE IMPACTO */
+.impacto{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5% 0;
+  gap: 25px;
+  width: 100%;
+}
+.impacto h2{
+  font-size: 42px;
+}
+.impactoAños{
+  display: flex;
+  width: 90%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.añosCirculo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min(10vw, 80px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%; 
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+}
+
+.impactoAñosSeparador{
+  height: 2px;
+  width: 4%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.informacionGeneralAñoImpacto{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 90%;
+}
+.informacionAñoImpacto{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* SECCION DEL FOOTER */
+footer{
+  width: 100%;
+  background-color: #060606;
+  padding: 5%;
+  color: rgba(255, 255, 255, 1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  height: 30vh;
+}
+footer div{
+  display: flex;
+  flex-direction: column;
+  color: rgba(255, 255, 255, 1);
+  align-items: center;
+  gap: 25px;
+}
+footer div a{
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+}
+.redesSociales{
+  display: flex;
+  flex-direction: row;
+}
+.derechosReservados{
+  background-color: #060606;
+  color: rgba(255, 255, 255, 1);
+  width: 100%;
+  text-align: center;
+  border: none;
+}
+
+.textoMediano{
+  font-size: 24px;
+}
+.textoGrande{
+  font-size: 34px;
+}
+.titulo{
+  font-size: 42px;
+}
+.espaciadoDeTexto{
+  line-height: 1.5;
+}
+.iniciarSesionLink{
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
 }

@@ -1,0 +1,341 @@
+
+.pictureContainer {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.profilePicture {
+    border-radius: 50%;
+    object-fit: cover; 
+}
+
+.editButton {
+    position: absolute;
+    bottom: 5px;
+    right: 5px; 
+    background-color: white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.editButton:hover {
+    transform: scale(1.1);
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.profileGeneral {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px #e5e7eb;
+    border-radius: 5px;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    padding: 20px;
+    width: 40%;
+    background-color: #ffffff;
+    margin: 50px auto;
+}
+
+.profileGeneral > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileDetails{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.nameProfile{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.nameProfile > span{
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.emailProfile >span{
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+.containerInfoProfile{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.pictureContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.statusRole{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 9999px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.admin {
+    background-color: #FEE2E2;
+    color: #B91C1C;
+}
+
+.user {
+    background-color: #DBEAFE;
+    color: #1E40AF;
+}
+
+.active {
+    background-color: #D1FAE5;
+    color: #065F46;
+}
+
+.inactive {
+    background-color: #F3F4F6;
+    color: #4B5563;
+}
+
+.datesProfile{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.datesProfile div{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 5px;
+}
+
+.itemDate, .itemLastDate{
+    font-weight: 600;
+    color: var(--color-principal-ui);
+}
+
+.containerProfile{
+    display: flex;
+    flex-direction: column; 
+    gap: 2rem;           
+    justify-content: space-between;;
+    width: 50%;        
+    max-width: 1200px;  
+    margin: 2rem auto;  
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.profileInfo > div {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.headerInfo{
+    gap: 10px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.iconUser{
+    width: 45px;
+    height: 45px;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: var(--color-principal-ui);
+    color: #ffffff;
+    box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgb(0 0 0);
+}
+
+.header > div > button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.infoContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.infoItems{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.infoItems>div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.userItem{
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.userData{
+    color: var(--color-principal-ui);
+    font-weight: 600;
+}
+
+.iconSecurity{
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: var(--color-secundario-ui);
+    box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgb(0 0 0);
+}
+
+.actionsContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.actionSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.iconSettings{
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: var(--color-terciario-ui);
+    color: #ffffff;
+    box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgb(0 0 0);
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.sectionHeader h3 {
+    font-weight: bold;
+    font-size: 1.125rem;
+}
+
+.sectionDescription {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.buttonGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.actionButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    background-color: white;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    transition: background-color 0.2s;
+}
+.actionButton:hover {
+    background-color: #f9fafb;
+}
+
+.buttonIcon {
+    width: 0.875rem; 
+    height: 0.875rem;
+}
+
+.dangerButton {
+    background-color: #FEE2E2;
+    color: #B91C1C;
+    border-color: #FCA5A5;
+}
+
+.dangerButton:hover {
+    background-color: #FECACA;
+}
+
+.modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modalContent {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
