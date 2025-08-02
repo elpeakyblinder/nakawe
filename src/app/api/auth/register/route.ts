@@ -63,14 +63,12 @@ export async function POST(request: Request) {
 
         return response;
 
-    } catch (error: any) {
+    } catch (error) {
         await client.sql`ROLLBACK`;
-        if (error.code === '23505') {
+        if (error && typeof error === 'object' && 'code' in error && error.code === '23505') {
             return NextResponse.json({ error: 'El correo electrónico ya está registrado' }, { status: 409 });
         }
         console.error(error);
         return NextResponse.json({ error: 'Error al crear el usuario' }, { status: 500 });
-    } finally {
-        client.release();
     }
 }

@@ -35,8 +35,12 @@ export default function AvatarUploader({ uploadUrl, onUploadComplete }: AvatarUp
 
             onUploadComplete(data.url);
 
-        } catch (error: any) {
-            setError(error.message);
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError('Ocurrió un error inesperado');
+            }
         } finally {
             setIsLoading(false);
         }
