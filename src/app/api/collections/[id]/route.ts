@@ -1,10 +1,12 @@
 import { sql } from '@vercel/postgres';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-// El cambio está en la firma de esta función
-export async function GET(request: Request, context: { params: { id: string } }) {
-  // Se obtiene el 'id' desde el objeto 'context'
-  const { id } = context.params; 
+// La firma de la función ahora es más explícita y robusta.
+export async function GET(
+  request: NextRequest, 
+  { params }: { params: { id: string } }
+) {
+  const { id } = params;
 
   try {
     // 1. Obtenemos los detalles de la colección específica
