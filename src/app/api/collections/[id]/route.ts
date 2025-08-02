@@ -1,15 +1,18 @@
 import { sql } from '@vercel/postgres';
 import { NextRequest, NextResponse } from 'next/server';
 
-// La firma de la función ahora es más explícita y robusta.
-export async function GET(
-  request: NextRequest, 
-  { params }: { params: { id: string } }
-) {
-  const { id } = params;
+// 1. Se define un tipo explícito para el contexto de la ruta.
+type RouteContext = {
+  params: {
+    id: string;
+  }
+}
+
+// 2. La firma de la función ahora usa el tipo 'RouteContext' que definimos.
+export async function GET(request: NextRequest, context: RouteContext) {
+  const { id } = context.params;
 
   try {
-    // 1. Obtenemos los detalles de la colección específica
     const collectionQuery = sql`
       SELECT
         c.id, c.name, c.description, c.target_market, c.design_concept, c.design_history, c.cover_image_url,
@@ -19,15 +22,12 @@ export async function GET(
       WHERE c.id = ${id};
     `;
 
-    // 2. Obtenemos todos los productos que pertenecen a esa colección
     const productsQuery = sql`
       SELECT * FROM products WHERE collection_id = ${id};
     `;
 
-    // Ejecutamos ambas consultas al mismo tiempo para mayor eficiencia
     const [collectionResult, productsResult] = await Promise.all([collectionQuery, productsQuery]);
 
-    // Si no se encuentra la colección, devolvemos un error 404
     if (collectionResult.rows.length === 0) {
       return NextResponse.json({ error: 'Colección no encontrada' }, { status: 404 });
     }
@@ -35,7 +35,6 @@ export async function GET(
     const collection = collectionResult.rows[0];
     const products = productsResult.rows;
 
-    // 3. Combinamos todo en una sola respuesta JSON
     const responseData = {
       ...collection,
       products: products
