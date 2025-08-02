@@ -46,7 +46,10 @@ async function getCollectionDetails(id: string): Promise<CollectionDetails | nul
 }
 
 // Esta es la página. Recibe 'params' con el ID de la colección.
-export default async function InformacionColeccionesPage({ params }: { params: { id: string } }) {
+type PageProps = {
+  params: { id: string }
+}
+export default async function InformacionColeccionesPage({ params }: PageProps) {
   const collection = await getCollectionDetails(params.id);
 
   // Si la colección no se encuentra, muestra la página 404 de Next.js
