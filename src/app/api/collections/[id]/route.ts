@@ -1,9 +1,10 @@
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 
-// Esta función se activa cuando se hace una petición a /api/collections/[id]
-export async function GET(request: Request, { params }: { params: { id: string } }) {
-  const { id } = params; // Obtenemos el ID de la URL
+// El cambio está en la firma de esta función
+export async function GET(request: Request, context: { params: { id: string } }) {
+  // Se obtiene el 'id' desde el objeto 'context'
+  const { id } = context.params; 
 
   try {
     // 1. Obtenemos los detalles de la colección específica

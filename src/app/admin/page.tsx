@@ -32,7 +32,7 @@ export default function AdminPage() {
   ) => (
     <tr key={profile.id}>
       <td>
-        <img
+        <Image
           src={profile.avatar_url}
           alt="Avatar"
           width={40}
