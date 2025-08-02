@@ -1,8 +1,9 @@
 import { sql } from '@vercel/postgres';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(request: NextRequest, context: { params: Promise<{ id: string }> }) {
-  const {id} = await context.params;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function GET(request: NextRequest, context: any) {
+  const { id } = await context.params;
 
   try {
     const collectionQuery = sql`
