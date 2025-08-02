@@ -28,9 +28,14 @@ export async function POST(request: Request): Promise<NextResponse> {
 
         return NextResponse.json({ url: blob.url });
 
-    } catch (error: any) {
+    } catch (error) {
+        let errorMessage = 'Ocurrió un error inesperado.';
+        if (error instanceof Error) {
+            errorMessage = error.message;
+        }
+
         return NextResponse.json(
-            { error: error.message },
+            { error: errorMessage },
             { status: 400 },
         );
     }
