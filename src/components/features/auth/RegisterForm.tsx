@@ -1,17 +1,18 @@
 "use client"
-import { ArrowRight, Heart, Eye, EyeOff, Check } from "lucide-react"
 import type React from "react"
 import Image from 'next/image';
 import { useState } from "react"
 import styles from './RegisterForm.module.css';
 import { Button } from "@/components/ui/button"
 import Frase from "@/components/ui/frase";
+import { useRouter } from 'next/navigation';
 
 
 export default function RegisterForm() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -53,20 +54,14 @@ export default function RegisterForm() {
             const data = await res.json();
 
             if (!res.ok) {
-                setError(data.error || 'Error al registrar');
+                throw new Error(data.error || 'Error al registrar');
             } else {
-                setSuccess('Cuenta creada con éxito');
+                setSuccess('¡Cuenta creada! Redirigiendo...');
                 setError('');
-                setFormData({
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    password: '',
-                    confirmPassword: ''
-                });
+                router.push('/profile');
             }
-        } catch (err) {
-            setError('Error al conectar con el servidor');
+        } catch (err: any) {
+            setError(err.message);
         } finally {
             setIsLoading(false);
         }

@@ -61,7 +61,8 @@ export default function UserProfile({ userData }: UserProfileProps) {
                             <div><span>{new Date(userData.created_at).toLocaleDateString()}</span></div>
                         </div>
                         <div>
-                            <div className={styles.itemLastDate}><span>Ultima conexion:</span></div> // Agregar después--------------
+                            {/* agregar despues */}
+                            <div className={styles.itemLastDate}><span>Ultima conexion:</span></div>
                             <div><span>11/11/11</span></div>
                         </div>
                     </div>

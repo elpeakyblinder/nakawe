@@ -2,11 +2,13 @@ import { cookies } from 'next/headers';
 import { jwtVerify } from 'jose';
 import { sql } from '@vercel/postgres';
 import { type UserProfileData } from '@/types/auth';
+import { unstable_noStore as noStore } from 'next/cache';
 
 export async function getAuthenticatedUserProfile(): Promise<UserProfileData | null> {
     const cookieStore = await cookies();
     const sessionToken = cookieStore.get('session_token')?.value;
 
+    noStore();
     if (!sessionToken) {
         return null;
     }

@@ -21,12 +21,12 @@
 /* --- Variantes del Boton --- */
 
 .primary {
-    background-color: #EC4899;
+    background-color: var(--color-principal-ui);
     color: white;
 }                                 
-                      /*!!!!!!!!!!!!!!!!SE VA A CAMBIAR ESTE COLOR PROBABLEMENTE, DESPUES SE NOMBRARÁ CON EL COLOR DEFINITIVO!!!!!!!!!!!!! */
+
 .primary:hover {
-    background-color: #db2777;
+    background-color: var(--color-principal-ui-hover);
 }
 
 .black {

@@ -1,6 +1,7 @@
 import { db } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import { type RegisterBody } from '@/types/auth';
 
 export async function POST(request: Request) {
@@ -17,7 +18,6 @@ export async function POST(request: Request) {
 
         await client.sql`BEGIN`;
 
-        // 1. Insertar en users y obtener el id generado
         const userResult = await client.sql`
             INSERT INTO users (email, password_hash)
             VALUES (${email}, ${password_hash})
@@ -25,28 +25,46 @@ export async function POST(request: Request) {
         `;
         const userId = userResult.rows[0].id;
 
-        // 2. Insertar en profiles usando el id del usuario
         await client.sql`
             INSERT INTO profiles (id, first_name, last_name)
             VALUES (${userId}, ${firstName}, ${lastName});
         `;
 
-        // 3. Asignar el rol por defecto ('user')
         await client.sql`
             INSERT INTO user_roles (user_id, role_id)
-            VALUES (
-                ${userId},
-                (SELECT id FROM roles WHERE name = 'user')
-            );
+            VALUES (${userId}, (SELECT id FROM roles WHERE name = 'user'));
         `;
 
         await client.sql`COMMIT`;
 
-        return NextResponse.json({ message: 'Usuario creado exitosamente' }, { status: 201 });
+        const secret = process.env.JWT_SECRET;
+        if (!secret) {
+            throw new Error("La clave secreta JWT no está configurada");
+        }
+
+        const token = jwt.sign(
+            { 
+                userId: userId,
+                email: email,
+                role: 'user'
+            },
+            secret,
+            { expiresIn: '1h' }
+        );
+
+        const response = NextResponse.json({ message: 'Usuario creado exitosamente' }, { status: 201 });
+        
+        response.cookies.set('session_token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            path: '/',
+            maxAge: 60 * 60,
+        });
+
+        return response;
 
     } catch (error: any) {
         await client.sql`ROLLBACK`;
-
         if (error.code === '23505') {
             return NextResponse.json({ error: 'El correo electrónico ya está registrado' }, { status: 409 });
         }

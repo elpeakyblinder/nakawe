@@ -26,8 +26,8 @@ a{
 }
 
 :root{
-  --color-primario-ui: #EC4899;
-  --color-primario-ui-hover: #D7007F;
+  --color-principal-ui: #EC4899;
+  --color-principal-ui-hover: #D7007F;
   --color-secundario-ui: #D9ED92;
   --color-secundario-ui-hover: #B8D66A;
   --color-terciario-ui: #FF3131;
