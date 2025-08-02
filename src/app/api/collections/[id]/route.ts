@@ -1,16 +1,8 @@
 import { sql } from '@vercel/postgres';
 import { NextRequest, NextResponse } from 'next/server';
 
-// 1. Se define un tipo explícito para el contexto de la ruta.
-type RouteContext = {
-  params: {
-    id: string;
-  }
-}
-
-// 2. La firma de la función ahora usa el tipo 'RouteContext' que definimos.
-export async function GET(request: NextRequest, context: RouteContext) {
-  const { id } = context.params;
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+  const { id } = params;
 
   try {
     const collectionQuery = sql`
@@ -35,13 +27,7 @@ export async function GET(request: NextRequest, context: RouteContext) {
     const collection = collectionResult.rows[0];
     const products = productsResult.rows;
 
-    const responseData = {
-      ...collection,
-      products: products
-    };
-
-    return NextResponse.json(responseData);
-
+    return NextResponse.json({ ...collection, products });
   } catch (err) {
     const error = err as Error;
     console.error(`Error en GET /api/collections/${id}:`, error);
