@@ -1,8 +1,8 @@
 import { sql } from '@vercel/postgres';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
-  const { id } = params;
+export async function GET(request: NextRequest, context: { params: { id: string } }) {
+  const { id } = context.params;
 
   try {
     const collectionQuery = sql`
@@ -28,6 +28,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     const products = productsResult.rows;
 
     return NextResponse.json({ ...collection, products });
+
   } catch (err) {
     const error = err as Error;
     console.error(`Error en GET /api/collections/${id}:`, error);
