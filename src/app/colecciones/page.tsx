@@ -54,25 +54,27 @@ export default async function Colecciones() {
       </header>
 
       <div className="cardsColecciones">
-        {/* Se mapean las colecciones obtenidas de la API. */}
         {collections.map((collection) => (
           <div key={collection.id} className="presentacionColeccionesMain">
+            {/* 1. Se añade el componente <Image> con la prop 'fill' para que actúe como fondo */}
+            <Image
+              src={'/showRoomNitaSanchez.jpeg'}
+              alt={collection.name}
+              fill
+              style={{ objectFit: 'cover', zIndex: 1 }}
+            />
+            {/* 2. El contenido de la tarjeta ahora se superpone a la imagen */}
             <div className="mainPresentacionColecciones">
               <div className="mainPresentacionColeccionesTitulo">
-                {/* Se usa el nombre del artesano de la colección. */}
                 <h3>{collection.artisan_name}</h3>
                 <div>
                   <p><strong>SHOWROOM</strong></p>
                   <Image src={'/pattern.png'} alt="Tipo de coleccion" width={30} height={30} />
                 </div>
               </div>
-              {/* Se usa el nombre de la colección. */}
               <p>{collection.design_history}</p>
-
               <div className="presentacionColeccionesFinal">
-                {/* Se muestra el conteo de productos. */}
                 <p className="textoRosa"><strong>{collection.product_count} Piezas únicas</strong></p>
-                {/* Se usa Link para navegar a la página de detalle de la colección. */}
                 <Link href={`/colecciones/${collection.id}`}>
                   <button><strong>Explora</strong></button>
                 </Link>

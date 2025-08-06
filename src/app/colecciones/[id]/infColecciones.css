@@ -16,7 +16,7 @@
     gap: 20px; /* Espacio entre elementos */
 }
 .presentacionProductoInfo{
-    width: 50%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,9 +30,14 @@
 .presentacionColecciones{
     margin: 3% 0;
 }
+
+/* --- CAMBIOS PRINCIPALES AQUÍ --- */
 .presentacionColeccionesImagen{
-  background-image: url('/showRoomNitaSanchez.jpeg');
-  width: 40%;
+  /* 1. Se añade position: relative para que el <Image> con fill funcione */
+  position: relative;
+  /* 2. Se elimina la imagen de fondo */
+  background-image: none;
+  width: 30%;
   height: 450px;
   display: flex;
   flex-direction: column;
@@ -41,12 +46,13 @@
   background-size: cover;
   min-width: 300px; /* Ancho mínimo */
   flex-grow: 1; /* Permite que el elemento crezca */
-}
-.coleccionesZonaTop{
-  display: flex;
-  justify-content: space-between;
+  border-radius: 10px; /* Se añade para que la imagen herede el borde redondeado */
+  overflow: hidden; /* Se añade para que la imagen no se salga del contenedor */
 }
 .mainPresentacionColecciones{
+  /* 3. Se añade z-index para que el contenido se superponga a la imagen */
+  position: relative;
+  z-index: 2;
   width: 90%;
   background-color: rgba(255, 255, 255, 0.5);
   display: flex;
@@ -54,6 +60,13 @@
   gap: 17px;
   padding: 10px 0;
   filter: opacity(0.9);
+  margin-bottom: 15px; /* Pequeño ajuste para que no quede pegado al borde */
+}
+/* --- FIN DE CAMBIOS PRINCIPALES --- */
+
+.coleccionesZonaTop{
+  display: flex;
+  justify-content: space-between;
 }
 .mainPresentacionColeccionesTitulo{
   display: flex;
@@ -145,26 +158,24 @@
   height: 5px;
 }
 
-/* --- CAMBIOS PRINCIPALES AQUÍ --- */
 /* CARTAS DE PRENDAS */
 .prendas{
-    display: grid; /* 1. Se cambia de flex a grid */
-    grid-template-columns: repeat(3, 1fr); /* 2. Se define una cuadrícula de 3 columnas iguales */
-    gap: 30px; /* 3. Se añade un espacio uniforme entre las tarjetas */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
     width: 90%;
     padding: 0 0 5% 0;
 }
 .prendasCard{
     display: flex;
     flex-direction: column;
-    width: 100%; /* 4. Se cambia el ancho a 100% para que la tarjeta ocupe el espacio de la columna del grid */
+    width: 100%;
     background-color: #F4F4F4;
     box-shadow: 5px 6px 21px 1px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     align-items: center;
     padding-bottom: 30px;
 }
-/* --- FIN DE CAMBIOS PRINCIPALES --- */
 
 .infoCuerpoPrendasCard{
   display: flex;
@@ -202,11 +213,11 @@
   font-weight: 500;
 }
 .prendasCardButtom button{
-  width: 30%;
+  width: 100%;
   background-color: #F5BD1F;
   border: none;
   border-radius: 5px;
-  padding: 9px 0;
+  padding: 9px 0px;
 }
 .prendasCardButtom button a{
   text-decoration: none;

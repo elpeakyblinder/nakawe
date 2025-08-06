@@ -1,11 +1,38 @@
 import { sql } from '@vercel/postgres';
 import { NextRequest, NextResponse } from 'next/server';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function GET(request: NextRequest, context: any) {
-  const { id } = await context.params;
+// Se define un tipo para el contexto para mayor seguridad y claridad.
+type RouteContext = {
+  params: {
+    id: string;
+  }
+}
+
+export async function GET(request: NextRequest, context: RouteContext) {
+  // Se corrige la obtención del 'id', ya que 'context.params' no es una promesa.
+  const { id } = context.params;
+  const { searchParams } = new URL(request.url);
+  const getRandom = searchParams.get('random');
+  const excludedProductId = searchParams.get('exclude');
 
   try {
+    // --- NUEVA LÓGICA PARA OBTENER PRODUCTOS ALEATORIOS ---
+    // Esto solo se ejecuta si la URL contiene "?random=true"
+    if (getRandom === 'true') {
+      const result = await sql`
+        SELECT id, name, main_image_url, price, product_brief, production_time 
+        FROM products 
+        WHERE collection_id = ${id} AND id != ${excludedProductId};
+      `;
+      
+      const shuffled = result.rows.sort(() => 0.5 - Math.random());
+      const randomProducts = shuffled.slice(0, 6);
+
+      return NextResponse.json(randomProducts);
+    }
+
+    // --- TU LÓGICA ORIGINAL SE MANTIENE INTACTA ---
+    // Esto se ejecuta si la URL no tiene el parámetro "random".
     const collectionQuery = sql`
       SELECT
         c.id, c.name, c.description, c.target_market, c.design_concept, c.design_history, c.cover_image_url,

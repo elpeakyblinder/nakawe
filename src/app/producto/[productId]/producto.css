@@ -1,0 +1,237 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.bodyProducto {
+    /* Este estilo se aplica al div principal de la página */
+}
+
+.productoPresentacion{
+    display: flex;
+    justify-content: space-evenly;
+    width: 90%;
+    padding: 5%;
+    flex-wrap: wrap; /* Para mejorar responsividad */
+    gap: 20px;
+    align-items: center;
+}
+.productoPresentacion .imagenPrenda{
+    width: 40%;
+    min-width: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.productoInformacion{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alineado a la izquierda para mejor lectura */
+    text-align: left; /* Alineado a la izquierda */
+    width: 40%;
+    gap: 30px;
+    justify-content: space-evenly;
+}
+.divMiniTitulo{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+.divMiniTitulo p{
+    background-color: transparent;
+    color: rgba(0, 0, 0, 1);
+    border: 1px solid rgba(0, 0, 0, 1);
+    padding: 10px 40px;
+}
+.productoMaterial{
+    display: flex;
+    flex-direction: column; /* Apilado para mejor estructura */
+    width: 100%;
+    align-items: flex-start; /* Alineado a la izquierda */
+    gap: 10px;
+}
+.productoMaterial h6{
+    font-size: 22px;
+}
+.productoPrecio{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-start; /* Alineado a la izquierda */
+    gap: 20px;
+}
+.productoPrecio span{
+    font-size: 22px;
+}
+.productoPrecio button{
+    padding: 10px 25px;
+    background-color: #EC4899;
+    color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 5px;
+}
+
+
+.productoDetallesAdicionales{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+.detalleItem{
+    color: rgba(0, 0, 0, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.detalleItem div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+
+
+
+.descubrePrendas{
+    background-color: #060606;
+    color: rgba(255, 255, 255, 1);
+    padding: 5% 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 5% 0;
+}
+.barraPrendas{
+  width: 25%;
+  border-radius: 15px;
+  background: linear-gradient(to right, #F254A2, #FF007E, #F254A2);
+  height: 5px;
+}
+
+
+
+/* --- ESTILOS PARA OTRAS PRENDAS --- */
+.descubrePrendas{
+    background-color: #060606;
+    color: rgba(255, 255, 255, 1);
+    padding: 3% 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 5% 0;
+}
+.barraPrendas{
+  width: 25%;
+  border-radius: 15px;
+  background: linear-gradient(to right, #F254A2, #FF007E, #F254A2);
+  height: 5px;
+}
+.otrasPrendasContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 90%;
+    padding-bottom: 5%;
+}
+.otraPrendaCard {
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+.otraPrendaCard:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.otraPrendaCard img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+.otraPrendaCard h3 {
+    font-size: 1rem;
+    margin: 10px;
+}
+.otraPrendaCard p {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+
+
+
+/* CARTAS DE PRENDAS */
+.prendas{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 90%;
+    padding: 0 0 5% 5%;
+}
+.prendasCard{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #F4F4F4;
+    box-shadow: 5px 6px 21px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.infoCuerpoPrendasCard{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.prendasCard .imagenPrenda{
+  width: 100%;
+  border-radius: 15px;
+}
+.cuerpoPrendasCard{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    align-items: flex-start;
+}
+.cuerpoPrendasCard p{
+  color: rgba(0, 0, 0, 0.7);
+}
+.cuerpoPrendasCard span{
+  color: rgba(0, 0, 0, 1);
+}
+.prendasCardButtom{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.prendasCardButtom p{
+  font-size: 26px;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 500;
+}
+.prendasCardButtom button{
+  width: 100%;
+  background-color: #F5BD1F;
+  border: none;
+  border-radius: 5px;
+  padding: 9px 30px;
+}
+.prendasCardButtom button a{
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1);
+}

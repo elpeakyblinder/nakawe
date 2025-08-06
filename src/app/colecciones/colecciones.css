@@ -25,38 +25,54 @@ header p{
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
   width: 95%;
-  margin: 0 auto;
+  margin: 3% auto;
 }
 
 .presentacionColeccionesMain{
-    margin-top: 10%;
-  background-image: url('/showRoomNitaSanchez.jpeg');
-  background-size: cover;
-  background-position: center;
+  /* 1. Se añade position: relative para que el componente <Image> con fill funcione */
+  position: relative;
+  margin-top: 10%;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  height: 450px; /* si quieres altura fija */
+  height: 450px;
+  /* 2. Se eliminan las propiedades de background-image */
+}
+
+/* 3. Se asegura que el contenido esté por encima de la imagen de fondo */
+.mainPresentacionColecciones {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding: 10px 0;
+  filter: opacity(0.9);
+  margin-bottom: 10px; /* Pequeño ajuste para que no quede pegado al borde */
 }
 
 .invitacionDeColaboracion{
   margin: 5% 0;
 }
-
-
+.presentacionColeccionesFinal{
+  cursor: pointer;
+}
 
 /* Responsive adjustments */
 @media screen and (max-width: 1024px) {
   .cardsColecciones {
-    column-count: 2;
+    /* Se cambia a CSS Grid para mejor responsividad */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 600px) {
   .cardsColecciones {
-    column-count: 1;
+    grid-template-columns: 1fr;
   }
 }
