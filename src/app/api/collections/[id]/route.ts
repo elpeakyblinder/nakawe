@@ -1,12 +1,13 @@
 import { sql } from '@vercel/postgres';
 import { NextRequest, NextResponse } from 'next/server';
 
-// Esta es la firma de función estándar y correcta que Vercel espera.
+// CORRECCIÓN: Se utiliza la firma de función que es compatible con tu proyecto.
 export async function GET(
   request: NextRequest, 
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  const { id } = params;
+  // Se obtiene el 'id' esperando la promesa de los parámetros.
+  const { id } = await context.params;
   const { searchParams } = new URL(request.url);
   const getRandom = searchParams.get('random');
   const excludedProductId = searchParams.get('exclude');
