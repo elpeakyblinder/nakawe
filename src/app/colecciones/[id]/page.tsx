@@ -45,8 +45,12 @@ async function getCollectionDetails(id: string): Promise<CollectionDetails | nul
   }
 }
 
-export default async function InformacionColeccionesPage({ params }: { params: { id: string } }) {
-  const collection = await getCollectionDetails(params.id);
+// CORRECCIÓN: Se ajusta la firma del componente para que 'params' sea una promesa,
+// replicando la solución que funcionó en las rutas de API.
+export default async function InformacionColeccionesPage({ params }: { params: Promise<{ id: string }> }) {
+  // Se espera la promesa para obtener el 'id'.
+  const { id } = await params;
+  const collection = await getCollectionDetails(id);
 
   if (!collection) {
     notFound();
@@ -58,16 +62,13 @@ export default async function InformacionColeccionesPage({ params }: { params: {
     <div className={leagueSpartan.className}>
       <section className="productosSection">
         <div className="presentacionProducto">
-          {/* --- CAMBIO PRINCIPAL AQUÍ --- */}
           <div className="presentacionColeccionesImagen">
-            {/* 1. Se añade el componente <Image> con la prop 'fill' para que actúe como fondo */}
             <Image
               src={'/showRoomNitaSanchez.jpeg'}
               alt={collection.name}
               fill
               style={{ objectFit: 'cover', zIndex: 1 }}
             />
-            {/* 2. El contenido de la tarjeta ahora se superpone a la imagen */}
             <div className="mainPresentacionColecciones">
               <div className="mainPresentacionColeccionesTitulo">
                 <h3>{collection.artisan_name}</h3>
@@ -82,7 +83,6 @@ export default async function InformacionColeccionesPage({ params }: { params: {
               </div>
             </div>
           </div>
-          {/* --- FIN DEL CAMBIO PRINCIPAL --- */}
           <div className="presentacionProductoInfo">
             <h2 className="titulo">{collection.name}</h2>
             <p>{collection.description}</p>
