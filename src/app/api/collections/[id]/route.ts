@@ -1,23 +1,18 @@
 import { sql } from '@vercel/postgres';
 import { NextRequest, NextResponse } from 'next/server';
 
-// Se define un tipo para el contexto para mayor seguridad y claridad.
-type RouteContext = {
-  params: {
-    id: string;
-  }
-}
-
-export async function GET(request: NextRequest, context: RouteContext) {
-  // Se corrige la obtención del 'id', ya que 'context.params' no es una promesa.
-  const { id } = context.params;
+// Esta es la firma de función estándar y correcta que Vercel espera.
+export async function GET(
+  request: NextRequest, 
+  { params }: { params: { id: string } }
+) {
+  const { id } = params;
   const { searchParams } = new URL(request.url);
   const getRandom = searchParams.get('random');
   const excludedProductId = searchParams.get('exclude');
 
   try {
-    // --- NUEVA LÓGICA PARA OBTENER PRODUCTOS ALEATORIOS ---
-    // Esto solo se ejecuta si la URL contiene "?random=true"
+    // --- LÓGICA PARA OBTENER PRODUCTOS ALEATORIOS ---
     if (getRandom === 'true') {
       const result = await sql`
         SELECT id, name, main_image_url, price, product_brief, production_time 
@@ -31,8 +26,7 @@ export async function GET(request: NextRequest, context: RouteContext) {
       return NextResponse.json(randomProducts);
     }
 
-    // --- TU LÓGICA ORIGINAL SE MANTIENE INTACTA ---
-    // Esto se ejecuta si la URL no tiene el parámetro "random".
+    // --- LÓGICA ORIGINAL PARA OBTENER DETALLES DE LA COLECCIÓN ---
     const collectionQuery = sql`
       SELECT
         c.id, c.name, c.description, c.target_market, c.design_concept, c.design_history, c.cover_image_url,

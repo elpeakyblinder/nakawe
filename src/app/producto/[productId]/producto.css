@@ -104,6 +104,7 @@
     align-items: center;
     justify-content: center;
     margin: 5% 0;
+    font-size: 28px;
 }
 .barraPrendas{
   width: 25%;
@@ -125,7 +126,7 @@
     gap: 20px;
     align-items: center;
     justify-content: center;
-    margin: 5% 0;
+    margin: 3% 0;
 }
 .barraPrendas{
   width: 25%;
