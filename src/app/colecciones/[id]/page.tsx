@@ -11,10 +11,10 @@ type Product = {
   id: string;
   name: string;
   product_brief: string;
-  artisan_id: string; // Asumiendo que tienes estos datos
+  artisan_id: string;
   production_time: string;
   price: number;
-  image_url: string; // Asumiendo que tienes una URL de imagen
+  image_url: string;
 };
 
 type CollectionDetails = {
@@ -45,32 +45,39 @@ async function getCollectionDetails(id: string): Promise<CollectionDetails | nul
   }
 }
 
-// Esta es la página. Recibe 'params' con el ID de la colección.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function InformacionColeccionesPage({ params }: any) {
-  // Si quieres seguridad, puedes resolver si params es promise
-  const resolvedParams = params instanceof Promise ? await params : params;
+// CORRECCIÓN: Se ajusta la firma del componente para que 'params' sea una promesa,
+// replicando la solución que funcionó en las rutas de API.
+export default async function InformacionColeccionesPage({ params }: { params: Promise<{ id: string }> }) {
+  // Se espera la promesa para obtener el 'id'.
+  const { id } = await params;
+  const collection = await getCollectionDetails(id);
 
-  const collection = await getCollectionDetails(resolvedParams.id);
-  // Si la colección no se encuentra, muestra la página 404 de Next.js
   if (!collection) {
     notFound();
   }
+
+  const coverImageUrl = collection.cover_image_url || '/coleccionesEjemplo.png';
 
   return (
     <div className={leagueSpartan.className}>
       <section className="productosSection">
         <div className="presentacionProducto">
           <div className="presentacionColeccionesImagen">
+            <Image
+              src={'/showRoomNitaSanchez.jpeg'}
+              alt={collection.name}
+              fill
+              style={{ objectFit: 'cover', zIndex: 1 }}
+            />
             <div className="mainPresentacionColecciones">
               <div className="mainPresentacionColeccionesTitulo">
                 <h3>{collection.artisan_name}</h3>
                 <div>
                   <p><strong>SHOWROOM</strong></p>
-                  <Image src={'/pattern.png'} alt="Tipo de coleccion" width={30} height={100}/>
+                  <Image src={'/pattern.png'} alt="Tipo de coleccion" width={30} height={30}/>
                 </div>
               </div>
-              <p>{collection.name.toUpperCase()}</p>
+              <p>{collection.design_history}</p>
               <div className="presentacionColeccionesFinal">
                 <p className="textoRosa"><strong>{collection.products.length} Piezas únicas</strong></p>
               </div>
@@ -79,7 +86,11 @@ export default async function InformacionColeccionesPage({ params }: any) {
           <div className="presentacionProductoInfo">
             <h2 className="titulo">{collection.name}</h2>
             <p>{collection.description}</p>
-            <Image src={collection.cover_image_url || '/coleccionesEjemplo.png'} alt="Ejemplo" width={400} height={200}/>
+            {coverImageUrl.includes('placehold.co') ? (
+              <img src={coverImageUrl} alt="Ejemplo" width={400} height={200} style={{ objectFit: 'cover' }}/>
+            ) : (
+              <Image src={coverImageUrl} alt="Ejemplo" width={400} height={200} style={{ objectFit: 'cover' }}/>
+            )}
           </div>
         </div>
 
@@ -92,7 +103,7 @@ export default async function InformacionColeccionesPage({ params }: any) {
             <Image src={'/coleccionesEjemplo.png'} alt="Tipo de coleccion" width={300} height={200}/>
           </div>
           <div className="conceptoDiseño">
-            <Image src={'/coleccionesEjemplo.png'} alt="Tipo de coleccion" width={300} height={200}/>
+             <Image src={'/coleccionesEjemplo.png'} alt="Tipo de coleccion" width={300} height={200}/>
             <div>
               <h3 className="textoMediano">CONCEPTO DEL DISEÑO</h3>
               <p>{collection.design_concept}</p>
@@ -103,7 +114,7 @@ export default async function InformacionColeccionesPage({ params }: any) {
               <h2 className="textoMediano">HISTORIA DEL DISEÑO</h2>
               <p>{collection.design_history}</p>
             </div>
-            <Image src={'/coleccionesEjemplo.png'} alt="Tipo de coleccion" width={300} height={200}/>
+             <Image src={'/coleccionesEjemplo.png'} alt="Tipo de coleccion" width={300} height={200}/>
           </div>
         </div>
 
@@ -113,27 +124,36 @@ export default async function InformacionColeccionesPage({ params }: any) {
         </div>
 
         <div className="prendas">
-          {collection.products.map((product) => (
-            <div key={product.id} className="prendasCard">
-              <Image className="imagenPrenda" src={product.image_url || '/productoEjemplo.png'} alt={product.name} width={100} height={250}/>
-              <div className="cuerpoPrendasCard">
-                <h2>{product.name}</h2>
-                <p>{product.product_brief}</p>
-                <div className="infoCuerpoPrendasCard">
-                  <Image src={'/iconos/user.svg'} alt="Icono usuario" width={15} height={15}/>
-                  <span>{collection.artisan_name}</span>
-                </div>
-                <div className="infoCuerpoPrendasCard">
-                  <Image src={'/iconos/time.svg'} alt="Icono tiempo" width={15} height={15}/>
-                  <span>{product.production_time}</span>
-                </div>
-                <div className="prendasCardButtom">
-                  <p>${product.price} MXN</p>
-                    <button><Link href={`/producto/${product.id}`}>Ver</Link></button>
+          {collection.products.map((product) => {
+            const productImageUrl = product.image_url || '/productoEjemplo.png';
+            return (
+              <div key={product.id} className="prendasCard">
+                {productImageUrl.includes('placehold.co') ? (
+                  <img className="imagenPrenda" src={productImageUrl} alt={product.name} />
+                ) : (
+                  <Image className="imagenPrenda" src={productImageUrl} alt={product.name} width={100} height={250}/>
+                )}
+                <div className="cuerpoPrendasCard">
+                  <h2>{product.name}</h2>
+                  <p>{product.product_brief}</p>
+                  <div className="infoCuerpoPrendasCard">
+                    <Image src={'/iconos/user.svg'} alt="Icono usuario" width={15} height={15}/>
+                    <span>{collection.artisan_name}</span>
+                  </div>
+                  <div className="infoCuerpoPrendasCard">
+                    <Image src={'/iconos/time.svg'} alt="Icono tiempo" width={15} height={15}/>
+                    <span>{product.production_time}</span>
+                  </div>
+                  <div className="prendasCardButtom">
+                    <p>${product.price} MXN</p>
+                    <Link href={`/producto/${product.id}`}>
+                      <button>Ver</button>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </section>
     </div>

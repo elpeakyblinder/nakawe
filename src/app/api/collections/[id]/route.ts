@@ -1,11 +1,33 @@
 import { sql } from '@vercel/postgres';
 import { NextRequest, NextResponse } from 'next/server';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function GET(request: NextRequest, context: any) {
+// CORRECCIÓN: Se utiliza la firma de función que es compatible con tu proyecto.
+export async function GET(
+  request: NextRequest, 
+  context: { params: Promise<{ id: string }> }
+) {
+  // Se obtiene el 'id' esperando la promesa de los parámetros.
   const { id } = await context.params;
+  const { searchParams } = new URL(request.url);
+  const getRandom = searchParams.get('random');
+  const excludedProductId = searchParams.get('exclude');
 
   try {
+    // --- LÓGICA PARA OBTENER PRODUCTOS ALEATORIOS ---
+    if (getRandom === 'true') {
+      const result = await sql`
+        SELECT id, name, main_image_url, price, product_brief, production_time 
+        FROM products 
+        WHERE collection_id = ${id} AND id != ${excludedProductId};
+      `;
+      
+      const shuffled = result.rows.sort(() => 0.5 - Math.random());
+      const randomProducts = shuffled.slice(0, 6);
+
+      return NextResponse.json(randomProducts);
+    }
+
+    // --- LÓGICA ORIGINAL PARA OBTENER DETALLES DE LA COLECCIÓN ---
     const collectionQuery = sql`
       SELECT
         c.id, c.name, c.description, c.target_market, c.design_concept, c.design_history, c.cover_image_url,
