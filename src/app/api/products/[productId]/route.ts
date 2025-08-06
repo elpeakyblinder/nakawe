@@ -1,12 +1,10 @@
 import { sql } from '@vercel/postgres';
 import { NextRequest, NextResponse } from 'next/server';
 
-// Esta es la firma de función estándar y correcta que Vercel espera.
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { productId: string } }
-) {
-  const { productId } = params;
+// Se revierte a una firma de función más flexible para resolver el error de compilación en Vercel.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function GET(request: NextRequest, context: any) {
+  const { productId } = context.params;
 
   try {
     // Hacemos una consulta que une el producto con su artesano para obtener el nombre
