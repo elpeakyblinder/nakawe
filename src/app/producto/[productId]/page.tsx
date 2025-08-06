@@ -49,7 +49,6 @@ async function getProductDetails(id: string): Promise<ProductDetails | null> {
 
 // Función actualizada para obtener otros productos de la misma colección
 async function getOtherProducts(collectionId: string, currentProductId: string): Promise<OtherProduct[]> {
-    // CORRECCIÓN: La URL ahora apunta a la API de colecciones con los parámetros ?random=true y ?exclude=...
     const apiUrl = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}/api/collections/${collectionId}?random=true&exclude=${currentProductId}`
     : `http://localhost:3000/api/collections/${collectionId}?random=true&exclude=${currentProductId}`;
@@ -64,8 +63,11 @@ async function getOtherProducts(collectionId: string, currentProductId: string):
     }
 }
 
-export default async function ProductoPage({ params }: { params: { productId: string } }) {
-  const product = await getProductDetails(params.productId);
+// CORRECCIÓN: Se ajusta la firma del componente para que 'params' sea una promesa.
+export default async function ProductoPage({ params }: { params: Promise<{ productId: string }> }) {
+  // Se espera la promesa para obtener el 'productId'.
+  const { productId } = await params;
+  const product = await getProductDetails(productId);
 
   if (!product) {
     notFound();
@@ -78,14 +80,14 @@ export default async function ProductoPage({ params }: { params: { productId: st
       <div className="productoPresentacion">
         <Image 
           className="imagenPrenda" 
-          src={'/productoEjemplo.png'} 
+          src={product.main_image_url || '/productoEjemplo.png'} 
           alt={product.name} 
           width={400} 
           height={550}
         />
         <div className="productoInformacion">
           <div className="divMiniTitulo">
-            <p className="headerMiniTitulo">TEJIENDO HISTORIAS</p>
+            <p className="headerMiniTitulo">{product.artisan_name}</p>
           </div>
           <h1>{product.name}</h1>
           <span>{product.code}</span>
