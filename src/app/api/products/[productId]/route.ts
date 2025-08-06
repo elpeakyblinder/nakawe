@@ -1,15 +1,12 @@
 import { sql } from '@vercel/postgres';
 import { NextRequest, NextResponse } from 'next/server';
 
-type RouteContext = {
-  params: {
-    productId: string;
-  }
-}
-
-// Esta función se activa cuando se hace una petición a /api/products/[productId]
-export async function GET(request: NextRequest, context: RouteContext) {
-  const { productId } = context.params;
+// Esta es la firma de función estándar y correcta que Vercel espera.
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { productId: string } }
+) {
+  const { productId } = params;
 
   try {
     // Hacemos una consulta que une el producto con su artesano para obtener el nombre
