@@ -3,9 +3,9 @@ import { Camera, User, Pencil, Shield, Settings, LogOut, Trash } from "lucide-re
 import Image from 'next/image';
 import styles from './UserProfile.module.css';
 import { type UserProfileData } from '@/types/auth';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import AvatarUploader from '@/components/features/profile/AvatarUploader';
+import ImageUploader, { type ImageUploaderHandles } from '@/components/features/profile/ImageUploader';
 
 type UserProfileProps = {
     userData: UserProfileData;
@@ -14,11 +14,22 @@ type UserProfileProps = {
 export default function UserProfile({ userData }: UserProfileProps) {
     const router = useRouter();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const uploaderRef = useRef<ImageUploaderHandles>(null);
 
-    const handleUploadComplete = () => {
-        setIsModalOpen(false);
-        router.refresh();
+    // Esta función se ejecuta con el botón "Guardar Cambios" del modal
+    const handleAvatarSave = async () => {
+        // Llama a la función 'upload' del componente hijo para iniciar la subida
+        const newUrl = await uploaderRef.current?.upload();
+
+        if (newUrl !== null) { // Si la subida fue exitosa (o no se cambió el archivo)
+            setIsModalOpen(false);
+            router.refresh();
+        } else {
+            // Opcional: Manejar el caso en que la subida falló.
+            alert("La subida de la imagen falló.");
+        }
     };
+
     return (
         <div className={styles.container}>
             <div className={styles.profileGeneral}>
@@ -70,6 +81,7 @@ export default function UserProfile({ userData }: UserProfileProps) {
             </div>
 
             <div className={styles.containerProfile}>
+                {/* Esta es la tarjeta inferior con detalles y acciones */}
                 <div className={styles.profileInfo}>
                     <div className={styles.headerContainer}>
                         <div className={styles.header}>
@@ -143,7 +155,6 @@ export default function UserProfile({ userData }: UserProfileProps) {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -151,17 +162,22 @@ export default function UserProfile({ userData }: UserProfileProps) {
                 <div className={styles.modalBackdrop}>
                     <div className={styles.modalContent}>
                         <h3>Actualizar Foto de Perfil</h3>
-                        <AvatarUploader
+                        <ImageUploader
+                            ref={uploaderRef}
                             uploadUrl="/api/profile/avatar"
-                            onUploadComplete={handleUploadComplete}
+                            initialImageUrl={userData.avatar_url}
+                            formFieldName="avatarFile"
+                            altText="Vista previa de la imagen"
+                            defaultImage="/default-avatar.png"
+                            imageContainerClassName="w-5 h-5 rounded-full"
                         />
-                        <button onClick={() => setIsModalOpen(false)}>
-                            Cancelar
-                        </button>
+                        <div className={styles.modalActions}>
+                            <button className="rounded-md bg-blue-500 text-white px-4 py-2" onClick={handleAvatarSave}>Guardar Cambios</button>
+                            <button className="rounded-md bg-gray-300 text-black px-4 py-2" onClick={() => setIsModalOpen(false)}>Cancelar</button>
+                        </div>
                     </div>
                 </div>
             )}
-
         </div>
     );
 }

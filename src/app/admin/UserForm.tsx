@@ -1,6 +1,7 @@
 'use client'
-
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image';
+import AvatarUploader from '@/components/features/profile/ImageUploader';
 import './admin.css'
 
 export default function UserForm({
@@ -13,33 +14,37 @@ export default function UserForm({
     id: string
     first_name: string
     last_name: string
-    avatar_url: string
+    avatar_url: string | null
   }
   onSuccess: () => void
 }) {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [avatarUrl, setAvatarUrl] = useState('')
+  const [avatarUrl, setAvatarUrl] = useState('/default-avatar.png')
+  const uploaderRef = useRef<AvatarUploaderHandles>(null)
 
   useEffect(() => {
     if (initialData) {
       setFirstName(initialData.first_name)
       setLastName(initialData.last_name)
-      setAvatarUrl(initialData.avatar_url)
+      if (initialData.avatar_url) {
+        setAvatarUrl(initialData.avatar_url)
+      }
     }
   }, [initialData])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
+    const newAvatarUrl = await uploaderRef.current?.upload();
+    
     const payload = {
       first_name: firstName,
       last_name: lastName,
-      avatar_url: avatarUrl,
+      avatar_url: newAvatarUrl || avatarUrl,
     }
 
-    const endpoint =
-      mode === 'edit' ? `/api/users/${initialData?.id}` : '/api/users'
+    const endpoint = mode === 'edit' ? `/api/users/${initialData?.id}` : '/api/users'
     const method = mode === 'edit' ? 'PUT' : 'POST'
 
     const res = await fetch(endpoint, {
@@ -55,6 +60,10 @@ export default function UserForm({
     }
   }
 
+  const uploadUrl = mode === 'edit'
+    ? `/api/admin/users/${initialData?.id}/avatar`
+    : `/api/upload`;
+
   return (
     <form onSubmit={handleSubmit} className='userForm'>
       <label>
@@ -65,10 +74,16 @@ export default function UserForm({
         Apellido:
         <input value={lastName} onChange={(e) => setLastName(e.target.value)} />
       </label>
-      <label>
-        Avatar URL:
-        <input value={avatarUrl} onChange={(e) => setAvatarUrl(e.target.value)} />
-      </label>
+
+      <div>
+        <label>Foto de Perfil</label>
+        <AvatarUploader
+          ref={uploaderRef}
+          uploadUrl={uploadUrl} 
+          initialImageUrl={initialData?.avatar_url}
+        />
+      </div>
+      
       <button type="submit">{mode === 'edit' ? 'Guardar cambios' : 'Crear usuario'}</button>
     </form>
   )

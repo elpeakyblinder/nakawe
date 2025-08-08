@@ -1,0 +1,6 @@
+.linearGradient{
+    width: 50%;
+    border-radius: 5px;
+    background: linear-gradient(to right, #F254A2, var(--color-secundario-ui), #F254A2);
+    height: 3px;
+}
