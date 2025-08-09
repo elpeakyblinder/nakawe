@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import Frase from "@/components/ui/frase";
 import { useRouter } from 'next/navigation';
 
-
 export default function RegisterForm() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
@@ -58,7 +57,7 @@ export default function RegisterForm() {
             } else {
                 setSuccess('¡Cuenta creada! Redirigiendo...');
                 setError('');
-                router.push('/profile');
+                window.location.href = '/profile';
             }
         } catch (err) {
             if (err instanceof Error) {
@@ -95,13 +94,12 @@ export default function RegisterForm() {
                         </span>
                     </div>
                 </div>
-                <div>
+                <div className="relative w-[200px] h-[200px] rounded-full overflow-hidden">
                     <Image
                         src="/artesanoSustituto.png"
                         alt="Artesano Sustituto"
-                        width={200}
-                        height={200}
-                        className="rounded-full"
+                        layout="fill"
+                        objectFit="cover"
                     />
                 </div>
                 <div className={styles.frases}>
@@ -148,7 +146,7 @@ export default function RegisterForm() {
                         {error && <p style={{ color: 'red' }}>{error}</p>}
                         {success && <p style={{ color: 'green' }}>{success}</p>}
 
-                        <Button type="submit" variant="primary" disabled={isLoading}>
+                        <Button className="text-xl" type="submit" variant="primary" disabled={isLoading}>
                             {isLoading ? 'Creando cuenta...' : 'Crear Cuenta'}
                         </Button>
                     </form>

@@ -1,7 +1,6 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
-import Image from 'next/image';
-import AvatarUploader from '@/components/features/profile/ImageUploader';
+import ImageUploader, { type ImageUploaderHandles } from '@/components/features/profile/ImageUploader';
 import './admin.css'
 
 export default function UserForm({
@@ -21,7 +20,7 @@ export default function UserForm({
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [avatarUrl, setAvatarUrl] = useState('/default-avatar.png')
-  const uploaderRef = useRef<AvatarUploaderHandles>(null)
+  const uploaderRef = useRef<ImageUploaderHandles>(null)
 
   useEffect(() => {
     if (initialData) {
@@ -35,13 +34,12 @@ export default function UserForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
     const newAvatarUrl = await uploaderRef.current?.upload();
     
     const payload = {
       first_name: firstName,
       last_name: lastName,
-      avatar_url: newAvatarUrl || avatarUrl,
+      avatar_url: newAvatarUrl || (mode === 'edit' ? initialData?.avatar_url : null),
     }
 
     const endpoint = mode === 'edit' ? `/api/users/${initialData?.id}` : '/api/users'
@@ -77,10 +75,14 @@ export default function UserForm({
 
       <div>
         <label>Foto de Perfil</label>
-        <AvatarUploader
+        <ImageUploader
           ref={uploaderRef}
           uploadUrl={uploadUrl} 
-          initialImageUrl={initialData?.avatar_url}
+          initialImageUrl={initialData?.avatar_url || undefined}
+          formFieldName="avatarFile" 
+          imageContainerClassName="w-32 h-32 rounded-full"
+          altText="Avatar del usuario"
+          defaultImage="/default-avatar.png"
         />
       </div>
       

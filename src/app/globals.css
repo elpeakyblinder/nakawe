@@ -35,40 +35,6 @@ a{
   --color-terciario-ui-hover: #D70000;
 }
 
-/*  SECCION DEL NAVBAR */
-
-.navBar{
-  background-color: rgba(0, 0, 0, 1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 0.5% 1.5%;
-}
-.linksDiv{
-  display: flex;
-  gap: 30px;
-}
-.links{
-  font-size: 20px;
-  text-decoration: none;
-  color: rgba(255, 255, 255, 1);
-  font-weight: 200;
-}
-.rightNavBar{
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.rightNavBar button{
-  border-radius: 10px;
-  padding: 10px 15px;
-  border: none;
-  background-color: #EC4899;
-  color: rgba(255, 255, 255, 1);
-}
-
-
 /* SECCION DEL HEADER */
 
 .inicioPrincipal{
