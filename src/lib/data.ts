@@ -9,6 +9,7 @@ export async function getAuthenticatedUserProfile(): Promise<UserProfileData | n
     const sessionToken = cookieStore.get('session_token')?.value;
 
     noStore();
+    
     if (!sessionToken) {
         return null;
     }

@@ -26,8 +26,7 @@ const ImageUploader = forwardRef<ImageUploaderHandles, ImageUploaderProps>(
             defaultImage = '/default-placeholder.png',
             altText = 'Vista previa de la imagen',
             className = '',
-            // Este valor por defecto se usará si no se especifica uno.
-            imageContainerClassName = 'w-48 h-48 rounded-md',
+            imageContainerClassName = 'w-48 h-48 rounded-full',
         },
         ref
     ) => {
@@ -66,7 +65,6 @@ const ImageUploader = forwardRef<ImageUploaderHandles, ImageUploaderProps>(
                 setError('');
 
                 const formData = new FormData();
-                // --- CORRECCIÓN 1: Usar la prop `formFieldName` ---
                 formData.append(formFieldName, selectedFile, selectedFile.name);
 
                 if (additionalData) {
@@ -100,7 +98,7 @@ const ImageUploader = forwardRef<ImageUploaderHandles, ImageUploaderProps>(
         return (
             <div className={`flex flex-col items-center gap-4 ${className}`}>
                 <div
-                    className={`relative overflow-hidden border-2 border-dashed ${imageContainerClassName}`}
+                    className={`relative overflow-hidden border-2 ${imageContainerClassName}`}
                     style={{ borderColor: error ? 'red' : '#ccc' }}
                 >
                     <img
@@ -123,7 +121,7 @@ const ImageUploader = forwardRef<ImageUploaderHandles, ImageUploaderProps>(
                     type="button"
                     onClick={() => inputFileRef.current?.click()}
                     disabled={isLoading}
-                    className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 disabled:bg-gray-400"
+                    className="px-4 py-2 font-semibold text-black bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 disabled:bg-gray-400"
                 >
                     {isLoading ? 'Subiendo...' : 'Seleccionar Imagen'}
                 </button>

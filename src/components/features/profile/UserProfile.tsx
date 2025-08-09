@@ -16,16 +16,13 @@ export default function UserProfile({ userData }: UserProfileProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const uploaderRef = useRef<ImageUploaderHandles>(null);
 
-    // Esta función se ejecuta con el botón "Guardar Cambios" del modal
     const handleAvatarSave = async () => {
-        // Llama a la función 'upload' del componente hijo para iniciar la subida
         const newUrl = await uploaderRef.current?.upload();
 
-        if (newUrl !== null) { // Si la subida fue exitosa (o no se cambió el archivo)
+        if (newUrl !== null) {
             setIsModalOpen(false);
             router.refresh();
         } else {
-            // Opcional: Manejar el caso en que la subida falló.
             alert("La subida de la imagen falló.");
         }
     };

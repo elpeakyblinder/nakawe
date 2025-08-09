@@ -6,11 +6,13 @@ import styles from './LoginForm.module.css';
 import { Button } from "@/components/ui/button";
 import Frase from "@/components/ui/frase";
 import { useRouter } from 'next/navigation';
+import { Mail, Eye, EyeOff, Lock } from "lucide-react";
 
 export default function LoginForm() {
     const router = useRouter();
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const [formData, setFormData] = useState({
         email: '',
@@ -43,8 +45,7 @@ export default function LoginForm() {
                 throw new Error(data.error || 'Error al iniciar sesión');
             }
 
-            // ¡Login exitoso! Redirigir
-            router.push('/');
+            window.location.href = '/';
 
         } catch (err) {
             if (err instanceof Error) {
@@ -68,41 +69,56 @@ export default function LoginForm() {
                     <form onSubmit={handleSubmit} className={styles.form}>
                         <div className={styles.campoForm}>
                             <label htmlFor="email">CORREO ELECTRÓNICO</label>
-                            <input
-                                className={styles.input}
-                                type="email"
-                                placeholder="Tu correo electrónico"
-                                id="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleInputChange}
-                                required
-                            />
+                            <div className={styles.inputWrapper}>
+                                <Mail className={styles.inputIcon} size={20} />
+                                <input
+                                    className={styles.input}
+                                    type="email"
+                                    placeholder="Tu correo electrónico"
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                            </div>
                         </div>
 
                         <div className={styles.campoForm}>
                             <label htmlFor="password">CONTRASEÑA</label>
-                            <input
-                                className={styles.input}
-                                type="password"
-                                placeholder="Tu contraseña"
-                                id="password"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleInputChange}
-                                required
-                            />
+                            <div className={styles.inputWrapper}>
+                                <Lock className={styles.inputIcon} size={20} />
+                                <input
+                                    className={styles.input}
+                                    type={showPassword ? 'text' : 'password'}
+                                    placeholder="Tu contraseña"
+                                    id="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    className={styles.togglePassword}
+                                    onClick={() => setShowPassword(!showPassword)}
+                                >
+                                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                </button>
+                            </div>
                         </div>
 
                         <div className={styles.forgot}>
                             <span>
-                                <a href="#">¿Olvidaste tu contraseña?</a>
+                                <a style={{ color: 'var(--color-terciario-ui)' }} href="#">
+                                    ¿Olvidaste tu contraseña?
+                                </a>
                             </span>
                         </div>
-
+                        
                         {error && <p style={{ color: 'red' }}>{error}</p>}
 
-                        <Button type="submit" variant="primary" disabled={isLoading}>
+                        <Button className="text-xl" type="submit" variant="primary" disabled={isLoading}>
                             {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
                         </Button>
                     </form>
@@ -117,7 +133,7 @@ export default function LoginForm() {
                     <Image
                         src="/pajaro.png"
                         alt="Pajaro"
-                        width={50}
+                        width={70}
                         height={50}
                     />
                 </div>
@@ -133,13 +149,12 @@ export default function LoginForm() {
                         </span>
                     </div>
                 </div>
-                <div>
+                <div className="relative w-[200px] h-[200px] rounded-full overflow-hidden">
                     <Image
                         src="/artesanoSustituto.png"
                         alt="Artesano Sustituto"
-                        width={200}
-                        height={200}
-                        className="rounded-full"
+                        layout="fill"
+                        objectFit="cover"
                     />
                 </div>
                 <div className={styles.frases}>
