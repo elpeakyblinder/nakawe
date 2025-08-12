@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@egjs/react-infinitegrid": "^4.12.0",
     "@neondatabase/serverless": "^1.0.1",
     "@vercel/blob": "^1.1.1",
     "@vercel/postgres": "^0.10.0",
