@@ -85,12 +85,6 @@ packages:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
 
-<<<<<<< HEAD
-=======
-  '@ampproject/remapping@2.3.0':
-    resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
-    engines: {node: '>=6.0.0'}
-
   '@cfcs/core@0.0.24':
     resolution: {integrity: sha512-feB38qu+eDk0Pggh/yR7gjaNmvUYA2uCxHP3Pz2MLE4LZ/9jPdtu8bzCSI47yTEhWyZCF5Pk698hdz8IN2mTjA==}
 
@@ -118,7 +112,6 @@ packages:
   '@egjs/react-infinitegrid@4.12.0':
     resolution: {integrity: sha512-V661KH1nka13wgy73N0IGBazZGe7LiECml1JDqB5DP6axTERUVCs8KRHadHu6oQihDeXwJIHe1YRhhMN9eAnUw==}
 
->>>>>>> frontend
   '@emnapi/core@1.4.4':
     resolution: {integrity: sha512-A9CnAbC6ARNMKcIcrQwq6HeHCjpcBZ5wSx4U01WXCqEKlrzB9F9315WDNHkrs2xbx7YjjSxbUYxuN6EQzpcY2g==}
 
@@ -2121,13 +2114,6 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-<<<<<<< HEAD
-=======
-  '@ampproject/remapping@2.3.0':
-    dependencies:
-      '@jridgewell/gen-mapping': 0.3.12
-      '@jridgewell/trace-mapping': 0.3.29
-
   '@cfcs/core@0.0.24':
     dependencies:
       '@egjs/component': 3.0.5
@@ -2167,7 +2153,6 @@ snapshots:
     dependencies:
       '@egjs/infinitegrid': 4.12.0
 
->>>>>>> frontend
   '@emnapi/core@1.4.4':
     dependencies:
       '@emnapi/wasi-threads': 1.0.3

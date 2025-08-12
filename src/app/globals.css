@@ -637,3 +637,139 @@ footer div a{
   text-decoration: none;
   color: rgba(255, 255, 255, 1);
 }
+.headerTituloMobile{
+  display: none;
+}
+
+@media (max-width: 830px) {
+  /* SECCION DE LA PRESENTACION */
+  .header{
+    padding: 3% 0;
+    justify-content: center;
+  }
+  .headerTitulo{
+    display: none;
+  }
+  .headerTituloMobile{
+    display: flex;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .headerParte1{
+    align-items: center;
+    gap: 30px;
+    width: 95%;
+    margin: 18% 0 15% 0;
+  }
+  .headerButtons{
+    justify-content: space-evenly;
+  }
+  .imagenHeader{
+    display: none;
+  }
+
+  /* SECCION DE CONOCENOS */
+  .conocenos{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+  }
+  .conocenos .conocenosBody{
+    gap: 20px;
+    width: 95%;
+  }
+  .conocenos .conocenosBody button{
+    align-items: flex-end;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+
+  /* SECCION DE EVENTOS */
+  .cardsEvents{
+    flex-direction: column;
+    gap: 30px;
+  }
+  .eventos .imageArrowRight, .eventos .imageArrowLeft{
+    display: none;
+  }
+  .cardsEvents .cardEvent{
+    width: 90%;
+  }
+
+
+
+  /* SECCION DE COLECCIONES */
+  .colecciones .textoColecciones{
+    text-align: center;
+  }
+  .coleccionesZonaTop{
+    flex-direction: column;
+  }
+  .presentacionColeccionesImagen{
+    width: 100%;
+  }
+  .coleccionesInfo{
+    margin-top: 25px;
+    width: 100%;
+  }
+
+  .coleccionesCards{
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+  }
+  .coleccionesCards .coleccionCard{
+    width: 100%;
+  }
+  .coleccionesCards .coleccionCard img{
+    max-height: 200px;
+  }
+
+
+  /* SECCION DE RESISTENCIA CULTURAL */
+  .colaboracionArtesanas{
+    display: none;
+  }
+  .invitacionDeColaboracion{
+    padding: 3% 2.5%;
+  }
+  .invitacionDeColaboracion h4{
+    text-align: center;
+  }
+  .invitacionDeColaboracion p{
+    width: 95%;
+  }
+
+  /* SECCION DE LA REVISTA NAKAWE */
+  .revistaNakaweCards{
+    flex-direction: column;
+    width: 100%;
+    gap: 35px;
+  }
+  .revistaNakaweCards .revistaNakaweCard{
+    width: 100%;
+  }
+  .revistaNakaweCards .revistaNakaweCard img{
+    max-height: 350px;
+  }
+  .arrowImageRevista{
+    display: none;
+  }
+
+
+  /* fOOTER SECTION */
+  footer{
+    height: max-content;
+    flex-direction: column;
+    gap: 30px;
+  }
+  footer div{
+    gap: 5px;
+  }
+  footer div .redesSociales{
+    gap: 25px;
+  }
+}

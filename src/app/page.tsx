@@ -49,6 +49,7 @@ export default function Home() {
         <div className="headerParte1">
           <p className="headerMiniTitulo">COMUNIDAD GENERATIVA SIN FINES DE LUCRO</p>
   
+          <h1 className="headerTituloMobile">Y CON HISTORIAS TEJER LAS CONSCIENCIAS</h1>
           <div className="headerTitulo">
             <h1>Y CON HISTORIAS</h1>
             <h1>TEJER</h1>
@@ -67,7 +68,7 @@ export default function Home() {
           </div>
         </div>
   
-        <Image className="imagenHeader" src="/montañasPrincipal.png" alt="Montañas" width={400} height={450}/>
+        <Image className="imagenHeader" src="/montañasPrincipal.png" alt="Montañas" width={400} height={650}/>
       </section>
 
       <div className="conocenos">
@@ -188,7 +189,7 @@ export default function Home() {
       <div className="colecciones"> {/*Seccion de colecciones*/}
         <h2>Colecciones</h2>
         <div className="barraDecorativaColecciones"></div>
-        <p className="textoMediano">Cada pieza cuenta una historia, cada colección preserva una tradición</p>
+        <p className="textoMediano textoColecciones">Cada pieza cuenta una historia, cada colección preserva una tradición</p>
 
         <div className="presentacionColecciones"> {/*Seccion principal de colecciones, imagen y descripcion */}
           <div className="coleccionesZonaTop">
@@ -310,7 +311,7 @@ export default function Home() {
 
         <div className="revistaNakaweCards">
 
-          <button><Image className="imageArrowLeft" src={'/flechaNegraConCirculo.svg'} alt="arrow icon" width={40} height={40} /></button>
+          <button className="arrowImageRevista"><Image className="imageArrowLeft" src={'/flechaNegraConCirculo.svg'} alt="arrow icon" width={40} height={40} /></button>
 
           <div className="revistaNakaweCard">
             <Image className="revistaNakaweCardImage" src={'/pattern.png'} height={140} width={150} alt="Pattern image"/>
@@ -339,7 +340,7 @@ export default function Home() {
             </div>
           </div>
 
-          <button><Image src={'/flechaNegraConCirculo.svg'} alt="arrow icon" width={40} height={40} /></button>
+          <button className="arrowImageRevista"><Image src={'/flechaNegraConCirculo.svg'} alt="arrow icon" width={40} height={40} /></button>
         </div>
       </div>
 
