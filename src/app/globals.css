@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 *{
-  margin: 0;
-  padding: 0;
+  box-sizing: border-box;
   animation: 0.5s;
 }
 .textoRosa{
@@ -19,6 +18,8 @@
 }
 button{
   cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  border: none;
 }
 
 a{
@@ -34,40 +35,6 @@ a{
   --color-terciario-ui-hover: #D70000;
 }
 
-/*  SECCION DEL NAVBAR */
-
-.navBar{
-  background-color: rgba(0, 0, 0, 1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 97%;
-  padding: 0.5% 1.5%;
-}
-.linksDiv{
-  display: flex;
-  gap: 30px;
-}
-.links{
-  font-size: 20px;
-  text-decoration: none;
-  color: rgba(255, 255, 255, 1);
-  font-weight: 200;
-}
-.rightNavBar{
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.rightNavBar button{
-  border-radius: 10px;
-  padding: 10px 15px;
-  border: none;
-  background-color: #EC4899;
-  color: rgba(255, 255, 255, 1);
-}
-
-
 /* SECCION DEL HEADER */
 
 .inicioPrincipal{
@@ -75,22 +42,24 @@ a{
   flex-direction: column;
   width: 100%;
   align-items: center;
-
 }
-.header{
+
+.header {
   background-color: #060606;
   color: rgba(255, 255, 255, 1);
   display: flex;
-  width: 80%;
-  padding: 3% 10%;
+  width: 100%;
+  padding: 3% 10%; 
   justify-content: space-between;
   align-items: center;
 }
+
 .headerParte1{
   display: flex;
   flex-direction: column;
   gap: 4vh;
 }
+
 .headerMiniTitulo{
   color: rgba(255, 255, 255, 1);
   background-color: rgba(0, 0, 0, 1);
@@ -99,40 +68,72 @@ a{
   padding: 8px;
   border-radius: 5px;
 }
+
 .headerTitulo h1{
   font-size: 48px;
 }
+
 .headerButtons{
   display: flex;
   justify-content: space-between;
-  width: 80%;
+  align-items: center;
+  width: 100%;
 }
+
 .headerButtons button{
   padding: 10px 2vw;
   border-radius: 5px;
-  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.headerButtons .headerButton1 {
+  background-color: #ffffff;
+  color: rgba(0, 0, 0, 1);
+  border: 1px solid transparent; 
+}
+
+.headerButtons .headerButton1:hover {
+  background-color: #000000;
+  color: rgba(255, 255, 255, 1);
+  border-color: rgba(255, 255, 255, 1); 
+}
+
 .headerButtons .headerButton2{
-  background-color: #EC4899;
+  background-color: var(--color-principal-ui);
   color: rgba(255, 255, 255, 1);
 }
+
+
+.headerButtons .headerButton2:hover{
+  background-color: var(--color-principal-ui-hover);
+  color: rgba(255, 255, 255, 1);
+}
+
 .headerButtons .headerButton3{
-  background-color: #F5BD1F;
+  background-color: var(--color-secundario-ui);
   color: rgba(0, 0, 0, 1);
 }
+
+.headerButtons .headerButton3:hover{
+  background-color: var(--color-secundario-ui-hover);
+  color: rgba(0, 0, 0, 1);
+}
+
 .imagenHeader{
-  width: 50%;
+  width: 40%;
 }
 
 /* SECCION DE QUIENES SOMOS */
 .conocenos{
-  width: 90%;
+  width: 100%;
   padding: 0% 5% 5% 5%;
   background-color: #060606;
   color: rgba(255, 255, 255, 1);
   display: flex;
   text-align: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 .conocenosBody{
   display: flex;
@@ -151,8 +152,17 @@ a{
   padding: 10px 0;
   justify-content: center;
   border: none;
+  background-color: #ffffff;
+  color: #000000;
   border-radius: 5px;
   width: 50%;
+  border: solid 1px transparent;
+}
+
+.conocenosBody button:hover{
+  background-color: #000000;
+  color: #ffffff;
+  border: solid 1px #ffffff;
 }
 
 
@@ -160,8 +170,8 @@ a{
 .contadoresContainer{
   display: flex;
   justify-content: space-evenly;
-  width: 70%;
-  padding: 3% 0;
+  width: 100%;
+  padding: 2% 0;
 }
 .contadoresContainer div{
   display: flex;
@@ -176,26 +186,18 @@ a{
 .eventos{
   background-color: #060606;
   color: rgba(255, 255, 255, 1);
-  width: 95%;
+  width: 100%;
   padding: 3% 2.5%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 25px;
 }
-.eventosBar{
-  width: 15%;
-  border-radius: 15px;
-  background: linear-gradient(to right, #F254A2, #FF007E, #F254A2);
-  height: 5px;
-}
+
 .eventos h2{
   font-size: 42px;
 }
 
-.imageArrowLeft{
-  rotate: 180deg;
-}
 .cardsEvents{
   display: flex;
   align-items: center;
@@ -243,11 +245,14 @@ a{
   color: #D9ED92;
 }
 .cardsEvents button, .nuestroObjetivo button{
-  background-color: #D7007F;
+  background-color: var(--color-principal-ui);
   color: rgba(255, 255, 255, 1);
   border-radius: 10px;
-  border: none;
-  padding: 10px 0
+  padding: 10px 0;
+}
+
+.cardsEvents button:hover, .nuestroObjetivo button:hover{
+  background-color: var(--color-principal-ui-hover);
 }
 
 /* SECCION DE COLECCIONES */
@@ -336,7 +341,15 @@ a{
   border: none;
   width: 100%;
   padding: 15px 0;
+  border: 1px solid transparent;
 }
+
+.coleccionesInfo button:hover{
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
+  border: 1px solid rgba(0, 0, 0, 1);
+}
+
 .coleccionesCards{
   display: flex;
   justify-content: space-between;
@@ -390,7 +403,7 @@ a{
   padding: 3% 5%;
   background-color: rgba(0, 0, 0, 1);
   color: rgba(255, 255, 255, 1);
-  width: 90%;
+  width: 100%;
   gap: 20px;
   justify-content: space-between;
 }
@@ -413,23 +426,24 @@ a{
   font-size: 18px;
   text-align: center;
 }
-.invitacionDeColaboracionButton1, .invitacionDeColaboracionButton2{
+
+.invitacionDeColaboracionButton2 {
   padding: 10px 20px;
-  background-color: rgba(255, 255, 255, 1);
-  color: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
   border-radius: 5px;
-  border: none;
   display: flex;
   align-items: center;
   gap: 10px;
   text-align: center;
-}
-.invitacionDeColaboracionButton2{
-  background-color: rgba(0, 0, 0, 1);
-  color: rgba(255, 255, 255, 1);
-  border: 1px solid rgba(255, 255, 255, 1);
+  background-color: #000000;
+  border: 1px solid #ffffff; 
 }
 
+.invitacionDeColaboracionButton2:hover {
+  background-color: #ffffff;
+  color: rgba(0, 0, 0, 1);
+  border-color: rgba(255, 255, 255, 1); 
+}
 
 /* SECCION DE REVISTA NAKAWE */
 .revistaNakawe{
@@ -508,12 +522,7 @@ a{
   gap: 20px;
   align-items: center;
 }
-.nuestroObjetivoBar{
-  width: 75%;
-  border-radius: 15px;
-  background: linear-gradient(to right, #F254A2, #FF007E, #F254A2);
-  height: 5px;
-}
+
 .nuestroObjetivo h2{
   font-size: 42px;
 }
@@ -543,7 +552,7 @@ a{
 }
 .impactoAños{
   display: flex;
-  width: 90%;
+  width: 100%;
   align-items: center;
   justify-content: space-evenly;
 }
@@ -560,7 +569,7 @@ a{
 
 .impactoAñosSeparador{
   height: 2px;
-  width: 4%;
+  width: 8%;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -584,12 +593,12 @@ a{
 footer{
   width: 100%;
   background-color: #060606;
-  padding: 5%;
+  padding: 10%;
   color: rgba(255, 255, 255, 1);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 90%;
+  width: 100%;
   height: 30vh;
 }
 footer div{
@@ -607,6 +616,7 @@ footer div a{
   display: flex;
   flex-direction: row;
 }
+
 .derechosReservados{
   background-color: #060606;
   color: rgba(255, 255, 255, 1);
@@ -630,4 +640,161 @@ footer div a{
 .iniciarSesionLink{
   text-decoration: none;
   color: rgba(255, 255, 255, 1);
+}
+.headerTituloMobile{
+  display: none;
+}
+
+.headerTituloMobile{
+  display: none;
+}
+
+@media (max-width: 830px) {
+  /* SECCION DE LA PRESENTACION */
+  .header{
+    padding: 3% 0;
+    justify-content: center;
+  }
+  .headerTitulo{
+    display: none;
+  }
+  .headerTituloMobile{
+    display: flex;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .headerParte1{
+    align-items: center;
+    gap: 30px;
+    width: 95%;
+    margin: 18% 0 15% 0;
+  }
+  .headerButtons{
+    justify-content: space-evenly;
+  }
+  .imagenHeader{
+    display: none;
+  }
+
+  /* SECCION DE CONOCENOS */
+  .conocenos{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+  }
+  .conocenos .conocenosBody{
+    gap: 20px;
+    width: 95%;
+  }
+  .conocenos .conocenosBody button{
+    align-items: flex-end;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+
+  /* SECCION DE EVENTOS */
+  .cardsEvents{
+    flex-direction: column;
+    gap: 30px;
+  }
+  .eventos .imageArrowRight, .eventos .imageArrowLeft{
+    display: none;
+  }
+  .cardsEvents .cardEvent{
+    width: 90%;
+  }
+
+
+
+  /* SECCION DE COLECCIONES */
+  .colecciones .textoColecciones{
+    text-align: center;
+  }
+  .coleccionesZonaTop{
+    flex-direction: column;
+  }
+  .presentacionColeccionesImagen{
+    width: 100%;
+  }
+  .coleccionesInfo{
+    margin-top: 25px;
+    width: 100%;
+  }
+
+  .coleccionesCards{
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+  }
+  .coleccionesCards .coleccionCard{
+    width: 100%;
+  }
+  .coleccionesCards .coleccionCard img{
+    max-height: 200px;
+  }
+
+
+  /* SECCION DE RESISTENCIA CULTURAL */
+  .colaboracionArtesanas{
+    display: none;
+  }
+  .invitacionDeColaboracion{
+    padding: 3% 2.5%;
+  }
+  .invitacionDeColaboracion h4{
+    text-align: center;
+  }
+  .invitacionDeColaboracion p{
+    width: 95%;
+  }
+
+  /* SECCION DE LA REVISTA NAKAWE */
+  .revistaNakaweCards{
+    flex-direction: column;
+    width: 100%;
+    gap: 35px;
+  }
+  .revistaNakaweCards .revistaNakaweCard{
+    width: 100%;
+  }
+  .revistaNakaweCards .revistaNakaweCard img{
+    max-height: 350px;
+  }
+  .arrowImageRevista{
+    display: none;
+  }
+
+
+  /* fOOTER SECTION */
+  footer{
+    height: max-content;
+    flex-direction: column;
+    gap: 30px;
+  }
+  footer div{
+    gap: 5px;
+  }
+  footer div .redesSociales{
+    gap: 25px;
+  }
+}
+
+/* Estilos para el layout Masonry (Pinterest) */
+.my-masonry-grid {
+  display: flex;
+  margin-left: -20px; /* Reduce el margen negativo */
+  width: auto;
+}
+
+.my-masonry-grid_column {
+  padding-left: 20px; /* Reduce el espaciado entre columnas */
+  background-clip: padding-box;
+}
+
+/* Estilo para cada tarjeta dentro de la columna */
+.my-masonry-grid_column > div { 
+  margin-bottom: 20px; /* Reduce el espaciado vertical entre tarjetas */
 }

@@ -2,6 +2,7 @@ import { put } from '@vercel/blob';
 import { NextResponse } from 'next/server';
 import { sql } from '@vercel/postgres';
 import { getUserIdFromSession } from '@/lib/session';
+import sharp from 'sharp';
 
 export async function POST(request: Request): Promise<NextResponse> {
     const userId = await getUserIdFromSession();
@@ -11,32 +12,37 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     try {
         const formData = await request.formData();
-        const file = formData.get('file') as File;
-        if (!file) {
-            return NextResponse.json({ error: 'No se recibió ningún archivo.' }, { status: 400 });
+        const avatarFile = formData.get('avatarFile') as File | null;
+
+        let avatar_url: string | undefined = undefined;
+
+        if (avatarFile) {
+            const fileBuffer = Buffer.from(await avatarFile.arrayBuffer());
+            const compressedBuffer = await sharp(fileBuffer)
+                .resize(512, 512, { fit: 'cover' })
+                .webp({ quality: 80 })
+                .toBuffer();
+
+            const blob = await put(`avatars/${userId}-${Date.now()}.webp`, compressedBuffer, {
+                access: 'public',
+                contentType: 'image/webp'
+            });
+
+            avatar_url = blob.url;
+
+            await sql`
+                UPDATE profiles 
+                SET avatar_url = ${avatar_url}
+                WHERE id = ${userId};
+            `;
         }
 
-        const blob = await put(
-            `avatars/${userId}-${file.name}`,
-            file,
-            { access: 'public' }
-        );
-
-        await sql`
-            UPDATE profiles SET avatar_url = ${blob.url} WHERE id = ${userId};
-        `;
-
-        return NextResponse.json({ url: blob.url });
+        return NextResponse.json({ message: 'Perfil actualizado con éxito', url: avatar_url });
 
     } catch (error) {
-        let errorMessage = 'Ocurrió un error inesperado.';
         if (error instanceof Error) {
-            errorMessage = error.message;
+            return NextResponse.json({ error: error.message }, { status: 500 });
         }
-
-        return NextResponse.json(
-            { error: errorMessage },
-            { status: 400 },
-        );
+        return NextResponse.json({ error: 'Error desconocido' }, { status: 500 });
     }
 }

@@ -12,41 +12,41 @@
     width: 90%;
     justify-content: space-between;
     padding: 5% 0;
-    flex-wrap: wrap; /* Añadido para mejorar la responsividad en pantallas pequeñas */
-    gap: 20px; /* Espacio entre elementos */
+    flex-wrap: wrap; 
+    gap: 20px; 
 }
 .presentacionProductoInfo{
-    width: 50%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    min-width: 300px; /* Ancho mínimo para evitar que se comprima demasiado */
-    flex-grow: 1; /* Permite que el elemento crezca */
-}
-.presentacionProductoInfo{
-  line-height: 1.2;
+    min-width: 300px; 
+    flex-grow: 1; 
+    line-height: 1.2;
 }
 .presentacionColecciones{
     margin: 3% 0;
 }
+
 .presentacionColeccionesImagen{
-  background-image: url('/showRoomNitaSanchez.jpeg');
-  width: 40%;
+  position: relative;
+  background-image: none;
+  width: 30%;
   height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   background-size: cover;
-  min-width: 300px; /* Ancho mínimo */
-  flex-grow: 1; /* Permite que el elemento crezca */
-}
-.coleccionesZonaTop{
-  display: flex;
-  justify-content: space-between;
+  min-width: 300px; 
+  flex-grow: 1;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .mainPresentacionColecciones{
+  position: relative;
+  z-index: 2;
   width: 90%;
   background-color: rgba(255, 255, 255, 0.5);
   display: flex;
@@ -54,6 +54,12 @@
   gap: 17px;
   padding: 10px 0;
   filter: opacity(0.9);
+  margin-bottom: 15px;
+}
+
+.coleccionesZonaTop{
+  display: flex;
+  justify-content: space-between;
 }
 .mainPresentacionColeccionesTitulo{
   display: flex;
@@ -95,9 +101,6 @@
   padding: 15px 0;
 }
 
-
-
-/* Cuerpo del producto */
 .cuerpoProducto{
     display: flex;
     flex-direction: column;
@@ -107,7 +110,7 @@
 .mercadoDeAlcance, .conceptoDiseño, .historiaDelDiseño{
     display: flex;
     justify-content: space-evenly;
-    flex-wrap: wrap; /* Añadido para responsividad */
+    flex-wrap: wrap;
     gap: 20px;
 }
 .mercadoDeAlcance p, .conceptoDiseño p, .historiaDelDiseño p{
@@ -124,8 +127,6 @@
     flex-grow: 1;
 }
 
-
-/* DESCUBRE LAS PRENDAS */
 .descubrePrendas{
     background-color: #060606;
     color: rgba(255, 255, 255, 1);
@@ -145,26 +146,69 @@
   height: 5px;
 }
 
-/* --- CAMBIOS PRINCIPALES AQUÍ --- */
-/* CARTAS DE PRENDAS */
+/* --- ESTILOS DE LA CUADRÍCULA Y TARJETAS (ACTUALIZADO) --- */
 .prendas{
-    display: grid; /* 1. Se cambia de flex a grid */
-    grid-template-columns: repeat(3, 1fr); /* 2. Se define una cuadrícula de 3 columnas iguales */
-    gap: 30px; /* 3. Se añade un espacio uniforme entre las tarjetas */
     width: 90%;
     padding: 0 0 5% 0;
 }
+
+/* --- Animación de entrada para las tarjetas --- */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-fade-in {
+  /* La animación se aplica aquí */
+  animation: cardFadeIn 0.5s ease-out forwards;
+}
+
 .prendasCard{
     display: flex;
     flex-direction: column;
-    width: 100%; /* 4. Se cambia el ancho a 100% para que la tarjeta ocupe el espacio de la columna del grid */
+    /* Ancho responsivo: cambia el valor en diferentes tamaños de pantalla */
+    width: 30%; 
     background-color: #F4F4F4;
     box-shadow: 5px 6px 21px 1px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
-    align-items: center;
-    padding-bottom: 30px;
+    /* Se agrega overflow hidden para que el contenido no se salga de los bordes redondeados */
+    overflow: hidden; 
 }
-/* --- FIN DE CAMBIOS PRINCIPALES --- */
+
+/* Contenedor para la imagen y el esqueleto */
+.imagenPrendaContainer {
+  position: relative;
+  width: 100%;
+  /* La altura se definirá por el contenido (imagen o esqueleto) */
+}
+
+.prendasCard .imagenPrenda{
+  width: 100%;
+  height: auto; /* La altura se ajusta automáticamente */
+  display: block; /* Elimina espacio extra debajo de la imagen */
+}
+
+/* --- Estilos para el esqueleto de carga de la imagen --- */
+@keyframes skeleton-pulse {
+  0% { background-color: #e0e0e0; }
+  50% { background-color: #f5f5f5; }
+  100% { background-color: #e0e0e0; }
+}
+
+.skeleton-image {
+  width: 100%;
+  /* Una altura fija mientras carga la imagen para evitar que la tarjeta "salte" */
+  height: 400px; 
+  background-color: #e0e0e0;
+  animation: skeleton-pulse 1.5s infinite ease-in-out;
+}
+
 
 .infoCuerpoPrendasCard{
   display: flex;
@@ -172,16 +216,12 @@
   align-items: center;
 }
 
-.prendasCard .imagenPrenda{
-  width: 100%;
-  border-radius: 15px;
-}
 .cuerpoPrendasCard{
     width: 90%;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 20px;
+    margin: 20px auto; /* Centrado y con margen */
     align-items: flex-start;
 }
 .cuerpoPrendasCard p{
@@ -195,6 +235,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 10px; /* Espacio extra */
 }
 .prendasCardButtom p{
   font-size: 26px;
@@ -202,11 +243,11 @@
   font-weight: 500;
 }
 .prendasCardButtom button{
-  width: 30%;
+  width: auto; 
   background-color: #F5BD1F;
   border: none;
   border-radius: 5px;
-  padding: 9px 0;
+  padding: 9px 35px;
 }
 .prendasCardButtom button a{
   text-decoration: none;
@@ -214,23 +255,25 @@
 }
 
 /* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
-@media (max-width: 1024px) {
-  .prendas {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
-  }
-}
-
 @media (max-width: 768px) {
-  .prendas {
-    grid-template-columns: 1fr; /* 1 columna en móviles */
+  .prendasCard {
+    /* En pantallas más pequeñas, las tarjetas son un poco más estrechas */
+    width: 280px;
   }
 
   .presentacionProducto, .mercadoDeAlcance, .conceptoDiseño, .historiaDelDiseño {
-    flex-direction: column; /* Apila los elementos en pantallas pequeñas */
+    flex-direction: column;
     align-items: center;
   }
 
   .presentacionProductoInfo, .presentacionColeccionesImagen, .mercadoDeAlcance div, .conceptoDiseño div, .historiaDelDiseño div {
-    width: 90%; /* Ocupa más ancho en pantallas pequeñas */
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .prendasCard {
+    /* En móviles, la tarjeta ocupa casi todo el ancho disponible */
+    width: 90vw;
   }
 }

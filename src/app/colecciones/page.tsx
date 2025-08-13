@@ -1,11 +1,10 @@
-import "./colecciones.css";
 import Image from "next/image";
-import Link from "next/link"; // Se usa Link para una navegación optimizada.
-import { League_Spartan } from 'next/font/google'
+import CollectionsGrid from './collectionsGrid';
+import { ArrowRight } from "lucide-react";
+import LinearGradient from "@/components/ui/LinearGradient";
 
-const leagueSpartan = League_Spartan({ subsets: ['latin'] })
 
-// Se define un tipo para los datos que se recibirán de la API.
+// Definimos el tipo de dato para una colección
 type Collection = {
   id: string;
   name: string;
@@ -14,25 +13,20 @@ type Collection = {
   cover_image_url: string;
   artisan_name: string;
   product_count: number;
-}
+};
 
-// Función para obtener los datos de las colecciones desde la API.
+// Función para obtener los datos de las colecciones desde la API en el servidor
 async function getCollections(): Promise<Collection[]> {
-  // Construimos la URL completa para que funcione en el servidor.
-  const apiUrl = process.env.VERCEL_URL 
-    ? `https://${process.env.VERCEL_URL}/api/collections` 
+  const apiUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}/api/collections`
     : 'http://localhost:3000/api/collections';
-  
-  try {
-    const res = await fetch(apiUrl, {
-      cache: 'no-store', // Se evita el caché para obtener siempre los datos más recientes.
-    });
 
+  try {
+    const res = await fetch(apiUrl, { cache: 'no-store' });
     if (!res.ok) {
       console.error("Error al obtener las colecciones:", await res.text());
       return [];
     }
-    
     return res.json();
   } catch (error) {
     console.error("Error de red:", error);
@@ -40,47 +34,22 @@ async function getCollections(): Promise<Collection[]> {
   }
 }
 
-// La página ahora es un componente 'async' para poder usar 'await'.
-export default async function Colecciones() {
+// La página principal ahora es un Componente de Servidor
+export default async function ColeccionesPage() {
+  // 1. Obtenemos los datos en el servidor
   const collections = await getCollections();
 
   return (
-    // Se eliminan las etiquetas <html> y <body>, ya que Next.js las maneja en el layout.
-    <div className={leagueSpartan.className}>
-      <header>
-        <h1>COLECCIONES</h1>
-        <p>PRESERVANDO LA HISTORIA</p>
-        <div className="barraHeaderColecciones"></div>
+    <div>
+      <header className="flex flex-col items-center justify-center h-[40vh] bg-[#060606] text-white">
+        <h1 className="text-5xl font-bold">COLECCIONES</h1>
+        <p className="text-3xl font-light mt-4 mb-4">PRESERVANDO LA HISTORIA</p>
+        <LinearGradient />
       </header>
 
-      <div className="cardsColecciones">
-        {/* Se mapean las colecciones obtenidas de la API. */}
-        {collections.map((collection) => (
-          <div key={collection.id} className="presentacionColeccionesMain">
-            <div className="mainPresentacionColecciones">
-              <div className="mainPresentacionColeccionesTitulo">
-                {/* Se usa el nombre del artesano de la colección. */}
-                <h3>{collection.artisan_name}</h3>
-                <div>
-                  <p><strong>SHOWROOM</strong></p>
-                  <Image src={'/pattern.png'} alt="Tipo de coleccion" width={30} height={30} />
-                </div>
-              </div>
-              {/* Se usa el nombre de la colección. */}
-              <p>{collection.design_history}</p>
-
-              <div className="presentacionColeccionesFinal">
-                {/* Se muestra el conteo de productos. */}
-                <p className="textoRosa"><strong>{collection.product_count} Piezas únicas</strong></p>
-                {/* Se usa Link para navegar a la página de detalle de la colección. */}
-                <Link href={`/colecciones/${collection.id}`}>
-                  <button><strong>Explora</strong></button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+      <main className="w-full mx-auto px-4 sm:px-6 lg:px-16 py-12">
+        <CollectionsGrid collections={collections} />
+      </main>
 
       <div className="invitacionDeColaboracion">
         <h4>Cada Compra es un Acto de Resistencia Cultural</h4>
@@ -92,9 +61,9 @@ export default async function Colecciones() {
           <Image className="colaboracionArtesanasImagen" src={'/artesanaprofile.png'} alt="Artesana imagen" width={180} height={180} />
           <Image src={'/flechaBlancaConCirculo.svg'} alt="flecha" width={50} height={50} />
         </div>
-        <button className="invitacionDeColaboracionButton2">Conocer a las Maestras Artesanas<Image src={'/flechaBlanca.svg'} alt="flecha" width={20} height={20}/></button>
+        <button className="invitacionDeColaboracionButton2">Conocer a las Maestras Artesanas <ArrowRight size={20} /></button>
         <p></p>
       </div>
     </div>
-  )
+  );
 }

@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import '../admin.css'
+import { useState, useEffect, useRef } from 'react'
+import ImageUploader, { type ImageUploaderHandles } from '@/components/features/profile/ImageUploader'
 
-// Tipos para los datos que se usarán en el formulario.
+// Tipos (sin cambios)
 type Artisan = {
   id: string;
   display_name: string;
@@ -28,7 +28,9 @@ type Props = {
 }
 
 export default function CollectionsForm({ mode, initialData, onSuccess }: Props) {
-  // Estados para los campos del formulario.
+  const uploaderRef = useRef<ImageUploaderHandles>(null)
+
+  // Estados del formulario (sin cambios)
   const [artisanId, setArtisanId] = useState('')
   const [code, setCode] = useState('')
   const [name, setName] = useState('')
@@ -36,13 +38,10 @@ export default function CollectionsForm({ mode, initialData, onSuccess }: Props)
   const [targetMarket, setTargetMarket] = useState('')
   const [designConcept, setDesignConcept] = useState('')
   const [designHistory, setDesignHistory] = useState('')
-  const [coverImageUrl, setCoverImageUrl] = useState('')
-
-  // Estados para cargar la lista de artesanos.
   const [artisans, setArtisans] = useState<Artisan[]>([])
   const [isLoadingArtisans, setIsLoadingArtisans] = useState(true)
 
-  // Rellena el formulario con datos iniciales en modo de edición.
+  // Lógica de useEffects (sin cambios)
   useEffect(() => {
     if (mode === 'edit' && initialData) {
       setArtisanId(initialData.artisan_id)
@@ -52,11 +51,9 @@ export default function CollectionsForm({ mode, initialData, onSuccess }: Props)
       setTargetMarket(initialData.target_market)
       setDesignConcept(initialData.design_concept)
       setDesignHistory(initialData.design_history)
-      setCoverImageUrl(initialData.cover_image_url)
     }
   }, [initialData, mode])
 
-  // Obtiene la lista de artesanos para el menú desplegable.
   useEffect(() => {
     const fetchArtisans = async () => {
       try {
@@ -76,87 +73,164 @@ export default function CollectionsForm({ mode, initialData, onSuccess }: Props)
     fetchArtisans();
   }, []);
 
-  // Manejador para el envío del formulario.
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const payload = {
-      artisan_id: artisanId,
-      code,
-      name,
-      description,
-      target_market: targetMarket,
-      design_concept: designConcept,
-      design_history: designHistory,
-      cover_image_url: coverImageUrl,
-    }
-
-    const endpoint =
-      mode === 'edit' ? `/api/data/collections/${initialData?.id}` : '/api/data/collections'
-    const method = mode === 'edit' ? 'PUT' : 'POST'
-
     try {
+      const newCoverUrl = await uploaderRef.current?.upload();
+
+      const payload = {
+        artisan_id: artisanId,
+        code,
+        name,
+        description,
+        target_market: targetMarket,
+        design_concept: designConcept,
+        design_history: designHistory,
+        cover_image_url: newCoverUrl || initialData?.cover_image_url || '',
+      }
+
+      const endpoint =
+        mode === 'edit' ? `/api/collections/${initialData?.id}` : '/api/collections'
+      const method = mode === 'edit' ? 'PUT' : 'POST'
+
       const res = await fetch(endpoint, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
+
       if (res.ok) {
         onSuccess()
       } else {
-        alert('Error al guardar la colección')
+        const errorData = await res.json();
+        alert(`Error al guardar la colección: ${errorData.error || res.statusText}`)
       }
     } catch (error) {
-      console.error('Error de red o de servidor:', error)
-      alert('Error de red o de servidor.')
+      console.error('Error en el envío del formulario:', error)
+      const message = error instanceof Error ? error.message : 'Ocurrió un error desconocido.';
+      alert(`Error en el envío: ${message}`)
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="userForm collectionForm">
-      <label>
-        Artesano:
-        <select value={artisanId} onChange={(e) => setArtisanId(e.target.value)} required disabled={isLoadingArtisans}>
-          <option value="" disabled>
-            {isLoadingArtisans ? 'Cargando artesanos...' : 'Selecciona un artesano'}
-          </option>
-          {artisans.map(artisan => (
-            <option key={artisan.id} value={artisan.id}>
-              {artisan.display_name}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Código:
-        <input value={code} onChange={(e) => setCode(e.target.value)} required />
-      </label>
-      <label>
-        Nombre de la Colección:
-        <input value={name} onChange={(e) => setName(e.target.value)} required />
-      </label>
-      <label>
-        Descripción:
-        <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={3} />
-      </label>
-      <label>
-        Mercado Objetivo:
-        <textarea value={targetMarket} onChange={(e) => setTargetMarket(e.target.value)} rows={2} />
-      </label>
-      <label>
-        Concepto de Diseño:
-        <textarea value={designConcept} onChange={(e) => setDesignConcept(e.target.value)} rows={3} />
-      </label>
-      <label>
-        Historia del Diseño:
-        <textarea value={designHistory} onChange={(e) => setDesignHistory(e.target.value)} rows={3} />
-      </label>
-      <label>
-        URL de la Imagen de Portada:
-        <input value={coverImageUrl} onChange={(e) => setCoverImageUrl(e.target.value)} />
-      </label>
-      <button type="submit">
-        {mode === 'edit' ? 'Guardar cambios' : 'Crear colección'}
-      </button>
+    <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-lg shadow-md">
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-6">
+          <div>
+            <label htmlFor="artisan" className="block text-sm font-medium text-gray-700 mb-1">Artesano</label>
+            <select
+              id="artisan"
+              value={artisanId}
+              onChange={(e) => setArtisanId(e.target.value)}
+              required
+              disabled={isLoadingArtisans}
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            >
+              <option value="" disabled>
+                {isLoadingArtisans ? 'Cargando artesanos...' : 'Selecciona un artesano'}
+              </option>
+              {artisans.map(artisan => (
+                <option key={artisan.id} value={artisan.id}>
+                  {artisan.display_name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="code" className="block text-sm font-medium text-gray-700 mb-1">Código</label>
+            <input
+              id="code"
+              type="text"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+              required
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Nombre de la Colección</label>
+            <input
+              id="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
+            <textarea
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows={4}
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Imagen de Portada</label>
+            <ImageUploader
+              ref={uploaderRef}
+              uploadUrl="/api/collections/upload-cover"
+              formFieldName="collectionCover"
+              initialImageUrl={initialData?.cover_image_url}
+              altText="Portada de la colección"
+              defaultImage="/default-cover-image.png"
+              imageContainerClassName="w-full h-48 object-cover rounded-lg border-dashed border-2 border-gray-300"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="targetMarket" className="block text-sm font-medium text-gray-700 mb-1">Mercado Objetivo</label>
+            <textarea
+              id="targetMarket"
+              value={targetMarket}
+              onChange={(e) => setTargetMarket(e.target.value)}
+              rows={2}
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="designConcept" className="block text-sm font-medium text-gray-700 mb-1">Concepto de Diseño</label>
+            <textarea
+              id="designConcept"
+              value={designConcept}
+              onChange={(e) => setDesignConcept(e.target.value)}
+              rows={4}
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="designHistory" className="block text-sm font-medium text-gray-700 mb-1">Historia del Diseño</label>
+        <textarea
+          id="designHistory"
+          value={designHistory}
+          onChange={(e) => setDesignHistory(e.target.value)}
+          rows={4}
+          className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+
+      <div className="flex justify-end">
+        <button
+          type="submit"
+          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          {mode === 'edit' ? 'Guardar Cambios' : 'Crear Colección'}
+        </button>
+      </div>
     </form>
   )
 }

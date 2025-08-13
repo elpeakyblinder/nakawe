@@ -15,10 +15,13 @@
     align-items: center;
     background-color: #000000;
     color: #ffffff;
-    gap: 16px;
+    gap: 7vh;
 }
 
 .header{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
     font-size: 6vh;
 }
 
@@ -66,6 +69,7 @@
 
 .headerForm h1{
     font-size: 3.5rem;
+    font-weight: 700;
 }
 
 .headerForm span{
