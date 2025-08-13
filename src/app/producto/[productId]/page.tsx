@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import "./producto.css"; // Asegúrate de mover tu archivo producto.css a esta nueva carpeta
+import "./producto.css"; 
 import { League_Spartan } from 'next/font/google';
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] });
@@ -96,14 +96,14 @@ export default async function ProductoPage({ params }: { params: Promise<{ produ
           <div className="productoDetallesAdicionales">
             <div className="detalleItem">
               <div>
-                <Image src={'/iconos/time.svg'} alt="Time icon" width={20} height={20} />
+                <Image className="imageIcons" src={'/iconos/time.svg'} alt="Time icon" width={20} height={20} />
                 <span>Tiempo de elaboración</span>
               </div>
               <p>{product.production_time}</p>
             </div>
             <div className="detalleItem">
               <div>
-                <Image src={'/iconos/location.svg'} alt="Location icon" width={20} height={20} />
+                <Image className="imageIcons" src={'/iconos/location.svg'} alt="Location icon" width={20} height={20} />
                 <span>Origen</span>
               </div>
               <p>{product.origin}</p>
@@ -131,7 +131,7 @@ export default async function ProductoPage({ params }: { params: Promise<{ produ
             {otherProducts.map(otherProduct => {
               const productImageUrl = otherProduct.main_image_url || '/productoEjemplo.png';
               return (
-                <div key={otherProduct.id} className="prendasCard">
+                <div key={otherProduct.id} className="prendasCardProducto">
                   {productImageUrl.includes('placehold.co') ? (
                     <img className="imagenPrenda" src={productImageUrl} alt={otherProduct.name} />
                   ) : (

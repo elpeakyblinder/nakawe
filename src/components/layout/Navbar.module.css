@@ -85,9 +85,8 @@
     z-index: 1001;
     cursor: pointer;
 }
-
 /* --- Media Query para Responsividad --- */
-@media (max-width: 830px) {
+@media (max-width: 1020px) {
     /* Ocultamos los enlaces y la parte derecha en la barra normal */
     .linksDiv, .rightNavBar {
         display: none;

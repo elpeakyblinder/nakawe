@@ -166,7 +166,7 @@ export default function InformacionColeccionesPage() {
           </div>
           <div className="historiaDelDiseño">
             <div>
-              <h2 className="textoMediano">HISTORIA DEL DISEÑO</h2>
+              <h3 className="textoMediano">HISTORIA DEL DISEÑO</h3>
               <p>{collection.design_history}</p>
             </div>
               <Image src={'/coleccionesEjemplo.png'} alt="Tipo de coleccion" width={300} height={200}/>

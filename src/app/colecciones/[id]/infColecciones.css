@@ -254,14 +254,24 @@
   color: rgba(0, 0, 0, 1);
 }
 
-/* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
-@media (max-width: 768px) {
-  .prendasCard {
-    /* En pantallas más pequeñas, las tarjetas son un poco más estrechas */
-    width: 280px;
+
+@media(max-width: 1070px){
+  .prendas{
+    padding: 0;
+  }
+  .presentacionProductoInfo{
+    margin: 20px 0;
+    gap: 15px;
+  }
+  .presentacionProductoInfo p{
+    text-align: center;
+  }
+  .prendasCard{
+    width: 100%;
   }
 
-  .presentacionProducto, .mercadoDeAlcance, .conceptoDiseño, .historiaDelDiseño {
+  /* DUDOSO? */
+    .presentacionProducto, .mercadoDeAlcance, .conceptoDiseño, .historiaDelDiseño {
     flex-direction: column;
     align-items: center;
   }
@@ -269,11 +279,7 @@
   .presentacionProductoInfo, .presentacionColeccionesImagen, .mercadoDeAlcance div, .conceptoDiseño div, .historiaDelDiseño div {
     width: 90%;
   }
-}
-
-@media (max-width: 480px) {
-  .prendasCard {
-    /* En móviles, la tarjeta ocupa casi todo el ancho disponible */
-    width: 90vw;
+  .conceptoDiseño{
+    flex-direction: column-reverse;
   }
 }

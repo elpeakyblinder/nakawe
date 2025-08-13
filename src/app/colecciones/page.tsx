@@ -2,6 +2,7 @@ import Image from "next/image";
 import CollectionsGrid from './collectionsGrid';
 import { ArrowRight } from "lucide-react";
 import LinearGradient from "@/components/ui/LinearGradient";
+import "./colecciones.css";
 
 
 // Definimos el tipo de dato para una colección
@@ -41,9 +42,9 @@ export default async function ColeccionesPage() {
 
   return (
     <div>
-      <header className="flex flex-col items-center justify-center h-[40vh] bg-[#060606] text-white">
+      <header className="headerColecciones flex flex-col items-center justify-center bg-[#060606] text-white">
         <h1 className="text-5xl font-bold">COLECCIONES</h1>
-        <p className="text-3xl font-light mt-4 mb-4">PRESERVANDO LA HISTORIA</p>
+        <p className="text-2xl font-light mt-4 mb-4">PRESERVANDO LA HISTORIA</p>
         <LinearGradient />
       </header>
 

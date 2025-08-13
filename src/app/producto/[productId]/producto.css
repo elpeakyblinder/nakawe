@@ -179,7 +179,7 @@
     width: 90%;
     padding: 0 0 5% 5%;
 }
-.prendasCard{
+.prendasCardProducto{
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -196,7 +196,7 @@
   align-items: center;
 }
 
-.prendasCard .imagenPrenda{
+.prendasCardProducto .imagenPrenda{
   width: 100%;
   border-radius: 15px;
 }
@@ -235,4 +235,26 @@
 .prendasCardButtom button a{
   text-decoration: none;
   color: rgba(0, 0, 0, 1);
+}
+@media(max-width: 670px){
+    .productoPresentacion{
+        width: 95%;
+        padding: 5% 0;
+        margin-left: 2.5%;
+    }
+    .imagenPrenda{
+        width: 100% !important;
+        max-height: 600px;
+    }
+    .productoInformacion{
+        width: 100%;
+    }
+
+    .prendas{
+        grid-template-columns: repeat(1, 1fr);
+        width: 95% !important;
+    }
+    .prendasCardProducto{
+        width: 100%;
+    }
 }
