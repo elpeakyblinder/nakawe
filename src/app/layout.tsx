@@ -1,11 +1,11 @@
-import { League_Spartan } from 'next/font/google';
+import { Montserrat as MontserratFont } from 'next/font/google';
 import './globals.css';
 import { getAuthenticatedUserProfile } from '@/lib/data';
 import Navbar from '@/components/layout/Navbar';
 
 export const dynamic = 'force-dynamic';
 
-const leagueSpartan = League_Spartan({ subsets: ['latin'] });
+const montserrat = MontserratFont({ subsets: ['latin'] });
 
 export default async function RootLayout({
   children,
@@ -16,7 +16,7 @@ export default async function RootLayout({
 
   return (
     <html lang="es">
-      <body className={leagueSpartan.className}>
+      <body className={montserrat.className}>
         <Navbar user={user} />
         <main>
           {children}
