@@ -166,7 +166,7 @@ export default function UserProfile({ userData }: UserProfileProps) {
                             formFieldName="avatarFile"
                             altText="Vista previa de la imagen"
                             defaultImage="/default-avatar.png"
-                            imageContainerClassName="w-5 h-5 rounded-full"
+                            imageContainerClassName="w-40 h-40 rounded-full"
                         />
                         <div className={styles.modalActions}>
                             <button className="rounded-md bg-blue-500 text-white px-4 py-2" onClick={handleAvatarSave}>Guardar Cambios</button>

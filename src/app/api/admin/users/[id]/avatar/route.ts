@@ -24,7 +24,6 @@ export async function POST(request: Request) {
         if (!mime.startsWith('image/')) {
             return NextResponse.json({ error: 'El archivo no es una imagen' }, { status: 400 });
         }
-        // puedes checar tamaño si quieres: avatarFile.size (en browsers File tiene .size)
 
         const fileBuffer = Buffer.from(await avatarFile.arrayBuffer());
         const compressedBuffer = await sharp(fileBuffer)
@@ -40,8 +39,8 @@ export async function POST(request: Request) {
         const avatar_url = blob.url;
 
         await sql`
-      UPDATE profiles SET avatar_url = ${avatar_url} WHERE id = ${userId};
-    `;
+            UPDATE profiles SET avatar_url = ${avatar_url} WHERE id = ${userId};
+        `;
 
         return NextResponse.json({ message: 'Perfil actualizado con éxito', url: avatar_url });
 

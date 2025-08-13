@@ -43,11 +43,13 @@ const Counter: React.FC<CounterProps> = ({ target, label }) => {
 
 export default function Home() {
   return (
-    <div className={`inicioPrincipal ${leagueSpartan.className}`}>
+    <div className={`inicioPrincipal`}>
       {/* SECCION DEL HEADER */}
       <section className="header">
         <div className="headerParte1">
-          <p className="headerMiniTitulo">COMUNIDAD GENERATIVA SIN FINES DE LUCRO</p>
+          <div>
+            <p className="headerMiniTitulo">COMUNIDAD REGENERATIVA SIN FINES DE LUCRO</p>
+          </div>
   
           <h1 className="headerTituloMobile">Y CON HISTORIAS TEJER LAS CONSCIENCIAS</h1>
           <div className="headerTitulo">

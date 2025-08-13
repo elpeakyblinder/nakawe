@@ -1,10 +1,8 @@
-/* Estilos base para el contenedor del navbar */
 .navbarContainer {
     position: relative;
     width: 100%;
 }
 
-/* Estilos de la barra de navegación para escritorio (por defecto) */
 .navBar {
     background-color: rgba(0, 0, 0, 1);
     display: flex;
@@ -25,6 +23,15 @@
     text-decoration: none;
     color: rgba(255, 255, 255, 1);
     font-weight: 200;
+    transition: color 0.2s;
+}
+
+.links:hover {
+    color: var(--color-principal-ui-hover);
+}
+
+.activeLink {
+    color: var(--color-principal-ui);
 }
 
 .rightNavBar {
@@ -33,17 +40,23 @@
     gap: 20px;
 }
 
-.loginButton {
-    border-radius: 10px;
-    padding: 10px 15px;
-    border: none;
-    background-color: var(--color-principal-ui);
-    cursor: pointer;
+.userActions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-.iniciarSesionLink {
+.cartLink {
     color: #ffffff;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
 }
+
+.cartLink:hover {
+    color: var(--color-principal-ui);
+}
+
 
 .profileLink {
     display: flex;
@@ -60,57 +73,67 @@
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* El ícono de hamburguesa está oculto por defecto */
+/* --- Icono de Hamburguesa (Móvil) --- */
 .burgerIcon {
-    display: none;
-    background-color: black;
+    display: none; /* Oculto en escritorio */
+    background-color: transparent;
+    border: none;
     padding: 0;
-    position: fixed; /* Lo fijamos para que siempre esté visible */
+    position: fixed;
     top: 0.5rem;
-    left: 1.5rem;
-    z-index: 1000; /* Aseguramos que esté encima de todo */
+    right: 1.5rem; /* Posicionado a la derecha */
+    z-index: 1001;
+    cursor: pointer;
 }
 
-/* --- Media query para pantallas pequeñas --- */
+/* --- Media Query para Responsividad --- */
 @media (max-width: 830px) {
-    /* La barra de navegación se oculta por defecto en móviles */
-    .navBar {
+    /* Ocultamos los enlaces y la parte derecha en la barra normal */
+    .linksDiv, .rightNavBar {
         display: none;
     }
 
-    /* El ícono de hamburguesa se muestra */
+    /* Mostramos el icono de hamburguesa */
     .burgerIcon {
-        display: flex;
+        display: block;
     }
 
-    /* Estilos del menú cuando está abierto (clase navBarOpen) */
+    /* Estilos del menú cuando está abierto */
     .navBarOpen {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        position: fixed; /* Ocupa toda la pantalla */
+        position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
-        z-index: 999; /* Se muestra por encima del contenido */
-        background-color: rgba(0, 0, 0, 1); /* El color de fondo que ya tenías */
+        z-index: 1000;
+        background-color: rgba(0, 0, 0, 1);
     }
 
-    /* Ajustes para el div de los enlaces dentro del menú abierto */
-    .linksDiv {
+    /* Mostramos y apilamos los enlaces en el menú abierto */
+    .navBarOpen .linksDiv {
+        display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
-        margin-top: 2rem;
+        gap: 2rem;
     }
     
-    /* Ajustes para el div de la derecha dentro del menú abierto */
-    .rightNavBar {
+    /* Mostramos y apilamos la parte derecha en el menú abierto */
+    .navBarOpen .rightNavBar {
+        display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
-        margin-top: 2rem;
+        gap: 2rem;
+        margin-top: 2.5rem;
+    }
+
+    /* Posicionamos el logo en la esquina superior izquierda */
+    .navBarOpen .logoNavbar {
+        position: absolute;
+        top: 15px;
+        left: 15px;
     }
 }

@@ -83,6 +83,9 @@ a{
 .headerButtons button{
   padding: 10px 2vw;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .headerButtons .headerButton1 {
@@ -102,6 +105,7 @@ a{
   color: rgba(255, 255, 255, 1);
 }
 
+
 .headerButtons .headerButton2:hover{
   background-color: var(--color-principal-ui-hover);
   color: rgba(255, 255, 255, 1);
@@ -118,7 +122,7 @@ a{
 }
 
 .imagenHeader{
-  width: 50%;
+  width: 40%;
 }
 
 /* SECCION DE QUIENES SOMOS */
@@ -641,6 +645,10 @@ footer div a{
   display: none;
 }
 
+.headerTituloMobile{
+  display: none;
+}
+
 @media (max-width: 830px) {
   /* SECCION DE LA PRESENTACION */
   .header{
@@ -772,4 +780,21 @@ footer div a{
   footer div .redesSociales{
     gap: 25px;
   }
+}
+
+/* Estilos para el layout Masonry (Pinterest) */
+.my-masonry-grid {
+  display: flex;
+  margin-left: -20px; /* Reduce el margen negativo */
+  width: auto;
+}
+
+.my-masonry-grid_column {
+  padding-left: 20px; /* Reduce el espaciado entre columnas */
+  background-clip: padding-box;
+}
+
+/* Estilo para cada tarjeta dentro de la columna */
+.my-masonry-grid_column > div { 
+  margin-bottom: 20px; /* Reduce el espaciado vertical entre tarjetas */
 }
