@@ -1,12 +1,16 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import "./infColecciones.css"; // Puedes reutilizar tu CSS
+import { notFound, useParams } from "next/navigation";
+import { MasonryInfiniteGrid } from "@egjs/react-infinitegrid";
+import "./infColecciones.css";
 import { League_Spartan } from 'next/font/google';
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] });
 
-// Definimos los tipos de datos que esperamos de la API
+// --- TIPOS DE DATOS (Sin cambios) ---
 type Product = {
   id: string;
   name: string;
@@ -29,31 +33,82 @@ type CollectionDetails = {
   products: Product[];
 };
 
-// Función para obtener los datos de la API
-async function getCollectionDetails(id: string): Promise<CollectionDetails | null> {
-  const apiUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}/api/collections/${id}`
-    : `http://localhost:3000/api/collections/${id}`;
-  
-  try {
-    const res = await fetch(apiUrl, { cache: 'no-store' });
-    if (!res.ok) return null;
-    return res.json();
-  } catch (error) {
-    console.error("Error de red:", error);
-    return null;
-  }
-}
+// --- COMPONENTE PARA CADA TARJETA DE PRODUCTO ---
+// Este componente interno maneja la carga de su propia imagen y su animación.
+const ProductCardItem = ({ product, artisanName }: { product: Product, artisanName: string }) => {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const productImageUrl = product.image_url || '/productoEjemplo.png';
 
-// CORRECCIÓN: Se ajusta la firma del componente para que 'params' sea una promesa,
-// replicando la solución que funcionó en las rutas de API.
-export default async function InformacionColeccionesPage({ params }: { params: Promise<{ id: string }> }) {
-  // Se espera la promesa para obtener el 'id'.
-  const { id } = await params;
-  const collection = await getCollectionDetails(id);
+  return (
+    <div className="prendasCard card-fade-in" key={product.id}>
+      <div className="imagenPrendaContainer">
+        {!isImageLoaded && <div className="skeleton-image"></div>}
+        <img 
+          className="imagenPrenda" 
+          src={productImageUrl} 
+          alt={product.name}
+          onLoad={() => setIsImageLoaded(true)}
+          style={{ display: isImageLoaded ? 'block' : 'none' }}
+        />
+      </div>
+      <div className="cuerpoPrendasCard">
+        <h2>{product.name}</h2>
+        <p>{product.product_brief}</p>
+        <div className="infoCuerpoPrendasCard">
+          <Image src={'/iconos/user.svg'} alt="Icono usuario" width={15} height={15}/>
+          <span>{artisanName}</span>
+        </div>
+        <div className="infoCuerpoPrendasCard">
+          <Image src={'/iconos/time.svg'} alt="Icono tiempo" width={15} height={15}/>
+          <span>{product.production_time}</span>
+        </div>
+        <div className="prendasCardButtom">
+          <p>${product.price} MXN</p>
+          <Link href={`/producto/${product.id}`}>
+            <button>Ver</button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+// --- COMPONENTE PRINCIPAL DE LA PÁGINA ---
+export default function InformacionColeccionesPage() {
+  const params = useParams();
+  const id = params.id as string;
+  const [collection, setCollection] = useState<CollectionDetails | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!id) return;
+    const getCollectionDetails = async () => {
+      setLoading(true);
+      const apiUrl = `/api/collections/${id}`;
+      try {
+        const res = await fetch(apiUrl);
+        if (!res.ok) {
+          notFound();
+          return;
+        }
+        const data = await res.json();
+        setCollection(data);
+      } catch (error) {
+        console.error("Error de red:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getCollectionDetails();
+  }, [id]);
+
+  if (loading) {
+    return <div style={{textAlign: 'center', padding: '50px'}}>Cargando colección...</div>;
+  }
 
   if (!collection) {
-    notFound();
+    return <div style={{textAlign: 'center', padding: '50px'}}>Colección no encontrada.</div>;
   }
 
   const coverImageUrl = collection.cover_image_url || '/coleccionesEjemplo.png';
@@ -61,6 +116,7 @@ export default async function InformacionColeccionesPage({ params }: { params: P
   return (
     <div className={leagueSpartan.className}>
       <section className="productosSection">
+        {/* --- SECCIÓN DE PRESENTACIÓN (Sin cambios) --- */}
         <div className="presentacionProducto">
           <div className="presentacionColeccionesImagen">
             <Image
@@ -93,7 +149,6 @@ export default async function InformacionColeccionesPage({ params }: { params: P
             )}
           </div>
         </div>
-
         <div className="cuerpoProducto">
           <div className="mercadoDeAlcance">
             <div>
@@ -103,7 +158,7 @@ export default async function InformacionColeccionesPage({ params }: { params: P
             <Image src={'/coleccionesEjemplo.png'} alt="Tipo de coleccion" width={300} height={200}/>
           </div>
           <div className="conceptoDiseño">
-             <Image src={'/coleccionesEjemplo.png'} alt="Tipo de coleccion" width={300} height={200}/>
+              <Image src={'/coleccionesEjemplo.png'} alt="Tipo de coleccion" width={300} height={200}/>
             <div>
               <h3 className="textoMediano">CONCEPTO DEL DISEÑO</h3>
               <p>{collection.design_concept}</p>
@@ -111,10 +166,10 @@ export default async function InformacionColeccionesPage({ params }: { params: P
           </div>
           <div className="historiaDelDiseño">
             <div>
-              <h2 className="textoMediano">HISTORIA DEL DISEÑO</h2>
+              <h3 className="textoMediano">HISTORIA DEL DISEÑO</h3>
               <p>{collection.design_history}</p>
             </div>
-             <Image src={'/coleccionesEjemplo.png'} alt="Tipo de coleccion" width={300} height={200}/>
+              <Image src={'/coleccionesEjemplo.png'} alt="Tipo de coleccion" width={300} height={200}/>
           </div>
         </div>
 
@@ -123,37 +178,26 @@ export default async function InformacionColeccionesPage({ params }: { params: P
           <div className="barraPrendas"></div>
         </div>
 
+        {/* --- SECCIÓN DE LA CUADRÍCULA MEJORADA --- */}
         <div className="prendas">
-          {collection.products.map((product) => {
-            const productImageUrl = product.image_url || '/productoEjemplo.png';
-            return (
-              <div key={product.id} className="prendasCard">
-                {productImageUrl.includes('placehold.co') ? (
-                  <img className="imagenPrenda" src={productImageUrl} alt={product.name} />
-                ) : (
-                  <Image className="imagenPrenda" src={productImageUrl} alt={product.name} width={100} height={250}/>
-                )}
-                <div className="cuerpoPrendasCard">
-                  <h2>{product.name}</h2>
-                  <p>{product.product_brief}</p>
-                  <div className="infoCuerpoPrendasCard">
-                    <Image src={'/iconos/user.svg'} alt="Icono usuario" width={15} height={15}/>
-                    <span>{collection.artisan_name}</span>
-                  </div>
-                  <div className="infoCuerpoPrendasCard">
-                    <Image src={'/iconos/time.svg'} alt="Icono tiempo" width={15} height={15}/>
-                    <span>{product.production_time}</span>
-                  </div>
-                  <div className="prendasCardButtom">
-                    <p>${product.price} MXN</p>
-                    <Link href={`/producto/${product.id}`}>
-                      <button>Ver</button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
+          <MasonryInfiniteGrid
+            gap={30}
+            align="center"
+            // Esta opción hace que la cuadrícula se reajuste si el tamaño del navegador cambia.
+            useResizeObserver={true}
+            // Define una duración para la animación de posicionamiento de las tarjetas.
+            transitionDuration={0.3}
+          >
+            {collection.products.map((product) => (
+              <ProductCardItem 
+                key={product.id}
+                product={product} 
+                artisanName={collection.artisan_name} 
+                // data-grid-groupkey es útil para que la librería optimice el renderizado.
+                data-grid-groupkey={product.id}
+              />
+            ))}
+          </MasonryInfiniteGrid>
         </div>
       </section>
     </div>

@@ -64,8 +64,8 @@ a{
   color: rgba(255, 255, 255, 1);
   background-color: rgba(0, 0, 0, 1);
   border: 1px solid rgba(255, 255, 255, 1);
-  width: max-content;
   padding: 8px;
+  width: max-content;
   border-radius: 5px;
 }
 
@@ -641,7 +641,190 @@ footer div a{
   text-decoration: none;
   color: rgba(255, 255, 255, 1);
 }
+.headerTituloMobile{
+  display: none;
+}
 
+.headerTituloMobile{
+  display: none;
+}
+
+@media (max-width: 1020px) {
+  h2{
+    font-size: 30px !important;
+  }
+  .textoMediano{
+    font-size: 20px;
+  }
+  .coleccionesInfoLista{
+    font-size: 20px;
+  }
+  /* SECCION DE LA PRESENTACION */
+  .header{
+    padding: 3% 0;
+    justify-content: center;
+  }
+  .headerTitulo{
+    display: none;
+  }
+  .headerTituloMobile{
+    display: flex;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .headerMiniTitulo{
+    text-align: center;
+    font-size: 14px;
+  }
+  .headerParte1{
+    align-items: center;
+    gap: 30px;
+    width: 95%;
+    margin: 5% 0;
+  }
+  .headerParte1 p{
+    text-align: center;
+  }
+  .headerButtons{
+    justify-content: space-evenly;
+  }
+  .imagenHeader{
+    display: none;
+  }
+  .contadoresContainer{
+    justify-content: space-evenly;
+    width: 97%;
+  }
+  .contadoresContainer div h2{
+    font-size: 24px !important;
+  }
+
+  /* SECCION DE CONOCENOS */
+  .conocenos{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+  }
+  .conocenos .conocenosBody{
+    gap: 20px;
+    width: 95%;
+  }
+  .conocenos .conocenosBody button{
+    align-items: flex-end;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+
+  /* SECCION DE EVENTOS */
+  .cardsEvents{
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+  .eventos .imageArrowRight, .eventos .imageArrowLeft{
+    display: none;
+  }
+  .cardsEvents .cardEvent{
+    width: 90%;
+  }
+
+
+
+  /* SECCION DE COLECCIONES */
+  .colecciones .textoColecciones{
+    text-align: center;
+  }
+  .coleccionesZonaTop{
+    flex-direction: column;
+  }
+  .presentacionColeccionesImagen{
+    width: 100%;
+  }
+  .coleccionesInfo{
+    margin-top: 25px;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .coleccionesCards{
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+  }
+  .coleccionesCards .coleccionCard{
+    width: 100%;
+  }
+  .coleccionesCards .coleccionCard img{
+    max-height: 200px;
+  }
+
+
+  /* SECCION DE RESISTENCIA CULTURAL */
+  .colaboracionArtesanas{
+    display: none;
+  }
+  .invitacionDeColaboracion{
+    padding: 3% 2.5%;
+  }
+  .invitacionDeColaboracion h4{
+    text-align: center;
+  }
+  .invitacionDeColaboracion p{
+    width: 95%;
+  }
+
+  /* SECCION DE LA REVISTA NAKAWE */
+  .revistaNakaweCards{
+    flex-direction: column;
+    width: 100%;
+    gap: 35px;
+  }
+  .revistaNakawe h4{
+    text-align: center;
+    font-size: 20px;
+  }
+  .revistaNakaweCards .revistaNakaweCard{
+    width: 100%;
+  }
+  .revistaNakaweCards .revistaNakaweCard img{
+    max-height: 350px;
+  }
+  .arrowImageRevista{
+    display: none;
+  }
+
+
+  /* SECCION DE NUESTRO OBJETIVO */
+  .nuestroObjetivo{
+    gap: 30px;
+  }
+
+
+  /* SECCION DE IMPACTO */
+  .impacto{
+    text-align: center;
+    width: 95%;
+  }
+
+  /* fOOTER SECTION */
+  footer{
+    height: max-content;
+    flex-direction: column;
+    gap: 30px;
+  }
+  footer div{
+    gap: 5px;
+  }
+  footer div .redesSociales{
+    gap: 25px;
+  }
+
+}
 
 /* Estilos para el layout Masonry (Pinterest) */
 .my-masonry-grid {

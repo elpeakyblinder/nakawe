@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -14,9 +14,14 @@ interface NavbarProps {
 export default function Navbar({ user }: NavbarProps) {
     const pathname = usePathname();
     const hideNav = pathname.startsWith('/admin') || pathname.startsWith('/login') || pathname.startsWith('/register');
-
+    
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    useEffect(() => {
+        setIsMenuOpen(false);
+    }, [pathname]);
+
+    // Función para alternar el estado del menú.
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -28,6 +33,9 @@ export default function Navbar({ user }: NavbarProps) {
     return (
         <div className={styles.navbarContainer}>
             <div className={styles.burgerIcon}>
+                <Link href="/">
+                    <Image className={styles.logoNavbarMobile} src="/logoNakawe.png" alt="Logo Nakawe" width={170} height={50} />
+                </Link>
                 <button onClick={toggleMenu}>
                     <Image src="/iconos/burger.svg" alt="Menú" width={50} height={50} />
                 </button>
