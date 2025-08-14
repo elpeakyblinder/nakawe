@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Globe, CircleUserRound, ShoppingBag } from 'lucide-react';
+import { Globe, CircleUserRound, ShoppingBag, Menu } from 'lucide-react';
 import { type UserProfileData } from '@/types/auth';
 import styles from './Navbar.module.css';
 
@@ -14,7 +14,7 @@ interface NavbarProps {
 export default function Navbar({ user }: NavbarProps) {
     const pathname = usePathname();
     const hideNav = pathname.startsWith('/admin') || pathname.startsWith('/login') || pathname.startsWith('/register');
-    
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
@@ -36,8 +36,11 @@ export default function Navbar({ user }: NavbarProps) {
                 <Link href="/">
                     <Image className={styles.logoNavbarMobile} src="/logoNakawe.png" alt="Logo Nakawe" width={170} height={50} />
                 </Link>
-                <button onClick={toggleMenu}>
-                    <Image src="/iconos/burger.svg" alt="Menú" width={50} height={50} />
+                <button
+                    onClick={toggleMenu}
+                    className="text-white hover:text-primary transition-colors"
+                >
+                    <Menu size={50} />
                 </button>
             </div>
 

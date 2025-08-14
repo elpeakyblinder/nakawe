@@ -70,11 +70,11 @@ export default function Home() {
           </div>
         </div>
   
-        <Image className="imagenHeader" src="/montañasPrincipal.png" alt="Montañas" width={400} height={650}/>
+        <Image className="imagenHeader rounded-lg" src="/montañasPrincipal.png" alt="Montañas" width={400} height={650}/>
       </section>
 
       <div className="conocenos">
-        <Image src="/montañasPrincipal.png" alt="Logo Nakawe" width={400} height={250}/>
+        <Image className="rounded-lg" src="/montañasPrincipal.png" alt="Logo Nakawe" width={400} height={250}/>
 
         <div className="conocenosBody">
           <h3>¿Quienes somos?</h3>
