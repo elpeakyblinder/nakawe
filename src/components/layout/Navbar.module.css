@@ -78,15 +78,13 @@
     display: none; /* Oculto en escritorio */
     background-color: transparent;
     border: none;
-    position: fixed;
+    position: sticky;
     z-index: 1001;
     cursor: pointer;
 }
+
 /* --- Media Query para Responsividad --- */
 @media (max-width: 1020px) {
-    body{
-        padding-top: 50px;
-    }
     .logoNavbar{
         display: none;
     }

@@ -42,7 +42,7 @@ export default async function ColeccionesPage() {
 
   return (
     <div>
-      <header className="headerColecciones flex flex-col items-center justify-center bg-[#060606] text-white">
+      <header className="headerColecciones">
         <h1 className="text-5xl font-bold">COLECCIONES</h1>
         <p className="text-2xl font-light mt-4 mb-4">PRESERVANDO LA HISTORIA</p>
         <LinearGradient />

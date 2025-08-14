@@ -6,6 +6,7 @@ import styles from './RegisterForm.module.css';
 import { Button } from "@/components/ui/button"
 import Frase from "@/components/ui/frase";
 import { useRouter } from 'next/navigation';
+import Link from "next/dist/client/link";
 
 export default function RegisterForm() {
     const [error, setError] = useState('');
@@ -141,6 +142,15 @@ export default function RegisterForm() {
                         <div className={styles.campoForm}>
                             <label htmlFor="confirmPassword">CONFIRMAR CONTRASEÑA</label>
                             <input className={styles.input} type="password" placeholder="Confirma tu contraseña" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleInputChange} required />
+                        </div>
+
+                        <div className="text-center text-sm text:[var(--color-cuarto-ui)]">
+                            <span>
+                                ¿Ya tienes una cuenta?{' '}
+                            </span>
+                            <Link href="/login" className="font-semibold text-primary hover:text-primary-hover transition-colors">
+                                Inicia sesión
+                            </Link>
                         </div>
 
                         {error && <p style={{ color: 'red' }}>{error}</p>}
