@@ -78,15 +78,18 @@
     display: none; /* Oculto en escritorio */
     background-color: transparent;
     border: none;
-    padding: 0;
     position: fixed;
-    top: 0.5rem;
-    right: 1.5rem; /* Posicionado a la derecha */
     z-index: 1001;
     cursor: pointer;
 }
 /* --- Media Query para Responsividad --- */
 @media (max-width: 1020px) {
+    body{
+        padding-top: 50px;
+    }
+    .logoNavbar{
+        display: none;
+    }
     /* Ocultamos los enlaces y la parte derecha en la barra normal */
     .linksDiv, .rightNavBar {
         display: none;
@@ -94,7 +97,12 @@
 
     /* Mostramos el icono de hamburguesa */
     .burgerIcon {
-        display: block;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        background-color: black;
+        padding: 1% 2.5% 1% 2.5%;
+        top: 0;
     }
 
     /* Estilos del menú cuando está abierto */
@@ -129,10 +137,4 @@
         margin-top: 2.5rem;
     }
 
-    /* Posicionamos el logo en la esquina superior izquierda */
-    .navBarOpen .logoNavbar {
-        position: absolute;
-        top: 15px;
-        left: 15px;
-    }
 }
