@@ -8,10 +8,9 @@ import "./infColecciones.css";
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] });
 
-export default async function InformacionColeccionesPage({
-  params,
-}: { params: { id: string } }) {
+export default async function InformacionColeccionesPage({ params }: { params: { id: string } }) {
   const { id } = params;
+
   const collection = await fetchCollectionById(id);
 
   if (!collection) {
