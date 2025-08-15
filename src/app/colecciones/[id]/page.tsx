@@ -8,8 +8,15 @@ import "./infColecciones.css";
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] });
 
-export default async function InformacionColeccionesPage({ params }: { params: { id: string } }) {
+interface InformacionColeccionesPageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default async function InformacionColeccionesPage({ params }: InformacionColeccionesPageProps) {
   const { id } = params;
+
   const collection = await fetchCollectionById(id);
 
   if (!collection) {
@@ -21,6 +28,7 @@ export default async function InformacionColeccionesPage({ params }: { params: {
   return (
     <div className={leagueSpartan.className}>
       <section className="productosSection">
+        {/* Toda la información de la colección se renderiza en el servidor */}
         <div className="presentacionProducto">
           <div className="presentacionColeccionesImagen">
             <Image
@@ -77,6 +85,7 @@ export default async function InformacionColeccionesPage({ params }: { params: {
           <h2>DESCUBRE LAS PRENDAS</h2>
           <LinearGradient />
         </div>
+
 
         <CollectionProductsGrid products={collection.products} artisanName={collection.artisan_name} />
       </section>
