@@ -1,9 +1,4 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-.productosSection{
-    display: flex;
+.productosSection{    display: flex;
     flex-direction: column;
     align-items: center;
 }
@@ -81,10 +76,15 @@
 }
 .presentacionColeccionesFinal button{
   padding: 10px 25px;
-  background-color: #F5BD1F;
+  background-color: var(--color-secundario-ui);
   border: none;
   color: rgba(0, 0, 0, 1);
 }
+
+.presentacionColeccionesFinal button:hover{
+  background-color: var(--color-secundario-ui-hover);
+}
+
 .coleccionesInfo{
   width: 50%;
   display: flex;
@@ -129,8 +129,9 @@
 
 .descubrePrendas{
     background-color: #060606;
+    font-size: 3rem;
     color: rgba(255, 255, 255, 1);
-    padding: 5% 0;
+    padding: 3% 0;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -138,12 +139,6 @@
     align-items: center;
     justify-content: center;
     margin: 5% 0;
-}
-.barraPrendas{
-  width: 25%;
-  border-radius: 15px;
-  background: linear-gradient(to right, #F254A2, #FF007E, #F254A2);
-  height: 5px;
 }
 
 /* --- ESTILOS DE LA CUADRÍCULA Y TARJETAS (ACTUALIZADO) --- */
@@ -244,11 +239,18 @@
 }
 .prendasCardButtom button{
   width: auto; 
-  background-color: #F5BD1F;
+  background-color: var(--color-secundario-ui);
   border: none;
   border-radius: 5px;
   padding: 9px 35px;
 }
+
+.prendasCardButtom button:hover{
+  background-color: var(--color-secundario-ui-hover);
+  border-radius: 8px;
+}
+
+
 .prendasCardButtom button a{
   text-decoration: none;
   color: rgba(0, 0, 0, 1);

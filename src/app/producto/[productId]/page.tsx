@@ -3,84 +3,29 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import "./producto.css"; 
 import { League_Spartan } from 'next/font/google';
+import { fetchProductById, fetchRelatedProducts } from "@/lib/data";
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] });
 
-// Tipos de datos que esperamos de la API
-type ProductDetails = {
-  id: string;
-  name: string;
-  description: string;
-  code: string;
-  materials: string;
-  price: number;
-  main_image_url: string;
-  artisan_name: string;
-  production_time: string;
-  origin: string;
-  collection_id: string; // Se añade para poder buscar otros productos
-};
-
-type OtherProduct = {
-  id: string;
-  name: string;
-  main_image_url: string;
-  price: number;
-  product_brief: string;
-  production_time: string;
-};
-
-// Función para obtener los datos del producto principal
-async function getProductDetails(id: string): Promise<ProductDetails | null> {
-  const apiUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}/api/products/${id}`
-    // Asegúrate de que esta ruta exista o ajústala si es necesario
-    : `http://localhost:3000/api/products/${id}`;
-  
-  try {
-    const res = await fetch(apiUrl, { cache: 'no-store' });
-    if (!res.ok) return null;
-    return res.json();
-  } catch (error) {
-    console.error("Error de red:", error);
-    return null;
-  }
-}
-
-// Función actualizada para obtener otros productos de la misma colección
-async function getOtherProducts(collectionId: string, currentProductId: string): Promise<OtherProduct[]> {
-    const apiUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}/api/collections/${collectionId}?random=true&exclude=${currentProductId}`
-    : `http://localhost:3000/api/collections/${collectionId}?random=true&exclude=${currentProductId}`;
-
-    try {
-        const res = await fetch(apiUrl, { cache: 'no-store' });
-        if (!res.ok) return [];
-        return res.json();
-    } catch (error) {
-        console.error("Error de red al obtener otros productos:", error);
-        return [];
-    }
-}
-
-// CORRECCIÓN: Se ajusta la firma del componente para que 'params' sea una promesa.
-export default async function ProductoPage({ params }: { params: Promise<{ productId: string }> }) {
-  // Se espera la promesa para obtener el 'productId'.
+export default async function ProductoPage({ params }: { params: { productId: string } }) {
   const { productId } = await params;
-  const product = await getProductDetails(productId);
+
+  const product = await fetchProductById(productId);
 
   if (!product) {
     notFound();
   }
 
-  const otherProducts = await getOtherProducts(product.collection_id, product.id);
+  const otherProducts = await fetchRelatedProducts(product.collection_id, product.id);
+
+  const mainImageUrl = product.main_image_url ? product.main_image_url : '/productoEjemplo.png';
 
   return (
     <div className={`bodyProducto ${leagueSpartan.className}`}>
       <div className="productoPresentacion">
         <Image 
           className="imagenPrenda" 
-          src={product.main_image_url || '/productoEjemplo.png'} 
+          src={mainImageUrl} 
           alt={product.name} 
           width={400} 
           height={550}
@@ -111,7 +56,7 @@ export default async function ProductoPage({ params }: { params: Promise<{ produ
           </div>
 
           <div className="productoMaterial">
-            <h6>MATERIAL: <span>SEDA</span></h6>
+            <h6>MATERIAL:</h6>
             <p>{product.materials}</p>
           </div>
           <div className="productoPrecio">
@@ -129,14 +74,10 @@ export default async function ProductoPage({ params }: { params: Promise<{ produ
           </div>
           <div className="prendas">
             {otherProducts.map(otherProduct => {
-              const productImageUrl = otherProduct.main_image_url || '/productoEjemplo.png';
+              const relatedImageUrl = otherProduct.main_image_url ? otherProduct.main_image_url : '/productoEjemplo.png';
               return (
                 <div key={otherProduct.id} className="prendasCardProducto">
-                  {productImageUrl.includes('placehold.co') ? (
-                    <img className="imagenPrenda" src={productImageUrl} alt={otherProduct.name} />
-                  ) : (
-                    <Image className="imagenPrenda" src={productImageUrl} alt={otherProduct.name} width={100} height={250}/>
-                  )}
+                  <Image className="imagenPrenda" src={relatedImageUrl} alt={otherProduct.name} width={100} height={250}/>
                   <div className="cuerpoPrendasCard">
                     <h2>{otherProduct.name}</h2>
                     <p>{otherProduct.product_brief}</p>
