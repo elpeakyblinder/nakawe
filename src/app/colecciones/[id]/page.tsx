@@ -8,14 +8,20 @@ import "./infColecciones.css";
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] });
 
-export default async function InformacionColeccionesPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+interface PageParams {
+  params: Promise<{ id: string }> | { id: string };
+}
+
+export default async function InformacionColeccionesPage({ params }: PageParams) {
+  const resolvedParams = params instanceof Promise ? await params : params;
+  const { id } = resolvedParams;
 
   const collection = await fetchCollectionById(id);
 
   if (!collection) {
     notFound();
   }
+
 
   const coverImageUrl = collection.cover_image_url || '/coleccionesEjemplo.png';
 
