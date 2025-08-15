@@ -8,9 +8,12 @@ import "./infColecciones.css";
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] });
 
-// @ts-ignore
-export default async function InformacionColeccionesPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+type RouteParams = { id: string };
+
+export default async function InformacionColeccionesPage(
+  { params }: { params: Promise<RouteParams> }
+) {
+  const { id } = await params;
 
   const collection = await fetchCollectionById(id);
 
@@ -23,7 +26,6 @@ export default async function InformacionColeccionesPage({ params }: { params: {
   return (
     <div className={leagueSpartan.className}>
       <section className="productosSection">
-        {/* Toda la información de la colección se renderiza en el servidor */}
         <div className="presentacionProducto">
           <div className="presentacionColeccionesImagen">
             <Image
@@ -52,6 +54,7 @@ export default async function InformacionColeccionesPage({ params }: { params: {
             <Image src={coverImageUrl} alt="Ejemplo" width={400} height={200} style={{ objectFit: 'cover' }} />
           </div>
         </div>
+
         <div className="cuerpoProducto">
           <div className="mercadoDeAlcance">
             <div>
@@ -81,9 +84,11 @@ export default async function InformacionColeccionesPage({ params }: { params: {
           <LinearGradient />
         </div>
 
-
-        <CollectionProductsGrid products={collection.products} artisanName={collection.artisan_name} />
+        <CollectionProductsGrid
+          products={collection.products}
+          artisanName={collection.artisan_name}
+        />
       </section>
     </div>
-  )
+  );
 }
