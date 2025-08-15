@@ -8,7 +8,7 @@ import { fetchProductById, fetchRelatedProducts } from "@/lib/data";
 const leagueSpartan = League_Spartan({ subsets: ['latin'] });
 
 export default async function ProductoPage({ params }: { params: { productId: string } }) {
-  const { productId } = await params;
+  const { productId } = params;
 
   const product = await fetchProductById(productId);
 
