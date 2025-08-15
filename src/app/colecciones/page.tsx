@@ -3,42 +3,10 @@ import CollectionsGrid from './collectionsGrid';
 import { ArrowRight } from "lucide-react";
 import LinearGradient from "@/components/ui/LinearGradient";
 import "./colecciones.css";
+import { fetchCollections } from "@/lib/data";
 
-
-// Definimos el tipo de dato para una colección
-type Collection = {
-  id: string;
-  name: string;
-  description: string;
-  design_history: string,
-  cover_image_url: string;
-  artisan_name: string;
-  product_count: number;
-};
-
-// Función para obtener los datos de las colecciones desde la API en el servidor
-async function getCollections(): Promise<Collection[]> {
-  const apiUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}/api/collections`
-    : 'http://localhost:3000/api/collections';
-
-  try {
-    const res = await fetch(apiUrl, { cache: 'no-store' });
-    if (!res.ok) {
-      console.error("Error al obtener las colecciones:", await res.text());
-      return [];
-    }
-    return res.json();
-  } catch (error) {
-    console.error("Error de red:", error);
-    return [];
-  }
-}
-
-// La página principal ahora es un Componente de Servidor
 export default async function ColeccionesPage() {
-  // 1. Obtenemos los datos en el servidor
-  const collections = await getCollections();
+  const collections = await fetchCollections();
 
   return (
     <div>
