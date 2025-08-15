@@ -110,6 +110,7 @@
 }
 .sobreNosotrosBordemosComunidades div{
     display: flex;
+    height: 120vh;
 }
 .sobreNosotrosBordemosComunidades div div{
     display: flex;
@@ -146,9 +147,7 @@
 .sobreNosotrosApoyar h4{
     font-size: 28px;
 }
-.sobreNosotrosApoyar img{
-    border-radius: 50%;
-}
+
 .sobreNosotrosApoyar button{
     padding: 10px 20px;
     width: 35%;
@@ -161,4 +160,52 @@
     border-radius: 15px;
     background: linear-gradient(to right, #9FAD6A, #D7007F, #9FAD6A);
     height: 5px;
+}
+
+@media(max-width: 800px){
+    .sobreNosotrosDesarrolloHumano{
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        padding: 20px 0;
+    }
+    .sobreNosotrosDesarrolloHumano div{
+        width: 95%;
+        text-align: center;
+    }
+
+
+
+    /* DETRAS DE ESCENAS */
+    .sobreNosotrosDetrasEscenasPresentacion, .sobreNosotrosDetrasEscenasOfrecemos{
+        width: 95%;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .sobreNosotrosDetrasEscenasPresentacion div, .sobreNosotrosDetrasEscenasOfrecemos div{
+        width: 100%;
+        text-align: center;
+    }
+
+    /* BORDEMOS COMUNIDADES */
+    .sobreNosotrosBordemosComunidades div img{
+        display: none;
+    }
+    .sobreNosotrosBordemosComunidades div{
+        width: 100%;
+    }
+    .sobreNosotrosBordemosComunidades div div{
+        width: 100%;
+        text-align: center;
+    }
+
+    /* APOYAR */
+    .sobreNosotrosApoyar{
+        text-align: center;
+    }
+    .sobreNosotrosApoyar img{
+        width: 200px;
+        height: 200px;
+    }
 }

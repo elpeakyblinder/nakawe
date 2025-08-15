@@ -5,11 +5,10 @@ import { useState } from "react"
 import styles from './LoginForm.module.css';
 import { Button } from "@/components/ui/button";
 import Frase from "@/components/ui/frase";
-import { useRouter } from 'next/navigation';
 import { Mail, Eye, EyeOff, Lock } from "lucide-react";
+import Link from "next/link";
 
 export default function LoginForm() {
-    const router = useRouter();
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
@@ -115,7 +114,15 @@ export default function LoginForm() {
                                 </a>
                             </span>
                         </div>
-                        
+                        <div className="text-center text-sm text:[var(--color-cuarto-ui)]">
+                            <span>
+                                ¿No tienes una cuenta?{' '}
+                            </span>
+                            <Link href="/register" className="font-semibold text-primary hover:text-primary-hover transition-colors">
+                                Regístrate
+                            </Link>
+                        </div>
+
                         {error && <p style={{ color: 'red' }}>{error}</p>}
 
                         <Button className="text-xl" type="submit" variant="primary" disabled={isLoading}>

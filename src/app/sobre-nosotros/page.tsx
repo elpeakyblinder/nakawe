@@ -34,14 +34,14 @@ export default function SobreNosotros() {
                         <Image className="imagenPrenda" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={300} height={450} />
                     </div>
 
-                    <Image className="sobreNosotrosDetrasEscenasImagen" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={700} height={450} />
+                    <Image className="sobreNosotrosDetrasEscenasImagen" src={'/niño.png'} alt="Tipo de coleccion" width={700} height={450} />
 
                     <div className="sobreNosotrosDetrasEscenasOfrecemos">
                         <div>
                             <h4>¿Qué ofrecemos a l(x)s comunidades y a l(x)s integrantes de nuestra comunidad Nakawé.bc?</h4>
                             <p>Plataformas digitales y ambulantes de modelos educativos y productivos, plataformas creativas y comerciales, herramientas de marketing producción de material audiovisual en función de procesos de investigación ~acción participativa..</p>
                         </div>
-                        <Image className="imagenPrenda" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={300} height={350} />
+                        <Image className="imagenPrenda" src={'/dosArtesanas.png'} alt="Tipo de coleccion" width={300} height={350} />
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@ export default function SobreNosotros() {
                 <div className="sobreNosotrosBordemosComunidades">
                     <h3>BORDEMOS COMUNIDAD</h3>
                     <div>
-                        <Image className="imagenPrenda" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={300} height={450} />
+                        <Image className="imagenPrenda" src={'/mujerNosotros.png'} alt="Tipo de coleccion" width={200} height={200} />
                         <div>
                             <h4>Valores</h4>
                             <p>Autonomía</p>
@@ -71,7 +71,7 @@ export default function SobreNosotros() {
 
                     <h4>Fundación Nakawé Bordando Comunidades A.C</h4>
 
-                    <Image className="imagenPrenda" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={200} height={200} />
+                    <Image className="rounded-full" src={'/productoEjemplo.png'} alt="Tipo de coleccion" width={200} height={200} />
 
                     <p>Non-Profit Regenerative community</p>
                     <button><strong>DONAR</strong></button>

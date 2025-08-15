@@ -33,6 +33,7 @@ a{
   --color-secundario-ui-hover: #B8D66A;
   --color-terciario-ui: #FF3131;
   --color-terciario-ui-hover: #D70000;
+  --color-cuarto-ui: #5a5a5a;
 }
 
 /* SECCION DEL HEADER */
@@ -64,8 +65,8 @@ a{
   color: rgba(255, 255, 255, 1);
   background-color: rgba(0, 0, 0, 1);
   border: 1px solid rgba(255, 255, 255, 1);
-  width: max-content;
   padding: 8px;
+  width: max-content;
   border-radius: 5px;
 }
 
@@ -649,7 +650,16 @@ footer div a{
   display: none;
 }
 
-@media (max-width: 830px) {
+@media (max-width: 1020px) {
+  h2{
+    font-size: 30px !important;
+  }
+  .textoMediano{
+    font-size: 20px;
+  }
+  .coleccionesInfoLista{
+    font-size: 20px;
+  }
   /* SECCION DE LA PRESENTACION */
   .header{
     padding: 3% 0;
@@ -664,17 +674,31 @@ footer div a{
     font-weight: 600;
     text-align: center;
   }
+  .headerMiniTitulo{
+    text-align: center;
+    font-size: 14px;
+  }
   .headerParte1{
     align-items: center;
     gap: 30px;
     width: 95%;
-    margin: 18% 0 15% 0;
+    margin: 5% 0;
+  }
+  .headerParte1 p{
+    text-align: center;
   }
   .headerButtons{
     justify-content: space-evenly;
   }
   .imagenHeader{
     display: none;
+  }
+  .contadoresContainer{
+    justify-content: space-evenly;
+    width: 97%;
+  }
+  .contadoresContainer div h2{
+    font-size: 24px !important;
   }
 
   /* SECCION DE CONOCENOS */
@@ -699,6 +723,7 @@ footer div a{
   .cardsEvents{
     flex-direction: column;
     gap: 30px;
+    text-align: center;
   }
   .eventos .imageArrowRight, .eventos .imageArrowLeft{
     display: none;
@@ -722,6 +747,9 @@ footer div a{
   .coleccionesInfo{
     margin-top: 25px;
     width: 100%;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
   }
 
   .coleccionesCards{
@@ -757,6 +785,10 @@ footer div a{
     width: 100%;
     gap: 35px;
   }
+  .revistaNakawe h4{
+    text-align: center;
+    font-size: 20px;
+  }
   .revistaNakaweCards .revistaNakaweCard{
     width: 100%;
   }
@@ -767,6 +799,18 @@ footer div a{
     display: none;
   }
 
+
+  /* SECCION DE NUESTRO OBJETIVO */
+  .nuestroObjetivo{
+    gap: 30px;
+  }
+
+
+  /* SECCION DE IMPACTO */
+  .impacto{
+    text-align: center;
+    width: 95%;
+  }
 
   /* fOOTER SECTION */
   footer{
@@ -780,6 +824,7 @@ footer div a{
   footer div .redesSociales{
     gap: 25px;
   }
+
 }
 
 /* Estilos para el layout Masonry (Pinterest) */

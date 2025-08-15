@@ -20,11 +20,11 @@ interface CollectionsGridProps {
 
 export default function CollectionsGrid({ collections }: CollectionsGridProps) {
     const breakpointColumnsObj = {
-      default: 4,
-      1600: 4,
-      1280: 3,
-      1024: 2,
-      700: 1
+        default: 4,
+        1600: 4,
+        1280: 3,
+        1024: 2,
+        700: 1
     };
 
     return (
@@ -34,17 +34,14 @@ export default function CollectionsGrid({ collections }: CollectionsGridProps) {
             columnClassName="my-masonry-grid_column"
         >
             {collections.map((collection, index) => {
-                // --- INICIO DE LA CORRECCIÓN ---
-                // 1. Creamos una clase condicional para el 'ring'
-                const ringClass = (index + 1) % 2 === 0 
-                    ? 'ring-2 ring-[#EC489980]' // Aplica un 'ring' de color
-                    : ''; // Las otras tarjetas no necesitan nada
+                const ringClass = (index + 1) % 2 === 0
+                    ? 'ring-2 ring-[#EC489980]'
+                    : '';
 
                 return (
                     <div key={collection.id}>
-                        <Link 
-                            href={`/colecciones/${collection.id}`} 
-                            // 2. Aplicamos la clase del 'ring'
+                        <Link
+                            href={`/colecciones/${collection.id}`}
                             className={`group block bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${ringClass}`}
                         >
                             <Image
