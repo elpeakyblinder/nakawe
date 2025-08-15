@@ -13,14 +13,13 @@ interface ProductoPageProps {
   };
 }
 
-export default async function ProductoPage({ params }: ProductoPageProps) {
-  const productId = params.productId;
+export default async function ProductoPage({ params }: { params: Promise<{ productId: string }> }) {
+  // await params antes de usar
+  const { productId } = await params;
 
   const product = await fetchProductById(productId);
 
-  if (!product) {
-    notFound();
-  }
+  if (!product) notFound();
 
   const otherProducts = await fetchRelatedProducts(product.collection_id, product.id);
 
