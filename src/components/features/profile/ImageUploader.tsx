@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, forwardRef, useImperativeHandle, useEffect } from 'react';
+import Image from 'next/image';
 
 // Interfaces y tipos
 export interface ImageUploaderHandles {
@@ -98,14 +99,16 @@ const ImageUploader = forwardRef<ImageUploaderHandles, ImageUploaderProps>(
         return (
             <div className={`flex flex-col items-center gap-4 ${className}`}>
                 <div
-                    className={`relative overflow-hidden border-2 ${imageContainerClassName}`}
-                    style={{ borderColor: error ? 'red' : '#ccc' }}
+                className={`relative overflow-hidden border-2 ${imageContainerClassName}`}
+                style={{ borderColor: error ? 'red' : '#ccc' }}
                 >
-                    <img
-                        src={previewUrl || defaultImage}
-                        alt={altText}
-                        className="object-cover w-full h-full"
-                    />
+                <Image
+                    src={previewUrl || defaultImage}
+                    alt={altText}
+                    className="object-cover w-full h-full"
+                    fill
+                    sizes="100vw"
+                />
                 </div>
 
                 <input

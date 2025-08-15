@@ -5,14 +5,12 @@ import { useState } from "react"
 import styles from './RegisterForm.module.css';
 import { Button } from "@/components/ui/button"
 import Frase from "@/components/ui/frase";
-import { useRouter } from 'next/navigation';
 import Link from "next/dist/client/link";
 
 export default function RegisterForm() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const router = useRouter();
 
     const [formData, setFormData] = useState({
         firstName: '',
