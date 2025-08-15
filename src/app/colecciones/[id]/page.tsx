@@ -8,8 +8,13 @@ import "./infColecciones.css";
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] });
 
-export default async function InformacionColeccionesPage({ params }: { params: { id: string } }) {
+type RouteParams = { id: string };
+
+export default async function InformacionColeccionesPage(
+  { params }: { params: Promise<RouteParams> }
+) {
   const { id } = await params;
+
   const collection = await fetchCollectionById(id);
 
   if (!collection) {
@@ -49,6 +54,7 @@ export default async function InformacionColeccionesPage({ params }: { params: {
             <Image src={coverImageUrl} alt="Ejemplo" width={400} height={200} style={{ objectFit: 'cover' }} />
           </div>
         </div>
+
         <div className="cuerpoProducto">
           <div className="mercadoDeAlcance">
             <div>
@@ -78,8 +84,11 @@ export default async function InformacionColeccionesPage({ params }: { params: {
           <LinearGradient />
         </div>
 
-        <CollectionProductsGrid products={collection.products} artisanName={collection.artisan_name} />
+        <CollectionProductsGrid
+          products={collection.products}
+          artisanName={collection.artisan_name}
+        />
       </section>
     </div>
-  )
+  );
 }

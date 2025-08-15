@@ -1,33 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import "./producto.css"; 
+import "./producto.css";
 import { League_Spartan } from 'next/font/google';
 import { fetchProductById, fetchRelatedProducts } from "@/lib/data";
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] });
 
-export default async function ProductoPage({ params }: { params: { productId: string } }) {
+interface ProductoPageProps {
+  params: {
+    productId: string;
+  };
+}
+
+export default async function ProductoPage({ params }: { params: Promise<{ productId: string }> }) {
+  // await params antes de usar
   const { productId } = await params;
 
   const product = await fetchProductById(productId);
 
-  if (!product) {
-    notFound();
-  }
+  if (!product) notFound();
 
   const otherProducts = await fetchRelatedProducts(product.collection_id, product.id);
 
-  const mainImageUrl = product.main_image_url ? product.main_image_url : '/productoEjemplo.png';
+  const mainImageUrl = product.main_image_url ?? '/productoEjemplo.png';
 
   return (
     <div className={`bodyProducto ${leagueSpartan.className}`}>
       <div className="productoPresentacion">
-        <Image 
-          className="imagenPrenda" 
-          src={mainImageUrl} 
-          alt={product.name} 
-          width={400} 
+        <Image
+          className="imagenPrenda"
+          src={mainImageUrl}
+          alt={product.name}
+          width={400}
           height={550}
         />
         <div className="productoInformacion">
@@ -77,16 +82,16 @@ export default async function ProductoPage({ params }: { params: { productId: st
               const relatedImageUrl = otherProduct.main_image_url ? otherProduct.main_image_url : '/productoEjemplo.png';
               return (
                 <div key={otherProduct.id} className="prendasCardProducto">
-                  <Image className="imagenPrenda" src={relatedImageUrl} alt={otherProduct.name} width={100} height={250}/>
+                  <Image className="imagenPrenda" src={relatedImageUrl} alt={otherProduct.name} width={100} height={250} />
                   <div className="cuerpoPrendasCard">
                     <h2>{otherProduct.name}</h2>
                     <p>{otherProduct.product_brief}</p>
                     <div className="infoCuerpoPrendasCard">
-                      <Image src={'/iconos/user.svg'} alt="Icono usuario" width={15} height={15}/>
+                      <Image src={'/iconos/user.svg'} alt="Icono usuario" width={15} height={15} />
                       <span>{product.artisan_name}</span>
                     </div>
                     <div className="infoCuerpoPrendasCard">
-                      <Image src={'/iconos/time.svg'} alt="Icono tiempo" width={15} height={15}/>
+                      <Image src={'/iconos/time.svg'} alt="Icono tiempo" width={15} height={15} />
                       <span>{otherProduct.production_time}</span>
                     </div>
                     <div className="prendasCardButtom">
