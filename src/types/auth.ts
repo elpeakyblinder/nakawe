@@ -6,6 +6,7 @@ export type RegisterBody = {
 };
 
 export type UserProfileData = {
+    id: string;
     email: string;
     created_at: string;
     first_name: string;

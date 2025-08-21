@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./button.module.css";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: "primary" | "black" | "pistachio" | "yellow";
+    variant?: "primary" | "black" | "pistachio" | "yellow" | "pistachio-black";
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(

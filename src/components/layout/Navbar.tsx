@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Globe, CircleUserRound, ShoppingBag, Menu } from 'lucide-react';
+import { Globe, CircleUserRound, ShoppingBag, Menu, Heart } from 'lucide-react';
 import { type UserProfileData } from '@/types/auth';
 import styles from './Navbar.module.css';
 
@@ -21,7 +21,6 @@ export default function Navbar({ user }: NavbarProps) {
         setIsMenuOpen(false);
     }, [pathname]);
 
-    // Función para alternar el estado del menú.
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -64,12 +63,15 @@ export default function Navbar({ user }: NavbarProps) {
                         title="Cambiar idioma"
                         className="text-white transition-colors hover:text-[var(--color-principal-ui)]"
                     >
-                        <Globe size={30} />
+                        <Globe size={25} />
                     </button>
                     {user ? (
                         <div className={styles.userActions}>
+                            <Link href="/favorites" className={styles.cartLink}>
+                                <Heart size={25} />
+                            </Link>
                             <Link href="/carrito" className={styles.cartLink}>
-                                <ShoppingBag size={30} />
+                                <ShoppingBag size={25} />
                             </Link>
                             <Link href="/profile" className={styles.profileLink}>
                                 <CircleUserRound size={30} />
