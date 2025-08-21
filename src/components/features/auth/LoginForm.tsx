@@ -142,6 +142,7 @@ export default function LoginForm() {
                         alt="Pajaro"
                         width={70}
                         height={50}
+                        className={styles.image}
                     />
                 </div>
                 <div className={styles.subheader}>
