@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useState } from "react"
 import styles from './RegisterForm.module.css';
 import { Button } from "@/components/ui/button"
+import { Mail, User, Lock, Eye, EyeOff } from "lucide-react";
 import Frase from "@/components/ui/frase";
 import Link from "next/dist/client/link";
 
@@ -11,6 +12,8 @@ export default function RegisterForm() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -81,6 +84,7 @@ export default function RegisterForm() {
                         alt="Pajaro"
                         width={50}
                         height={50}
+                        className={styles.image}
                     />
                 </div>
                 <div className={styles.subheader}>
@@ -119,27 +123,65 @@ export default function RegisterForm() {
                         <div className={styles.nameFields}>
                             <div>
                                 <label htmlFor="firstName">NOMBRE</label>
-                                <input className={styles.input} type="text" placeholder="Tu nombre" id="firstName" name="firstName" value={formData.firstName} onChange={handleInputChange} required />
+                                <div className="relative">
+                                    <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"  />
+                                    <input className={styles.input} type="text" placeholder="Tu nombre" id="firstName" name="firstName" value={formData.firstName} onChange={handleInputChange} required />
+                                </div>
                             </div>
                             <div>
                                 <label htmlFor="lastName">APELLIDO</label>
-                                <input className={styles.input} type="text" placeholder="Tu apellido" id="lastName" name="lastName" value={formData.lastName} onChange={handleInputChange} required />
+                                <div className="relative">
+                                    <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"  />
+                                    <input className={styles.input} type="text" placeholder="Tu apellido" id="lastName" name="lastName" value={formData.lastName} onChange={handleInputChange} required />
+                                </div>
                             </div>
                         </div>
 
                         <div className={styles.campoForm}>
                             <label htmlFor="email">CORREO ELECTRÓNICO</label>
-                            <input className={styles.input} type="email" placeholder="Tu correo electrónico" id="email" name="email" value={formData.email} onChange={handleInputChange} required />
+                            <div className="relative">
+                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                                <input
+                                    className={styles.input}
+                                    type="email"
+                                    placeholder="Tu correo electrónico"
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                            </div>
                         </div>
 
                         <div className={styles.campoForm}>
                             <label htmlFor="password">CONTRASEÑA</label>
-                            <input className={styles.input} type="password" placeholder="Tu contraseña" id="password" name="password" value={formData.password} onChange={handleInputChange} required />
+                            <div className="relative">
+                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                                <input className={styles.input} type={showPassword ? "text" : "password"} placeholder="Tu contraseña" id="password" name="password" value={formData.password} onChange={handleInputChange} required />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                                >
+                                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                </button>
+                            </div>
                         </div>
 
                         <div className={styles.campoForm}>
                             <label htmlFor="confirmPassword">CONFIRMAR CONTRASEÑA</label>
-                            <input className={styles.input} type="password" placeholder="Confirma tu contraseña" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleInputChange} required />
+                            <div className="relative">
+                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                                <input className={styles.input} type={showPassword ? "text" : "password"} placeholder="Confirma tu contraseña" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleInputChange} required />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                                >
+                                    {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                </button>
+                            </div>
                         </div>
 
                         <div className="text-center text-sm text:[var(--color-cuarto-ui)]">
