@@ -26,12 +26,7 @@ export async function GET() {
             WHERE ci.user_id = ${userId};
         `;
 
-        const cartWithParsedPrice = rows.map(item => ({
-            ...item,
-            price: parseFloat(item.price as any),
-        }));
-
-        return NextResponse.json(cartWithParsedPrice);
+        return NextResponse.json(rows);
 
     } catch (error) {
         const message = error instanceof Error ? error.message : 'Error desconocido';

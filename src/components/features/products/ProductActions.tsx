@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { type Product } from '@/types';
 import { Minus, Plus } from 'lucide-react';
+import FormattedPrice from '@/components/ui/FormattedPrice';
 
 interface ProductActionsProps {
     product: Product & { artisan_name: string };
@@ -39,8 +40,8 @@ export default function ProductActions({ product }: ProductActionsProps) {
 
     return (
         <div className="productoPrecio">
-            <span>${product.price} MXN</span>
-            <div className="flex items-center gap-4 mt-4">
+            <FormattedPrice className="text-2xl font-medium text-[var(--color-principal-ui)]" amount={product.price} currency='MXN'/>
+            <div className="flex items-center gap-4">
                 <div className="quantityControl">
                     <button type="button" onClick={decrement} className="quantityButton">
                         <Minus size={16} />

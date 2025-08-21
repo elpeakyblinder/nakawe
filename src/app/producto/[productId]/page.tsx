@@ -8,6 +8,7 @@ import ProductActions from "@/components/features/products/ProductActions";
 import { Clock, MapPin } from 'lucide-react';
 import LinearGradient from "@/components/ui/LinearGradient";
 import FavoriteToggleButton from "@/components/features/products/FavoriteToggleButton";
+import FormattedPrice from "@/components/ui/FormattedPrice";
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] });
 
@@ -92,7 +93,7 @@ export default async function ProductoPage({ params }: { params: Promise<{ produ
                       <span>{otherProduct.production_time}</span>
                     </div>
                     <div className="prendasCardButtom">
-                      <p>${otherProduct.price} MXN</p>
+                      <FormattedPrice className="text-2xl font-medium text-[var(--color-principal-ui)]" amount={product.price} />
                       <Link href={`/producto/${otherProduct.id}`}>
                         <button>Ver</button>
                       </Link>

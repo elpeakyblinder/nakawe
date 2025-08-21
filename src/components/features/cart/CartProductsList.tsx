@@ -5,6 +5,7 @@ import { type CartItem } from '@/types';
 import style from './CartProductsList.module.css'
 
 import React from 'react'
+import FormattedPrice from '@/components/ui/FormattedPrice';
 interface CartProductsListProps {
     items: CartItem[];
     onRemove: (productId: string) => void;
@@ -102,7 +103,7 @@ export default function CartProductsList({ items, onRemove, onUpdateQuantity }: 
                                     </div>
                                     <div className={style.price}>
                                         <span>
-                                            ${(item.price * item.quantity).toFixed(2)} MXN
+                                            <FormattedPrice amount={item.price * item.quantity} currency='MXN'/>
                                         </span>
                                     </div>
                                 </div>

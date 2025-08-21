@@ -68,3 +68,12 @@ export type FavoritesContextType = {
     removeFavorite: (productId: string) => void;
     isFavorite: (productId: string) => boolean; // Función útil para saber si un producto ya es favorito
 };
+
+// Para formatear precios e incluso cambiarlo a otras divisas
+export interface FormattedPriceProps {
+    amount: number; // La cantidad de dinero a formatear
+    currency?: string; // El código de la divisa (ej. 'MXN', 'USD')
+    locale?: string; // El formato regional (ej. 'es-MX', 'en-US')
+    className?: string; // Para pasar clases de estilo adicionales
+    showCurrencyCode?: boolean;
+}
