@@ -30,7 +30,7 @@ export default function UserProfile({ userData }: UserProfileProps) {
     return (
         <div className={styles.container}>
             <div className={styles.profileGeneral}>
-                <div>
+                <div className={styles.containerInfoProfileMovil}>
                     <div className={styles.pictureContainer}>
                         <Image
                             src={userData.avatar_url || "/default-avatar.png"}
@@ -93,7 +93,7 @@ export default function UserProfile({ userData }: UserProfileProps) {
                             <div>
                                 <button className={styles.actionButton}>
                                     <Pencil className={styles.buttonIcon} />
-                                    <span>Editar información</span>
+                                    <span className={styles.editText}>Editar información</span>
                                 </button>
                             </div>
                         </div>
