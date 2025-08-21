@@ -154,7 +154,7 @@ export default function RegisterForm() {
                         {error && <p style={{ color: 'red' }}>{error}</p>}
                         {success && <p style={{ color: 'green' }}>{success}</p>}
 
-                        <Button className="text-xl" type="submit" variant="primary" disabled={isLoading}>
+                        <Button className="text-xl rounded p-1.5" type="submit" variant="primary" disabled={isLoading}>
                             {isLoading ? 'Creando cuenta...' : 'Crear Cuenta'}
                         </Button>
                     </form>

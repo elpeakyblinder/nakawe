@@ -125,7 +125,7 @@ export default function LoginForm() {
 
                         {error && <p style={{ color: 'red' }}>{error}</p>}
 
-                        <Button className="text-xl" type="submit" variant="primary" disabled={isLoading}>
+                        <Button className="text-xl rounded p-1.5" type="submit" variant="primary"  disabled={isLoading}>
                             {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
                         </Button>
                     </form>
