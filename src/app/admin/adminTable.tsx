@@ -36,9 +36,6 @@ export default function AdminTable<T extends { id: string }>({
       const res = await fetch(fetchUrl)
       const data = await res.json()
       
-      // **LA CORRECCIÓN ESTÁ AQUÍ**
-      // Se comprueba si la respuesta de la API es un array.
-      // Si lo es, se utiliza; si no, se establece un array vacío para evitar el error.
       if (Array.isArray(data)) {
         setItems(data)
       } else {

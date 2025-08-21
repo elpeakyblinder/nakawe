@@ -45,7 +45,11 @@
 .frases{
     display: flex;
     width: 80%;
-    justify-content: start;
+    justify-content: center;
+    text-align: center;
+}
+.frases div{
+    text-align: center;
 }
 
 /* SECCION IZQUIERDA */

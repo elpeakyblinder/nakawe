@@ -25,6 +25,7 @@ export type Product = {
     name: string;
     main_image_url: string;
     price: number;
+    category: string | null;
     product_brief: string | null;
     production_time: string | null;
     artisan_id: string;
@@ -35,4 +36,44 @@ export type Product = {
     materials: string | null;
     origin: string | null;
     sale_type: string | null;
+    stock: number | null;
 };
+
+// Representa un producto dentro del carrito, añadiendo la cantidad.
+export type CartItem = Product & {
+    quantity: number;
+    artisan_name: string;
+    category: string | null;
+};
+
+// Define la forma del contexto del carrito: qué datos y funciones contiene.
+export type CartContextType = {
+    cartItems: CartItem[];
+    addItem: (product: Product & { artisan_name: string }, quantity: number) => void;
+    removeItem: (productId: string) => void;
+    updateQuantity: (productId: string, newQuantity: number) => void;
+    clearCart: () => void;
+    subtotal: number;
+    totalItems: number;
+};
+
+export type FavoriteItem = Product & {
+    artisan_name: string;
+};
+
+// Define la forma del contexto de favoritos.
+export type FavoritesContextType = {
+    favoriteItems: FavoriteItem[];
+    addFavorite: (product: Product & { artisan_name: string }) => void;
+    removeFavorite: (productId: string) => void;
+    isFavorite: (productId: string) => boolean; // Función útil para saber si un producto ya es favorito
+};
+
+// Para formatear precios e incluso cambiarlo a otras divisas
+export interface FormattedPriceProps {
+    amount: number; // La cantidad de dinero a formatear
+    currency?: string; // El código de la divisa (ej. 'MXN', 'USD')
+    locale?: string; // El formato regional (ej. 'es-MX', 'en-US')
+    className?: string; // Para pasar clases de estilo adicionales
+    showCurrencyCode?: boolean;
+}

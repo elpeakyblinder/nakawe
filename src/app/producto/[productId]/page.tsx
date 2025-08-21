@@ -4,14 +4,13 @@ import { notFound } from "next/navigation";
 import "./producto.css";
 import { League_Spartan } from 'next/font/google';
 import { fetchProductById, fetchRelatedProducts } from "@/lib/data";
+import ProductActions from "@/components/features/products/ProductActions";
+import { Clock, MapPin } from 'lucide-react';
+import LinearGradient from "@/components/ui/LinearGradient";
+import FavoriteToggleButton from "@/components/features/products/FavoriteToggleButton";
+import FormattedPrice from "@/components/ui/FormattedPrice";
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] });
-
-interface ProductoPageProps {
-  params: {
-    productId: string;
-  };
-}
 
 export default async function ProductoPage({ params }: { params: Promise<{ productId: string }> }) {
   // await params antes de usar
@@ -22,7 +21,6 @@ export default async function ProductoPage({ params }: { params: Promise<{ produ
   if (!product) notFound();
 
   const otherProducts = await fetchRelatedProducts(product.collection_id, product.id);
-
   const mainImageUrl = product.main_image_url ?? '/productoEjemplo.png';
 
   return (
@@ -38,6 +36,7 @@ export default async function ProductoPage({ params }: { params: Promise<{ produ
         <div className="productoInformacion">
           <div className="divMiniTitulo">
             <p className="headerMiniTitulo">{product.artisan_name}</p>
+            <FavoriteToggleButton product={product} />
           </div>
           <h1>{product.name}</h1>
           <span>{product.code}</span>
@@ -46,14 +45,14 @@ export default async function ProductoPage({ params }: { params: Promise<{ produ
           <div className="productoDetallesAdicionales">
             <div className="detalleItem">
               <div>
-                <Image className="imageIcons" src={'/iconos/time.svg'} alt="Time icon" width={20} height={20} />
+                <Clock size={20} className="imageIcons" />
                 <span>Tiempo de elaboración</span>
               </div>
               <p>{product.production_time}</p>
             </div>
             <div className="detalleItem">
               <div>
-                <Image className="imageIcons" src={'/iconos/location.svg'} alt="Location icon" width={20} height={20} />
+                <MapPin size={20} className="imageIcons" />
                 <span>Origen</span>
               </div>
               <p>{product.origin}</p>
@@ -65,8 +64,7 @@ export default async function ProductoPage({ params }: { params: Promise<{ produ
             <p>{product.materials}</p>
           </div>
           <div className="productoPrecio">
-            <span>${product.price} MXN</span>
-            <button>Añadir al carrito</button>
+            <ProductActions product={product} />
           </div>
         </div>
       </div>
@@ -75,7 +73,7 @@ export default async function ProductoPage({ params }: { params: Promise<{ produ
         <>
           <div className="descubrePrendas">
             <h2>OTRAS PRENDAS DE LA COLECCIÓN</h2>
-            <div className="barraPrendas"></div>
+            <LinearGradient />
           </div>
           <div className="prendas">
             {otherProducts.map(otherProduct => {
@@ -95,7 +93,7 @@ export default async function ProductoPage({ params }: { params: Promise<{ produ
                       <span>{otherProduct.production_time}</span>
                     </div>
                     <div className="prendasCardButtom">
-                      <p>${otherProduct.price} MXN</p>
+                      <FormattedPrice className="text-2xl font-medium text-[var(--color-principal-ui)]" amount={product.price} />
                       <Link href={`/producto/${otherProduct.id}`}>
                         <button>Ver</button>
                       </Link>
