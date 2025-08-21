@@ -91,7 +91,7 @@ export default function UserProfile({ userData }: UserProfileProps) {
                                 </div>
                             </div>
                             <div>
-                                <button className={styles.actionButton}>
+                                <button className={styles.editButton}>
                                     <Pencil className={styles.buttonIcon} />
                                     <span className={styles.editText}>Editar información</span>
                                 </button>
