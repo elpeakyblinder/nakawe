@@ -43,15 +43,13 @@
 .productoMaterial h6{
     font-size: 22px;
 }
+
 .productoPrecio{
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     width: 100%;
     justify-content: flex-start; /* Alineado a la izquierda */
     gap: 10px;
-}
-.productoPrecio span{
-    font-size: 2rem;
 }
 
 .productoDetallesAdicionales{

@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
 import { useAuth } from '@/context/AuthProvider';
 import { toast } from 'sonner';
+import FormattedPrice from '@/components/ui/FormattedPrice';
 import { type Product } from '@/types';
 
 interface ProductCardProps {
@@ -61,7 +62,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     </div>
                 </div>
                 <div className={style.price}>
-                    <span>${product.price.toFixed(2)} MXN</span>
+                    <FormattedPrice className="text-2xl font-medium text-[var(--color-principal-ui)]" amount={product.price} />
                 </div>
                 <div className={style.buttonsActions}>
                     <Button variant='primary' className="rounded p-1.5" onClick={handleAddToCart}>
