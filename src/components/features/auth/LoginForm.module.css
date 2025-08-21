@@ -70,14 +70,24 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 60vh;
+    width: 100%;
+    padding: 15%;
     gap: 24px;
 }
 
-.input{
-    padding: 15px;
+.input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
     border-radius: 3px;
-    border: solid 1px;
+    transition: border-color 0.3s ease;
+    padding-left: 40px; 
+    padding-right: 40px;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--color-principal-ui);
 }
 
 .forgot, .forgot div{
@@ -92,7 +102,6 @@
     text-align: center;
     gap: 8px;
 }
-
 
 .headerForm h1{
     font-size: 3.4rem;
@@ -147,12 +156,196 @@
     color: #888;
 }
 
-.input {
-    width: 100%;
-    padding-left: 40px; 
-    padding-right: 40px;
-    border-radius: 5px;
-    border: solid 1px #898989;
+
+@media (min-width: 1024px) and (max-width: 1024px)
+    and (min-height: 1366px) and (max-height: 1366px) {
+    .formContainer{
+        width: 100%;
+        height: 100vh;
+        padding: 0 20px;
+    }
+
+    .rightSide{
+        gap: 30px;
+    }
+}
+
+@media (max-width: 1490px) {
+    .header span{
+        font-size: 3rem;
+        margin-left: 100px;
+    }
+}
+
+@media (max-width: 1352px) {
+    .header span{
+        font-size: 2.5rem;
+        margin-left: 100px;
+    }
+    
+}
+
+@media (max-width: 1183px) {
+    .header span{
+        font-size: 2rem;
+        margin-left: 100px;
+    }
+
+    .subheader{
+        font-size: 1rem;
+    }
+
+}
+
+@media (max-width: 1122px) {
+    .header span{
+        font-size: 2rem;
+        margin-left: 100px;
+    }
+}
+
+@media (max-width: 1014px) {
+    .header span{
+        font-size: 1.8rem;
+        margin-left: 100px;
+    }
+
+    .formContainer{
+        width: 100%;
+        height: 100vh;
+        padding: 0 20px;
+    }
+
+}
+
+@media (max-width: 947px) {
+    .header span{
+        font-size: 1.5rem;
+        margin-left: 100px;
+    }
+
+    .subheader{
+        font-size: 0.8rem;
+    }
+
+    .image{
+        width: 15%;
+        height: auto;
+    }
+
+}
+
+@media (max-width: 848px) {
+    .header span{
+        font-size: 3vh;
+        margin-left: 70px;
+    }
+
+    .subheader{
+        font-size: 0.7rem;
+    }
+
+    .image{
+        width: 10%;
+        height: auto;
+    }
+
+}
+
+
+@media (min-width: 1024px) and (max-width: 1024px)
+    and (min-height: 1366px) and (max-height: 1366px) {
+    .formContainer{
+        width: 100%;
+        height: 100vh;
+        padding: 0 20px;
+    }
+
+    .rightSide{
+        gap: 30px;
+    }
+}
+
+@media (max-width: 1490px) {
+    .header span{
+        font-size: 3rem;
+        margin-left: 100px;
+    }
+}
+
+@media (max-width: 1352px) {
+    .header span{
+        font-size: 2.5rem;
+        margin-left: 100px;
+    }
+    
+}
+
+@media (max-width: 1183px) {
+    .header span{
+        font-size: 2rem;
+        margin-left: 100px;
+    }
+
+    .subheader{
+        font-size: 1rem;
+    }
+
+}
+
+@media (max-width: 1122px) {
+    .header span{
+        font-size: 2rem;
+        margin-left: 100px;
+    }
+}
+
+@media (max-width: 1014px) {
+    .header span{
+        font-size: 1.8rem;
+        margin-left: 100px;
+    }
+
+    .formContainer{
+        width: 100%;
+        height: 100vh;
+        padding: 0 20px;
+    }
+
+}
+
+@media (max-width: 947px) {
+    .header span{
+        font-size: 1.5rem;
+        margin-left: 100px;
+    }
+
+    .subheader{
+        font-size: 0.8rem;
+    }
+
+    .image{
+        width: 15%;
+        height: auto;
+    }
+
+}
+
+@media (max-width: 848px) {
+    .header span{
+        font-size: 3vh;
+        margin-left: 70px;
+    }
+
+    .subheader{
+        font-size: 0.7rem;
+    }
+
+    .image{
+        width: 10%;
+        height: auto;
+    }
+
 }
 
 @media (max-width: 767px) {
@@ -160,6 +353,12 @@
         background-color: #ffffff;
         flex-direction: column;
         justify-content: center;
+    }
+
+    .formContainer{
+        width: 100%;
+        height: 100vh;
+        padding: 0 20px;
     }
 
     .leftSide {
@@ -170,3 +369,4 @@
         display: none;
     }
 }
+
