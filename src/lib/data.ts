@@ -132,13 +132,15 @@ export async function fetchProductById(id: string): Promise<(Product & { artisan
         const result = await sql`
             SELECT
                 p.*,
-                a.display_name as artisan_name
+                a.display_name as artisan_name,
+                cat.name as category
             FROM products p
             JOIN artisans a ON p.artisan_id = a.id
+            LEFT JOIN categories cat ON p.category_id = cat.id
             WHERE p.id = ${id};
         `;
         if (result.rows.length === 0) return null;
-        return result.rows[0] as Product & { artisan_name: string };
+        return result.rows[0] as Product & { artisan_name: string, category: string | null };
     } catch (error) {
         console.error(`Error al obtener el producto con ID ${id}:`, error);
         return null;

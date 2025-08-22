@@ -1,12 +1,11 @@
-'use client'; // 1. Marcamos como Componente de Cliente
+'use client';
 
-import { useCart } from '@/hooks/useCart'; // 2. Importamos el hook
+import { useCart } from '@/hooks/useCart';
 import CartProductsList from '@/components/features/cart/CartProductsList';
 import OrderSummary from '@/components/features/cart/OrderSummary';
 import React from 'react';
 
 const PageCart = () => {
-    // 3. Usamos el hook para obtener los datos y funciones REALES del carrito
     const { cartItems, totalItems, subtotal, removeItem, updateQuantity } = useCart();
 
     return (
