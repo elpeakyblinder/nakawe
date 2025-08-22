@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Trash2, Minus, Plus } from 'lucide-react';
 import { type CartItem } from '@/types';
 import style from './CartProductsList.module.css'
+import QuantitySelector from '@/components/ui/count/QuantitySelector';
 
 import React from 'react'
 import FormattedPrice from '@/components/ui/FormattedPrice';
@@ -13,7 +14,7 @@ interface CartProductsListProps {
 }
 
 export default function CartProductsList({ items, onRemove, onUpdateQuantity }: CartProductsListProps) {
-    // Si no hay items, entonces mostras un mensaje de que el carrito está vacío
+    // Si no hay items, entonces mostramos un mensaje de que el carrito está vacío
     if (items.length === 0) {
         return (
             <div className="text-center py-12 bg-gray-50 rounded-lg">
@@ -84,21 +85,11 @@ export default function CartProductsList({ items, onRemove, onUpdateQuantity }: 
                                             </span>
                                         </div>
                                         <div className={style.quantityControl}>
-                                            <button
-                                                type="button"
-                                                className={style.quantityButton}
-                                                onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
-                                            >
-                                                <Minus size={16} />
-                                            </button>
-                                            <span className={style.quantityDisplay}>{item.quantity}</span>
-                                            <button
-                                                type="button"
-                                                className={style.quantityButton}
-                                                onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-                                            >
-                                                <Plus size={16} />
-                                            </button>
+                                            <QuantitySelector
+                                                initialQuantity={item.quantity}
+                                                maxQuantity={item.stock || 99}
+                                                onChange={(newQuantity) => onUpdateQuantity(item.id, newQuantity)}
+                                            />
                                         </div>
                                     </div>
                                     <div className={style.price}>

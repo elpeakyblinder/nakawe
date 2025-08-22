@@ -1,0 +1,11 @@
+.badge {
+    border: 1px solid var(--color-principal-ui);
+    color: var(--color-principal-ui);
+    font-weight: 600;
+    width: fit-content;
+    text-transform: capitalize;
+}
+
+.badge > span{
+    color: var(--color-principal-ui);
+}

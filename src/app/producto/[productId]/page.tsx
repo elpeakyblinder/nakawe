@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-// 1. Importar los estilos desde el archivo .module.css
 import styles from "./producto.module.css";
 import { League_Spartan } from 'next/font/google';
 import { fetchProductById, fetchRelatedProducts } from "@/lib/data";
@@ -10,6 +9,7 @@ import { Clock, MapPin } from 'lucide-react';
 import LinearGradient from "@/components/ui/LinearGradient";
 import FavoriteToggleButton from "@/components/features/products/FavoriteToggleButton";
 import FormattedPrice from "@/components/ui/FormattedPrice";
+import CategoryBadge from "@/components/ui/CategoryBadge";
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] });
 
@@ -42,7 +42,7 @@ export default async function ProductoPage({ params }: { params: Promise<{ produ
                         <p className="headerMiniTitulo">{product.artisan_name}</p>
                         <FavoriteToggleButton product={product} />
                     </div>
-                    <h1>{product.name}</h1>
+                    <h1 className="text-2xl">{product.name}</h1>
                     <span>{product.code}</span>
                     <p>{product.description}</p>
 
@@ -62,14 +62,16 @@ export default async function ProductoPage({ params }: { params: Promise<{ produ
                             <p>{product.origin}</p>
                         </div>
                     </div>
-
-                    <div className={styles.productoMaterial}>
-                        <h6>MATERIAL:</h6>
-                        <p>{product.materials}</p>
+                    <div className={styles.productCategory}>
+                        <div>
+                            <CategoryBadge categoryName={product.category} className="p-1 text-md px-5 whitespace-nowrap" />
+                        </div>
+                        <div className={styles.productoMaterial}>
+                            <h6>MATERIAL:</h6>
+                            <p>{product.materials}</p>
+                        </div>
                     </div>
-                    <div className={styles.productoPrecio}>
-                        <ProductActions product={product} />
-                    </div>
+                    <ProductActions product={product} />
                 </div>
             </div>
 
@@ -97,7 +99,6 @@ export default async function ProductoPage({ params }: { params: Promise<{ produ
                                             <span>{otherProduct.production_time}</span>
                                         </div>
                                         <div className={styles.prendasCardButtom}>
-                                            {/* Clases de Tailwind se mantienen como string */}
                                             <FormattedPrice className="text-2xl font-medium text-[var(--color-principal-ui)]" amount={product.price} />
                                             <Link href={`/producto/${otherProduct.id}`}>
                                                 <button>Ver</button>
