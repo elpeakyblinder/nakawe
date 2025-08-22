@@ -1,3 +1,7 @@
+.bodyProducto {
+    /* Puedes añadir estilos base para la página del producto aquí si lo necesitas */
+}
+
 .productoPresentacion{
     display: flex;
     justify-content: space-evenly;
@@ -71,9 +75,6 @@
     color: rgba(0, 0, 0, 0.7);
 }
 
-
-
-
 .descubrePrendas{
     background-color: #060606;
     color: rgba(255, 255, 255, 1);
@@ -94,27 +95,7 @@
   height: 5px;
 }
 
-
-
 /* --- ESTILOS PARA OTRAS PRENDAS --- */
-.descubrePrendas{
-    background-color: #060606;
-    color: rgba(255, 255, 255, 1);
-    padding: 3% 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-    margin: 3% 0;
-}
-.barraPrendas{
-  width: 25%;
-  border-radius: 15px;
-  background: linear-gradient(to right, #F254A2, #FF007E, #F254A2);
-  height: 5px;
-}
 .otrasPrendasContainer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -148,9 +129,6 @@
     font-weight: bold;
     margin-bottom: 15px;
 }
-
-
-
 
 /* CARTAS DE PRENDAS */
 .prendas{
@@ -269,6 +247,7 @@
     .prendas{
         grid-template-columns: repeat(1, 1fr);
         width: 95% !important;
+        padding: 0 0 5% 2.5%; /* Centrado para móvil */
     }
     .prendasCardProducto{
         width: 100%;

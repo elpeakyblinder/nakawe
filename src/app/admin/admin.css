@@ -198,6 +198,9 @@ html, body, .bodyAdmin{
 .navBarAdminMobile {
     display: none;
 }
+.adminMobileNavOverlay {
+    display: none;
+}
 
 @media (max-width: 1300px){
     .bodyAdminNav {
