@@ -1,0 +1,256 @@
+
+.productoPresentacion{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 5%;
+    flex-wrap: wrap; /* Para mejorar responsividad */
+    gap: 20px;
+    align-items: center;
+}
+.productoPresentacion .imagenPrenda{
+    width: 40%;
+    min-width: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.productoInformacion{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alineado a la izquierda para mejor lectura */
+    text-align: left; /* Alineado a la izquierda */
+    width: 50%;
+    gap: 25px;
+    justify-content: space-evenly;
+}
+.divMiniTitulo{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.divMiniTitulo p{
+    background-color: transparent;
+    color: rgba(0, 0, 0, 1);
+    border: 1px solid rgba(0, 0, 0, 1);
+    padding: 10px 40px;
+}
+
+.productCategory{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 100%;
+}
+
+.productoMaterial{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    font-size: 1.2rem;
+    gap: 10px;
+}
+
+
+.productoDetallesAdicionales{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+.detalleItem{
+    color: rgba(0, 0, 0, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.detalleItem div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.descubrePrendas{
+    background-color: #060606;
+    color: rgba(255, 255, 255, 1);
+    padding: 5% 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 5% 0;
+    font-size: 3rem;
+}
+.barraPrendas{
+  width: 25%;
+  border-radius: 15px;
+  background: linear-gradient(to right, #F254A2, #FF007E, #F254A2);
+  height: 5px;
+}
+
+/* --- ESTILOS PARA OTRAS PRENDAS --- */
+.otrasPrendasContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 90%;
+    padding-bottom: 5%;
+}
+.otraPrendaCard {
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+.otraPrendaCard:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.otraPrendaCard img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+.otraPrendaCard h3 {
+    font-size: 1rem;
+    margin: 10px;
+}
+.otraPrendaCard p {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* CARTAS DE PRENDAS */
+.prendas{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 90%;
+    padding: 0 0 5% 5%;
+}
+.prendasCardProducto{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #F4F4F4;
+    box-shadow: 5px 6px 21px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.infoCuerpoPrendasCard{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.prendasCardProducto .imagenPrenda{
+  width: 100%;
+  border-radius: 15px;
+}
+.cuerpoPrendasCard{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    align-items: flex-start;
+}
+.cuerpoPrendasCard p{
+  color: rgba(0, 0, 0, 0.7);
+}
+.cuerpoPrendasCard span{
+  color: rgba(0, 0, 0, 1);
+}
+.prendasCardButtom{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.prendasCardButtom p{
+  font-size: 26px;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 500;
+}
+.prendasCardButtom button{
+  width: 100%;
+  background-color: #F5BD1F;
+  border: none;
+  border-radius: 5px;
+  padding: 9px 30px;
+}
+.prendasCardButtom button a{
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1);
+}
+
+.quantityControl {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    height: 100%;
+}
+
+.quantityButton {
+    background-color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.quantityButton:hover {
+    background-color: #e0e0e0;
+}
+
+.quantityDisplay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    font-size: 1rem;
+    height: 100%;
+    font-weight: 500;
+    text-align: center;
+    background-color: #FFFFFF;
+}
+
+@media(max-width: 670px){
+    .productoPresentacion{
+        width: 95%;
+        padding: 5% 0;
+        margin-left: 2.5%;
+    }
+    .imagenPrenda{
+        width: 100% !important;
+        max-height: 600px;
+    }
+    .productoInformacion{
+        width: 100%;
+    }
+
+    .descubrePrendas h2{
+        text-align: center;
+    }
+
+    .prendas{
+        grid-template-columns: repeat(1, 1fr);
+        width: 95% !important;
+        padding: 0 0 5% 2.5%; /* Centrado para móvil */
+    }
+    .prendasCardProducto{
+        width: 100%;
+    }
+}

@@ -1,7 +1,113 @@
+:root {
+  --color-primary: #2563eb;      
+  --color-primary-hover: #1e40af;
+  --color-border: #e5e7eb;       
+  --color-bg-light: #f9fafb;     
+  --color-bg-lighter: #f3f4f6;   
+  --color-text-dark: #374151;    
+  --color-text-darker: #1f2937;  
+}
+
+.admin-form {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  max-height: 90dvh;
+}
+
+.admin-form-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  background: linear-gradient(to right, var(--color-bg-light), var(--color-bg-lighter));
+  color: var(--color-text-darker);
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.admin-form-section {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.admin-form-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
+}
+
+/* Inputs */
+.admin-input,
+.admin-textarea,
+.admin-select {
+  margin-top: 0.5rem;
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  background: #f9fafb;
+  color: var(--color-text-darker);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.95rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+}
+
+.admin-input:focus,
+.admin-textarea:focus,
+.admin-select:focus {
+  border-color: var(--color-primary);
+  background: #fff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4);
+}
+
+.admin-textarea {
+  resize: none;
+  min-height: 120px;
+}
+
+.admin-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.625rem 1.5rem;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: var(--color-principal-ui);
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.admin-button:hover {
+  background: var(--color-principal-ui-hover);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.admin-button:active {
+  transform: scale(0.95);
+}
+
+
+
+*{
+    transition: 0.7s;
+}
+html, body, .bodyAdmin{
+      overflow-x: hidden;
+      width: 100%;
+}
 .bodyAdmin {
     display: flex;
     min-height: 100vh;
-    max-width: 100vw;
 }
 
 .bodyAdminNav {
@@ -37,6 +143,7 @@
     flex-grow: 1;
     padding: 2rem;
     background-color: #f9fafb;
+    width: 70%;
 }
 .panelAdmin h3{
     font-size: 26px;
@@ -73,6 +180,7 @@
     margin-top: 30px;
     width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .tablaContainer h2 {
@@ -82,10 +190,11 @@
 
 .tablaPerfiles {
     width: 100%;
-    min-width: 700px;
     border-collapse: collapse;
     font-size: 16px;
     background-color: #fff;
+    display: inline-table;
+    table-layout: auto; /* ajusta el contenido dinámicamente */
 }
 
 .tablaPerfiles th,
@@ -186,29 +295,24 @@
 
 /* --- ESTILOS PARA LA NAVEGACIÓN MÓVIL --- */
 
-/* Por defecto, la barra superior móvil está oculta en escritorio */
 .navBarAdminMobile {
     display: none;
 }
-
-@media (max-width: 1400px) {
-    .sidebarLinks{
-        gap: 4vh;
-    }
+.adminMobileNavOverlay {
+    display: none;
 }
 
 @media (max-width: 1300px){
-    /* 1. Ocultamos el menú lateral de escritorio */
     .bodyAdminNav {
         display: none;
     }
 
-    /* 2. Mostramos la barra superior con el título y el botón de hamburguesa */
     .navBarAdminMobile {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 30px;
+        z-index: 5000;
     }
 
     .hamburgerBtn {
@@ -218,7 +322,7 @@
         padding: 5px;
     }
 
-    /* 3. Estilos para el menú overlay que se renderiza desde AdminFunctions.tsx */
+    /* CAMBIO: Estilos base del menú overlay (estado oculto) */
     .adminMobileNavOverlay {
         position: fixed;
         top: 0;
@@ -231,16 +335,28 @@
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
+        /* --- Propiedades para la animación --- */
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none; /* Evita clics cuando está oculto */
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    /* CAMBIO: Estilos del menú cuando tiene la clase 'open' (estado visible) */
+    .adminMobileNavOverlay.open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto; /* Permite clics cuando es visible */
     }
     
     .adminMobileNavOverlay .sidebarLinks {
         margin-top: 2rem;
-        align-items: center; /* Centramos los links */
+        align-items: center;
         gap: 1.5rem;
     }
 
     .adminMobileNavOverlay .sidebarLinks a {
-        font-size: 1.5em; /* Hacemos los links más grandes para móvil */
+        font-size: 1.5em;
     }
 
     .adminMobileNavOverlay hr {
@@ -249,11 +365,10 @@
     
     .navCloseBtnContainer {
         display: flex;
-        margin-top: 3%;
-        flex-direction: row-reverse;
+        align-items: center;
         justify-content: space-between;
-        width: 90%;
-        margin-left: 5%;    
+        width: 100%;
+        margin-top: 17px;
     }
 
     .navCloseBtn {
@@ -261,8 +376,11 @@
         border: none;
         cursor: pointer;
     }
+
+    .tablaContainer{
+        width: 100%;
+    }
     
-    /* Ajustes adicionales que ya tenías */
     .panelAdminButtonsOptions{
         flex-direction: column;
         gap: 20px;

@@ -2,7 +2,6 @@ import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-// Esquema de validación para una nueva colección
 const CollectionSchema = z.object({
   artisan_id: z.string().uuid(),
   code: z.string().min(1),

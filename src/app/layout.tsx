@@ -11,6 +11,16 @@ export const dynamic = 'force-dynamic';
 
 const montserrat = MontserratFont({ subsets: ['latin'] });
 
+export const metadata = {
+  title: 'Nakawe',
+  description: 'Bordando Comunidades',
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export default async function RootLayout({
   children,
 }: Readonly<{

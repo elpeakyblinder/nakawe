@@ -2,7 +2,9 @@
 
 import { JSX, useEffect, useState } from 'react'
 import Image from 'next/image'
+import { motion, AnimatePresence } from 'framer-motion';
 import './admin.css'
+import { X } from 'lucide-react';
 
 type Props<T> = {
   columns: string[]
@@ -35,7 +37,7 @@ export default function AdminTable<T extends { id: string }>({
     try {
       const res = await fetch(fetchUrl)
       const data = await res.json()
-      
+
       if (Array.isArray(data)) {
         setItems(data)
       } else {
@@ -106,21 +108,53 @@ export default function AdminTable<T extends { id: string }>({
       </table>
 
       {showForm && (
-        <div className="modalOverlay">
-          <div className="modalContent">
-            <h2>{formMode === 'edit' ? `Editar ${formTitle}` : `Nuevo ${formTitle}`}</h2>
-            {renderForm({
-              mode: formMode,
-              initialData: selectedItem ?? undefined,
-              onSuccess: () => {
-                closeForm()
-                fetchItems()
-              },
-              onClose: closeForm,
-            })}
-            <button className="cerrarBtn" onClick={closeForm}>Cerrar</button>
-          </div>
-        </div>
+        <AnimatePresence>
+          <motion.div
+            // Fondo del modal (Overlay)
+            className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50 p-4 "
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              // Contenido del modal
+              className="bg-white rounded-2xl shadow-xl w-full max-w-2xl relative"
+              initial={{ y: -30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 30, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            >
+              {/* Botón para cerrar en la esquina */}
+              <button
+                onClick={closeForm}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X size={24} />
+              </button>
+
+              {/* Header del modal */}
+              <div className="flex justify-center text-center px-8 py-6 border-b">
+                <h1 className="text-4xl font-semibold text-gray-800">
+                  {formMode === 'edit' ? `Editar ${formTitle}` : `Nuevo ${formTitle}`}
+                </h1>
+              </div>
+
+              {/* Contenido principal (el formulario) */}
+              <div className="flex justify-center p-6  h-[80dvh] overflow-y-auto">
+                {renderForm({
+                  mode: formMode,
+                  initialData: selectedItem ?? undefined,
+                  onSuccess: () => {
+                    closeForm();
+                    fetchItems();
+                  },
+                  onClose: closeForm,
+                })}
+              </div>
+
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
       )}
     </div>
   )

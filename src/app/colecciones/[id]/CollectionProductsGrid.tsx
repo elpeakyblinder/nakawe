@@ -1,67 +1,55 @@
 'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import { MasonryInfiniteGrid } from "@egjs/react-infinitegrid";
-import "./infColecciones.css";
 import { type Product } from '@/types';
+import ProductCard from "@/components/features/products/ProductCard";
+import { motion, type Variants } from 'framer-motion';
 
-const ProductCardItem = ({ product, artisanName }: { product: Product, artisanName: string }) => {
-    const productImageUrl = product.main_image_url || '/productoEjemplo.png';
+interface CollectionProductsGridProps {
+    products: (Product & { artisan_name: string; category: string | null })[];
+}
 
-    return (
-        <div className="prendasCard card-fade-in" key={product.id}>
-            <Image
-                className="imagenPrenda"
-                src={productImageUrl}
-                alt={product.name}
-                width={500}
-                height={750}
-            />
-            <div className="cuerpoPrendasCard">
-                <h2>{product.name}</h2>
-                <p>{product.product_brief}</p>
-                <div className="infoCuerpoPrendasCard">
-                    <Image src={'/iconos/user.svg'} alt="Icono usuario" width={15} height={15} />
-                    <span>{artisanName}</span>
-                </div>
-                <div className="infoCuerpoPrendasCard">
-                    <Image src={'/iconos/time.svg'} alt="Icono tiempo" width={15} height={15} />
-                    <span>{product.production_time}</span>
-                </div>
-                <div className="prendasCardButtom">
-                    <p>${product.price} MXN</p>
-                    <Link href={`/producto/${product.id}`}>
-                        <button className="verProductoBtn">Ver</button>
-                    </Link>
-                </div>
-            </div>
-        </div>
-    );
+const containerVariants: Variants = {
+    hidden: { opacity: 1 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15
+        }
+    }
 };
 
+const cardVariants: Variants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: { 
+        y: 0, 
+        opacity: 1,
+        transition: {
+            duration: 0.5,
+            ease: "easeOut"
+        }
+    }
+};
 
-export default function CollectionProductsGrid({ products = [], artisanName }: { products: Product[], artisanName: string }) {
-    if (!products || products.length === 0) {
+export default function CollectionProductsGrid({ products = [] }: CollectionProductsGridProps) {
+    if (products.length === 0) {
         return <p className="text-center text-gray-500">No hay productos en esta colección todavía.</p>;
     }
 
     return (
-        <div className="prendas">
-            <MasonryInfiniteGrid
-                gap={30}
-                align="center"
-                useResizeObserver={true}
-            >
-                {products.map((product) => (
-                    <ProductCardItem
-                        key={product.id}
+        <motion.div
+            className="w-full mx-auto grid gap-8 px-4 sm:px-6 lg:px-8 py-8 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.1 }} 
+        >
+            {products.map((product) => (
+                <motion.div key={product.id} variants={cardVariants}>
+                    <ProductCard
                         product={product}
-                        artisanName={artisanName}
-                        data-grid-groupkey={product.id}
                     />
-                ))}
-            </MasonryInfiniteGrid>
-        </div>
+                </motion.div>
+            ))}
+        </motion.div>
     );
 }

@@ -17,7 +17,7 @@ export type CollectionDetails = {
     design_history: string;
     cover_image_url: string;
     artisan_name: string;
-    products: Product[];
+    products: CartItem[]; 
 };
 
 export type Product = {
@@ -69,7 +69,7 @@ export type FavoritesContextType = {
     isFavorite: (productId: string) => boolean; // Función útil para saber si un producto ya es favorito
 };
 
-// Para formatear precios e incluso cambiarlo a otras divisas
+// Para formatear precios e incluso cambiarlo a otras divisas (más adelante con una API y con base al idioma de la página)
 export interface FormattedPriceProps {
     amount: number; // La cantidad de dinero a formatear
     currency?: string; // El código de la divisa (ej. 'MXN', 'USD')
