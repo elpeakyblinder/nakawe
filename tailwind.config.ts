@@ -21,6 +21,7 @@ const config: Config = {
                     DEFAULT: 'var(--color-terciario-ui)',
                     hover: 'var(--color-terciario-ui-hover)',
                 },
+                40: 'rgb(37 99 235 / 0.4)',
             },
         },
     },

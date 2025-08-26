@@ -69,7 +69,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                         Agregar al carrito
                     </Button>
                     <Link href={`/producto/${product.id}`}>
-                        <Button variant="pistachio-black" className="rounded p-1.5" >Ver producto</Button>
+                        <Button variant="pistachio-black" className="rounded p-1.5" >Descubrir más</Button>
                     </Link>
                 </div>
             </div>

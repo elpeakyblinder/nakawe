@@ -6,17 +6,7 @@ import AdminTable from '../adminTable'
 import ProductForm from './ProductForm'
 import AdminFunctions from '../adminFunctions' // 2. Importamos AdminFunctions
 import '../admin.css'
-
-type Product = {
-  id: string
-  code: string
-  name: string
-  description: string
-  productBrief: string
-  materials: string
-  productionTime: string
-  price: number
-}
+import type { Product } from '@/types'
 
 export default function ProductsPage() {
   // 3. Creamos el estado y la función para manejar el trigger

@@ -91,19 +91,25 @@ export async function fetchCollectionById(id: string): Promise<CollectionDetails
 
     try {
         const collectionQuery = sql`
-            SELECT
-                c.id, c.name, c.description, c.target_market, c.design_concept, c.design_history, c.cover_image_url,
-                a.display_name AS artisan_name
-            FROM collections c
-            JOIN artisans a ON c.artisan_id = a.id
-            WHERE c.id = ${id};
-        `;
+      SELECT
+        c.id, c.name, c.description, c.target_market, c.design_concept, c.design_history, c.cover_image_url,
+        a.display_name AS artisan_name
+      FROM collections c
+      JOIN artisans a ON c.artisan_id = a.id
+      WHERE c.id = ${id};
+    `;
 
-        const productsQuery = sql<Product>`
-            SELECT id, name, product_brief, artisan_id, production_time, price, main_image_url as image_url 
-            FROM products 
-            WHERE collection_id = ${id};
-        `;
+        // Esta consulta ahora incluye los JOINs para obtener todos los datos
+        const productsQuery = sql`
+      SELECT 
+        p.*,
+        a.display_name as artisan_name,
+        cat.name as category
+      FROM products p
+      JOIN artisans a ON p.artisan_id = a.id
+      LEFT JOIN categories cat ON p.category_id = cat.id
+      WHERE p.collection_id = ${id};
+    `;
 
         const [collectionResult, productsResult] = await Promise.all([collectionQuery, productsQuery]);
 
@@ -148,18 +154,22 @@ export async function fetchProductById(id: string): Promise<(Product & { artisan
 }
 
 // Obtiene otros productos aleatorios de la misma colección
-export async function fetchRelatedProducts(collectionId: string, currentProductId: string): Promise<Product[]> {
+export async function fetchRelatedProducts(collectionId: string, currentProductId: string): Promise<(Product & { artisan_name: string; category: string | null })[]> {
     noStore();
     try {
-        const result = await sql<Product>`
-            SELECT id, name, main_image_url, price, product_brief, production_time 
-            FROM products 
-            WHERE collection_id = ${collectionId} AND id != ${currentProductId};
-        `;
+        const result = await sql`
+      SELECT 
+        p.*,
+        a.display_name as artisan_name,
+        cat.name as category
+      FROM products p
+      JOIN artisans a ON p.artisan_id = a.id
+      LEFT JOIN categories cat ON p.category_id = cat.id
+      WHERE p.collection_id = ${collectionId} AND p.id != ${currentProductId};
+    `;
 
-        // Mezcla los resultados y toma los primeros 6
         const shuffled = result.rows.sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, 6);
+        return shuffled.slice(0, 10) as (Product & { artisan_name: string; category: string | null })[];
     } catch (error) {
         console.error(`Error al obtener productos relacionados:`, error);
         return [];
