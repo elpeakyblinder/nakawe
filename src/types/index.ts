@@ -17,7 +17,7 @@ export type CollectionDetails = {
     design_history: string;
     cover_image_url: string;
     artisan_name: string;
-    products: Product[];
+    products: CartItem[]; 
 };
 
 export type Product = {

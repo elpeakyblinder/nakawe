@@ -6,15 +6,19 @@ import { FavoritesProvider } from '@/context/FavoritesProvider';
 import Navbar from '@/components/layout/Navbar';
 import { AuthProvider } from '@/context/AuthProvider';
 import { Toaster } from 'sonner'
-import type { Metadata } from 'next'
-
 
 export const dynamic = 'force-dynamic';
 
 const montserrat = MontserratFont({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  viewport: 'width=device-width, initial-scale=1.0',
+export const metadata = {
+  title: 'Nakawe',
+  description: 'Bordando Comunidades',
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default async function RootLayout({

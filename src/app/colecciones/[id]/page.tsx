@@ -84,10 +84,7 @@ export default async function InformacionColeccionesPage(
           <LinearGradient />
         </div>
 
-        <CollectionProductsGrid
-          products={collection.products}
-          artisanName={collection.artisan_name}
-        />
+        <CollectionProductsGrid products={collection.products} />
       </section>
     </div>
   );

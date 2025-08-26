@@ -10,6 +10,7 @@ import LinearGradient from "@/components/ui/LinearGradient";
 import FavoriteToggleButton from "@/components/features/products/FavoriteToggleButton";
 import FormattedPrice from "@/components/ui/FormattedPrice";
 import CategoryBadge from "@/components/ui/CategoryBadge";
+import ProductCard from "@/components/features/products/ProductCard";
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] });
 
@@ -81,33 +82,12 @@ export default async function ProductoPage({ params }: { params: Promise<{ produ
                         <h2>OTRAS PRENDAS DE LA COLECCIÓN</h2>
                         <LinearGradient />
                     </div>
-                    <div className={styles.prendas}>
-                        {otherProducts.map(otherProduct => {
-                            const relatedImageUrl = otherProduct.main_image_url ? otherProduct.main_image_url : '/productoEjemplo.png';
-                            return (
-                                <div key={otherProduct.id} className={styles.prendasCardProducto}>
-                                    <Image className="imagenPrenda" src={relatedImageUrl} alt={otherProduct.name} width={100} height={250} />
-                                    <div className={styles.cuerpoPrendasCard}>
-                                        <h2>{otherProduct.name}</h2>
-                                        <p>{otherProduct.product_brief}</p>
-                                        <div className={styles.infoCuerpoPrendasCard}>
-                                            <Image src={'/iconos/user.svg'} alt="Icono usuario" width={15} height={15} />
-                                            <span>{product.artisan_name}</span>
-                                        </div>
-                                        <div className={styles.infoCuerpoPrendasCard}>
-                                            <Image src={'/iconos/time.svg'} alt="Icono tiempo" width={15} height={15} />
-                                            <span>{otherProduct.production_time}</span>
-                                        </div>
-                                        <div className={styles.prendasCardButtom}>
-                                            <FormattedPrice className="text-2xl font-medium text-[var(--color-principal-ui)]" amount={product.price} />
-                                            <Link href={`/producto/${otherProduct.id}`}>
-                                                <button>Ver</button>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })}
+                    <div className="">
+                        <div className="w-full mx-auto grid gap-8 px-4 sm:px-6 lg:px-8 py-8 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
+                            {otherProducts.map(otherProduct => (
+                                <ProductCard key={otherProduct.id} product={otherProduct} />
+                            ))}
+                        </div>
                     </div>
                 </>
             )}
